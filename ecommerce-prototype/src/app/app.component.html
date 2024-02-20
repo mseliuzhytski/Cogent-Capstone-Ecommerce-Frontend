@@ -1,0 +1,52 @@
+<router-outlet>
+
+  <!-- <div class="cart-container">
+    <a href="#"><img src="../assets/images/car-icon.png" alt="Cart" width="60px" height="60px"></a>
+  </div> -->
+
+  <header>
+    <div class="topHeader">
+      <div>
+        <a routerLink="/"><img src="../assets/images/generic-logo.webp" alt="logo" width="400px" height="170px"></a>
+      </div>
+      <div>
+        <a routerLink="/wishlist"><img src="../assets/images/liked.png" alt="user" width="55px" height="55px"></a>
+        <a routerLink="/userProfile"><img src="../assets/images/user-icon.jpg" alt="user" width="55px" height="55px"></a>
+        <a routerLink="/cart"><img src="../assets/images/car-icon.png" alt="Cart" width="60px" height="60px"></a>
+      </div>
+      
+    </div>
+    <hr>
+    <nav>
+      <ul>
+        <li><a routerLink="/">Home</a></li>
+        <!-- categories -->
+        <!-- <li><a href="#">Women's Clothing</a></li>
+        <li><a href="#">Men's Clothing</a></li>
+        <li><a href="#">Electronics</a></li>
+        <li><a href="#">Food</a></li>
+        <li><a href="#">Services</a></li> -->
+        <li class="dropdown">
+          <a routerLink="/shopAll">Shop</a>
+          <!-- Dynamically generated from existing categories in backend -->
+          <ul class="dropdown-menu">
+            <li><a href="#">Women's Clothing</a></li>
+            <li><a href="#">Men's Clothing</a></li>
+            <li><a href="#">Electronics</a></li>
+            <li><a href="#">Food</a></li>
+            <li><a href="#">Services</a></li>
+          </ul>
+        </li>
+        <li><a routerLink="/about">About</a></li>
+        <li><a routerLink="/contact">Contact</a></li>
+        <li class="search-bar">
+          <form action="#">
+            <input type="text" name="search" placeholder="Search...">
+            <button type="submit">Search</button>
+          </form>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+</router-outlet>

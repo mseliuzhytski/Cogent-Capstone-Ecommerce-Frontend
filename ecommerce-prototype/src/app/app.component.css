@@ -1,0 +1,86 @@
+body, ul {
+    margin: 0;
+    padding: 0;
+  }
+  nav {
+    margin-top: 5px;
+    background-color: #333;
+    text-align: center; 
+  }
+  
+  nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  nav ul li {
+    display: inline-block;
+  }
+  
+  nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  nav ul li a:hover {
+    background-color: #ff0000;
+  }
+  
+  /* Style for the dropdown menu */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    border: 1px solid #ccc;
+    z-index: 1;
+  }
+  
+  .dropdown-menu li {
+    display: block;
+    white-space: nowrap;
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  .dropdown {
+    position: relative; /* Ensure dropdown menu is positioned relative to its parent */
+  }
+
+  /* Topmost Header - */
+
+  .topHeader{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* search bar */
+  .search-bar {
+    display: flex;
+    align-items: center; /* Vertically center the input field */
+  }
+  
+  .search-bar input[type="text"] {
+    width: 300px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 5px; /* Adjust margin as needed */
+  }
+  
+  .search-bar button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #555;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .search-bar button:hover {
+    background-color: #333;
+  }

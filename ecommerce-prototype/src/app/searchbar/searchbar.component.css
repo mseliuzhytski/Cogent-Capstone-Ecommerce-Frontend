@@ -1,0 +1,16 @@
+.search-container {
+    
+    width: 80%; /* Adjust width as needed */
+    margin: 0 auto; /* Center the container horizontally */
+    text-align: center; /* Center the content within the container */
+  }
+  
+  .search-bar {
+    margin-top: 75px;
+    width: 800px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
