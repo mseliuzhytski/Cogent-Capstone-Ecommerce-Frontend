@@ -14,3 +14,67 @@
     box-sizing: border-box;
     font-size: 16px;
   }
+  
+  .container {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .filters {
+    flex: 1;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .product-list {
+    flex: 2;
+    margin: 10px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+  }
+
+
+
+  /* Product list */
+
+.product-item {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-item img {
+  
+  width: 100px;
+  height: 100px;
+}
+
+.product-item h3 {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.product-item p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.product-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product-item .price {
+  font-weight: bold; /* Highlight the price */
+  color: #4CAF50; /* Use a green color for price */
+  margin-top: 10px; /* Add some space above the price */
+}
+
+.product-item:hover h3,
+.product-item:hover p {
+  color: #a06060;
+}

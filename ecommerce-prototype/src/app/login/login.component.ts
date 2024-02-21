@@ -43,7 +43,11 @@ export class LoginComponent implements OnInit{
     });
     console.log(response)
     console.log(this.array)
-    this.router.navigate(['/userProfile']);
+
+    setTimeout(()=>{
+      this.router.navigate(['/userProfile']);
+    },2000)
+    
   }
 
   goToSignUp(){

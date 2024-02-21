@@ -1,2 +1,62 @@
-<app-searchbar></app-searchbar>
+<!-- <app-searchbar></app-searchbar> -->
+
+<!-- main content div -->
+<div class="container">
+
+  <!-- left side of the screen where users set filters (1/3 of screen) -->
+  <div class="filters">
+
+    <!-- table of filters -> radio buttons for sort by price, name, date, etc... -->
+    <div>SORT BY (Radio Buttons)</div>
+    <hr>
+    <div>button for sort by price ascending</div>
+    <div>button for sort by price descending</div>
+    <div>button for sort by name</div>
+    <div>button for sort by date added ascending</div>
+    <div>button for sort by date added descending</div>
+    <hr>
+    <div>FILTER</div>
+    <hr>
+    <div>filter by categories</div>
+    <div>Category 1</div>
+    <div>Category 1</div>
+    <div>Category 1</div>
+    <div>Category 1</div>
+    <div>Category etc...</div>
+    <hr>
+    
+
+
+  </div>
+
+
+
+  <!-- right side of screen where product list is shown -->
+  <button (click)="update()">show</button>
+  <div class="product-list">
+
+    
+    <div *ngIf="displayReady">
+  <!-- list of products here -->
+  <div class="product-item" *ngFor="let x of productsList"><!--  (click)="gotProductPage({{product.id}})"-->
+    <!-- img {{product.img}} -->
+    <!-- h3 {{product.name}} -->
+    <!-- p {{product.price}}+{{product.stock}} -->
+    <!-- p {{product.details}} -->
+    <img src="{{x.imageLocation}}" alt="test">
+    <h3>{{x.name}}</h3>
+    <p class="price">Price: {{x.price}} Stock: {{x.stock}}</p>
+    <p>{{x.details}}</p>
+    <p>Date Added: {{x.dateAdded}}</p>
+  </div>
+</div>
+  
+  
+
+  </div>
+
+
+
+</div>
+
   <h2>Test</h2>
