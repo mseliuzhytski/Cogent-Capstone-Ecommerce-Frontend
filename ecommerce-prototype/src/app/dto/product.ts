@@ -2,11 +2,10 @@ import { Category } from "./category";
 
 export class Product{
 
-    constructor(private id: number, private name:string,private price:number,private stock:number, 
-        private categories:Category[],private details:string,private imageLocation:string,private dateAdded:number){
+    constructor(public id: number, public name:string,public price:number,public stock:number, 
+        public categories:Category[],public details:string,public imageLocation:string,public dateAdded:number, public categoryNames:string[]){
     }
 
-    
     public set category(Category : Category[]) {
         this.categories = Category;
     }

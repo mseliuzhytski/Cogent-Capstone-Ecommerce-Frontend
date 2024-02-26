@@ -12,11 +12,11 @@ export class SearchbarComponent {
   //animation for search bar
   words: string[] = ["Search...","Red Shirt...", "Airpods...", "Nivea Cream...", "Lenovo Laptop..."]; // List of words to animate
   placeholderIndex: number = 0;
-  placeholder: string = '';
+  placeholder: string = 'Search...';
 
 
   constructor(){
-    this.animatePlaceholder(); 
+    //this.animatePlaceholder(); 
   }
 
   animatePlaceholder() {
@@ -44,6 +44,8 @@ export class SearchbarComponent {
       }
     }, delay);
   }
+
+  
 
 
 

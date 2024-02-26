@@ -1,6 +1,6 @@
 export class Category{
 
-    constructor(private id:number,private name:string){
+    constructor(public id:number,public name:string){
         
     }
 
