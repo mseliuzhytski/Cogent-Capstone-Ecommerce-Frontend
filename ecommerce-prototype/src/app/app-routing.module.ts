@@ -9,6 +9,10 @@ import { CartComponent } from './cart/cart.component';
 import { ShopComponent } from './shop/shop.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { AdminComponent } from './admin/admin.component';
+import { AccountCrudComponent } from './admin/account-crud/account-crud.component';
+import { ProductCrudComponent } from './admin/product-crud/product-crud.component';
+import { SalesReportComponent } from './admin/sales-report/sales-report.component';
 
 const routes: Routes = [{path:'userProfile', component:UserprofileComponent},
 {path:'about', component:AboutComponent},
@@ -19,6 +23,10 @@ const routes: Routes = [{path:'userProfile', component:UserprofileComponent},
 {path:'cart', component:CartComponent},
 {path:'shopAll', component:ShopComponent},
 {path:'signUp', component:SignupComponent},
+{path:'admin', component:AdminComponent},
+{path:'admin/product', component:ProductCrudComponent},
+{path:'admin/account', component:AccountCrudComponent},
+{path:'admin/sales', component:SalesReportComponent},
 {path:'',redirectTo:'/home',pathMatch:'full'}
 ];
 

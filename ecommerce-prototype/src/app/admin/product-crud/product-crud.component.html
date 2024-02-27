@@ -1,0 +1,143 @@
+
+<div>
+
+  <div class="add_information">
+    <ul>
+      <li><a href="" (click)="addProductOption($event)">Add Individual Product</a> </li>
+      <li><a href="" (click)="addCsvOption($event)">Add Products via CSV</a></li>
+    </ul>
+  </div>
+
+  <div *ngIf="showAddProductForm" id="add_product_div">
+    <form (ngSubmit)="addProduct($event)" [formGroup]="addForm">
+
+    <table>
+      <tr>
+        <td>Name</td>
+        <td class="add_product_attr"><input type="text" formControlName="name"></td>
+        <td class="add_product_input">
+          <span *ngIf="!addForm.get('name').valid && addForm.get('name').touched" class="error_message">
+            Please enter a product name.
+          </span>
+        </td>
+        <td class="add_product_error">
+
+        </td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td><input type="text" formControlName="price"></td>
+        <td>
+          <span *ngIf="!addForm.get('price').valid && addForm.get('price').touched" class="error_message">
+            Please enter a valid price.
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Stock</td>
+        <td><input type="text" formControlName="stock"></td>
+        <td>
+          <span *ngIf="!addForm.get('stock').valid && addForm.get('stock').touched" class="error_message">
+            Please enter a valid stock amount (an integer).
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Image Upload</td>
+        <td>
+          <!-- <input type="text" formControlName="imageLocation"> -->
+          <!-- <br> -->
+          <input type="file" class="file-upload" (change)="uploadImage($event)"
+              formControlName="imageLocation">
+        </td>
+        <td>
+          <span *ngIf="!addForm.get('imageLocation').valid && addForm.get('imageLocation').touched
+          && hasSelectedFile" class="error_message">
+            Please enter a valid image location.
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Details</td>
+        <td><textarea name="product_details" id="product_details" cols="30" rows="10"
+           formControlName="details"></textarea></td>
+        <td>
+          <span *ngIf="!addForm.get('details').valid && addForm.get('details').touched" class="error_message">
+            Please enter some details.
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><button #addProductButton type="submit">Add</button></td>
+      </tr>
+    </table>
+
+    </form>
+  </div>
+
+  </div>
+
+
+
+<table class="product_table">
+  <tr class="product_table_header">
+    <td class="col_product_edit"></td>
+    <td class="col_product_delete"></td>
+    <td class="col_product_id">Id</td>
+    <td class="col_product_name">Name</td>
+    <td class="col_product_price">Price</td>
+    <td class="col_product_stock">Stock</td>
+    <td class="col_product_category">Category</td>
+    <td class="col_product_image_loc">Image</td>
+    <td class="col_product_details">Details</td>
+  </tr>
+  <tr *ngFor="let product of products">
+    <td class="col_product_edit">
+      <a href="" (click)="editProduct($event, product.id)">
+        <img src="../assets/images/edit.png" alt="logo" width="20px" height="20px">
+      </a>
+    </td>
+    <td class="col_product_delete">
+      <a href="" (click)="deleteProduct($event, product.id)">
+        <img src="../assets/images/delete.png" alt="logo" width="20px" height="20px">
+      </a>
+    </td>
+    <td class="col_product_id">{{product.id}}</td>
+    <td class="col_product_name">{{product.name}}</td>
+    <td class="col_product_price">{{product.price}}</td>
+    <td class="col_product_stock">{{product.stock}}</td>
+    <td class="col_product_category">{{product.category}}</td>
+    <td class="col_product_image_loc">
+      <img src="http://localhost:8080/content/{{product.imageLocation}}" alt="" height="100px">
+    </td>
+    <td class="col_product_details details_text">{{product.details}}</td>
+  </tr>
+  <tr>
+    <td class="col_product_edit"></td>
+    <td class="col_product_delete"></td>
+
+    <td class="col_product_id">
+
+    </td>
+    <td class="col_product_name">
+      <img src="../assets/images/add.png" alt="logo" width="20px" height="20px">
+    </td>
+    <td class="col_product_price">
+
+    </td>
+    <td class="col_product_stock">
+
+    </td>
+    <td class="col_product_category">
+
+    </td>
+    <td class="col_product_image_loc">
+
+    </td>
+    <td class="col_product_details">
+
+    </td>
+  </tr>
+</table>
+

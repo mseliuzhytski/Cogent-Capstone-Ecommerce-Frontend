@@ -15,6 +15,11 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
+import { AdminComponent } from './admin/admin.component';
+import { ProductCrudComponent } from './admin/product-crud/product-crud.component';
+import { AccountCrudComponent } from './admin/account-crud/account-crud.component';
+import { SalesReportComponent } from './admin/sales-report/sales-report.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -28,7 +33,11 @@ import { SignupComponent } from './signup/signup.component';
     ShopComponent,
     SearchbarComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    AdminComponent,
+    ProductCrudComponent,
+    AccountCrudComponent,
+    SalesReportComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +47,8 @@ import { SignupComponent } from './signup/signup.component';
     HttpClientModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

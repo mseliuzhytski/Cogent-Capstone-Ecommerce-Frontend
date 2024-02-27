@@ -1,0 +1,65 @@
+.product_table {
+  margin-top: 20px;
+  font-size: 14px;
+  border-collapse:collapse;
+  background-color: rgb(230, 230, 230);
+}
+
+.product_table_header {
+  font-weight: bold;
+  background-color: rgb(119, 119, 119);
+  color: white;
+  height: 30px;
+}
+
+.product_table {
+  font-family: sans-serif;
+}
+
+.col_product_id {
+  width: 25px;
+}
+
+.col_product_edit {
+  width: 30px;
+}
+
+.col_product_delete {
+  width: 30px;
+}
+
+.col_product_name {
+  width: 200px;
+}
+
+.col_product_price {
+  width: 60px;
+}
+
+.col_product_stock {
+  width: 50px;
+}
+
+.col_product_image_loc {
+  width: 150px;
+}
+
+.col_product_category {
+  width: 150px;
+}
+
+.col_product_details {
+  width: 500px;
+}
+
+.details_text {
+  font-size: 12px;
+}
+
+.error_message {
+  color: red;
+}
+
+.add_product_attr {
+  width: 200px;
+}
