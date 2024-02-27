@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { EmailValidator, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthServiceService } from '../auth-service.service';
 import { Router } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.css'
+  styleUrl: './signup.component.css',
 })
 export class SignupComponent implements OnInit{
 
@@ -32,7 +34,7 @@ export class SignupComponent implements OnInit{
     if (password.length < 8) {
       return true;
     }
-  
+
     const hasLowerCase = /[a-z]/.test(password);
     const hasUpperCase = /[A-Z]/.test(password);
     if (!hasLowerCase || !hasUpperCase) {
@@ -43,7 +45,7 @@ export class SignupComponent implements OnInit{
     if (!hasNumber) {
       return true;
     }
-  
+
     // Checksif password has one special character
     const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
     if (!hasSpecialChar) {

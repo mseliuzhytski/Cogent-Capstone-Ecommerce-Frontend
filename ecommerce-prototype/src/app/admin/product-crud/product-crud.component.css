@@ -20,12 +20,16 @@
   width: 25px;
 }
 
+.col_product_add {
+  width: 25px;
+}
+
 .col_product_edit {
-  width: 30px;
+  width: 25px;
 }
 
 .col_product_delete {
-  width: 30px;
+  width: 25px;
 }
 
 .col_product_name {
@@ -41,7 +45,7 @@
 }
 
 .col_product_image_loc {
-  width: 150px;
+  width: 100px;
 }
 
 .col_product_category {
@@ -49,7 +53,7 @@
 }
 
 .col_product_details {
-  width: 500px;
+  width: 350px;
 }
 
 .details_text {
@@ -62,4 +66,44 @@
 
 .add_product_attr {
   width: 200px;
+}
+
+
+mat-sidenav, mat-sidenav-content {
+  padding: 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.side_nav {
+  background-color: #FCD15E;
+  width: 210px;
+  float: left;
+  padding: 10px;
+}
+
+.side_nav mat-list {
+  margin-top: 20px;
+}
+
+.main_content {
+  display: block;
+  float: right;
+}
+
+.mat-list-item{
+  max-height: 25px;
+}
+
+mat-list-item a {
+  text-decoration: none;
+}
+
+mat-list-item a:hover {
+  text-decoration: underline;
 }

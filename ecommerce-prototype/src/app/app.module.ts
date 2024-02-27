@@ -21,6 +21,12 @@ import { AccountCrudComponent } from './admin/account-crud/account-crud.componen
 import { SalesReportComponent } from './admin/sales-report/sales-report.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
+import { MatButtonModule } from '@angular/material/button'
+import { MatSidenavModule } from '@angular/material/sidenav'
+import { MatListModule } from '@angular/material/list'
+import { MatIconModule } from '@angular/material/icon'
+import {MatDividerModule} from '@angular/material/divider';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,14 +43,21 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     AdminComponent,
     ProductCrudComponent,
     AccountCrudComponent,
-    SalesReportComponent
+    SalesReportComponent,
+    // ReactiveFormsModule,
+    // FormsModule
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatDividerModule
   ],
   providers: [
     provideClientHydration(),

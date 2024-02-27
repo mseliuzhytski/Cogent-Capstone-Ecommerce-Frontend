@@ -1,143 +1,182 @@
 
-<div>
 
-  <div class="add_information">
-    <ul>
-      <li><a href="" (click)="addProductOption($event)">Add Individual Product</a> </li>
-      <li><a href="" (click)="addCsvOption($event)">Add Products via CSV</a></li>
-    </ul>
+<div class="container">
+
+
+  <div class="side_nav">
+    <mat-list>
+      <mat-list-item>
+          <button mat-icon-button matListItemMeta value="On">
+            <mat-icon fontIcon="pageview"></mat-icon>
+         </button>
+       <a matListItemTitle href="#">View Products</a>
+      </mat-list-item>
+
+      <mat-list-item>
+        <button mat-icon-button matListItemMeta>
+          <mat-icon fontIcon="add_box"></mat-icon>
+       </button>
+       <a matListItemTitle href="#">Add Product</a>
+      </mat-list-item>
+
+      <mat-list-item selected>
+        <button mat-icon-button matListItemMeta>
+          <mat-icon fontIcon="mode_edit"></mat-icon>
+       </button>
+       <a matListItemTitle href="#">Edit Product</a>
+      </mat-list-item>
+
+      <mat-list-item selected>
+        <button mat-icon-button matListItemMeta>
+          <mat-icon fontIcon="file_upload"></mat-icon>
+       </button>
+       <a matListItemTitle href="#">CSV Upload</a>
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+
+      <mat-list-item selected>
+        <button mat-icon-button matListItemMeta>
+          <mat-icon fontIcon="file_upload"></mat-icon>
+       </button>
+       <a matListItemTitle href="#">CSV Upload</a>
+      </mat-list-item>
+
+      <mat-list-item selected>
+        <button mat-icon-button matListItemMeta>
+          <mat-icon fontIcon="file_upload"></mat-icon>
+       </button>
+       <a matListItemTitle href="#">CSV Upload</a>
+      </mat-list-item>
+
+    </mat-list>
   </div>
 
-  <div *ngIf="showAddProductForm" id="add_product_div">
-    <form (ngSubmit)="addProduct($event)" [formGroup]="addForm">
+  <div class="main_content">
 
-    <table>
-      <tr>
-        <td>Name</td>
-        <td class="add_product_attr"><input type="text" formControlName="name"></td>
-        <td class="add_product_input">
-          <span *ngIf="!addForm.get('name').valid && addForm.get('name').touched" class="error_message">
-            Please enter a product name.
-          </span>
-        </td>
-        <td class="add_product_error">
+      <!-- <div class="add_information">
+        <ul>
+          <li><a href="" (click)="addProductOption($event)">Add Individual Product</a> </li>
+          <li><a href="" (click)="addCsvOption($event)">Add Products via CSV</a></li>
+        </ul>
+      </div> -->
 
-        </td>
+      <div *ngIf="showAddProductForm" id="add_product_div">
+        <form (ngSubmit)="addProduct($event)" [formGroup]="addForm">
+
+        <table>
+          <tr>
+            <td>Name</td>
+            <td class="add_product_attr"><input type="text" formControlName="name"></td>
+            <td class="add_product_input">
+              <span *ngIf="!addForm.get('name').valid && addForm.get('name').touched" class="error_message">
+                Please enter a product name.
+              </span>
+            </td>
+            <td class="add_product_error">
+
+            </td>
+          </tr>
+          <tr>
+            <td>Price</td>
+            <td><input type="text" formControlName="price"></td>
+            <td>
+              <span *ngIf="!addForm.get('price').valid && addForm.get('price').touched" class="error_message">
+                Please enter a valid price.
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Stock</td>
+            <td><input type="text" formControlName="stock"></td>
+            <td>
+              <span *ngIf="!addForm.get('stock').valid && addForm.get('stock').touched" class="error_message">
+                Please enter a valid stock amount (an integer).
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Image Upload</td>
+            <td>
+              <!-- <input type="text" formControlName="imageLocation"> -->
+              <!-- <br> -->
+              <input type="file" class="file-upload" (change)="uploadImage($event)"
+                  formControlName="imageLocation">
+            </td>
+            <td>
+              <span *ngIf="!addForm.get('imageLocation').valid && addForm.get('imageLocation').touched
+              && hasSelectedFile" class="error_message">
+                Please enter a valid image location.
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Details</td>
+            <td><textarea name="product_details" id="product_details" cols="30" rows="10"
+               formControlName="details"></textarea></td>
+            <td>
+              <span *ngIf="!addForm.get('details').valid && addForm.get('details').touched" class="error_message">
+                Please enter some details.
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><button #addProductButton type="submit">Add</button></td>
+          </tr>
+        </table>
+
+        </form>
+      </div>
+
+
+    <div class="product_table_div">
+
+    <table class="product_table">
+      <tr class="product_table_header">
+        <td class="col_product_add"></td>
+        <td class="col_product_edit"></td>
+        <td class="col_product_delete"></td>
+        <td class="col_product_id">Id</td>
+        <td class="col_product_name">Name</td>
+        <td class="col_product_price">Price</td>
+        <td class="col_product_stock">Stock</td>
+        <td class="col_product_category">Category</td>
+        <td class="col_product_image_loc">Image</td>
+        <td class="col_product_details">Details</td>
       </tr>
-      <tr>
-        <td>Price</td>
-        <td><input type="text" formControlName="price"></td>
-        <td>
-          <span *ngIf="!addForm.get('price').valid && addForm.get('price').touched" class="error_message">
-            Please enter a valid price.
-          </span>
+      <tr *ngFor="let product of products">
+        <td class="col_product_add">
+          <button mat-icon-button (click)="addProductOption($event)">
+            <mat-icon fontIcon="add_box"></mat-icon>
+         </button>
         </td>
-      </tr>
-      <tr>
-        <td>Stock</td>
-        <td><input type="text" formControlName="stock"></td>
-        <td>
-          <span *ngIf="!addForm.get('stock').valid && addForm.get('stock').touched" class="error_message">
-            Please enter a valid stock amount (an integer).
-          </span>
+        <td class="col_product_edit">
+          <button mat-icon-button (click)="editProduct($event, product.id)">
+            <mat-icon fontIcon="mode_edit"></mat-icon>
+          </button>
         </td>
-      </tr>
-      <tr>
-        <td>Image Upload</td>
-        <td>
-          <!-- <input type="text" formControlName="imageLocation"> -->
-          <!-- <br> -->
-          <input type="file" class="file-upload" (change)="uploadImage($event)"
-              formControlName="imageLocation">
+        <td class="col_product_delete">
+          <button mat-icon-button (click)="deleteProduct($event, product.id)">
+            <mat-icon fontIcon="delete"></mat-icon>
+          </button>
         </td>
-        <td>
-          <span *ngIf="!addForm.get('imageLocation').valid && addForm.get('imageLocation').touched
-          && hasSelectedFile" class="error_message">
-            Please enter a valid image location.
-          </span>
+        <td class="col_product_id">{{product.id}}</td>
+        <td class="col_product_name">{{product.name}}</td>
+        <td class="col_product_price">{{product.price}}</td>
+        <td class="col_product_stock">{{product.stock}}</td>
+        <td class="col_product_category">{{product.category}}</td>
+        <td class="col_product_image_loc">
+          <img src="http://localhost:8080/content/{{product.imageLocation}}" alt="" height="100px">
         </td>
-      </tr>
-      <tr>
-        <td>Details</td>
-        <td><textarea name="product_details" id="product_details" cols="30" rows="10"
-           formControlName="details"></textarea></td>
-        <td>
-          <span *ngIf="!addForm.get('details').valid && addForm.get('details').touched" class="error_message">
-            Please enter some details.
-          </span>
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><button #addProductButton type="submit">Add</button></td>
+        <td class="col_product_details details_text">{{product.details}}</td>
       </tr>
     </table>
-
-    </form>
+    </div>
   </div>
-
-  </div>
-
+</div>
 
 
-<table class="product_table">
-  <tr class="product_table_header">
-    <td class="col_product_edit"></td>
-    <td class="col_product_delete"></td>
-    <td class="col_product_id">Id</td>
-    <td class="col_product_name">Name</td>
-    <td class="col_product_price">Price</td>
-    <td class="col_product_stock">Stock</td>
-    <td class="col_product_category">Category</td>
-    <td class="col_product_image_loc">Image</td>
-    <td class="col_product_details">Details</td>
-  </tr>
-  <tr *ngFor="let product of products">
-    <td class="col_product_edit">
-      <a href="" (click)="editProduct($event, product.id)">
-        <img src="../assets/images/edit.png" alt="logo" width="20px" height="20px">
-      </a>
-    </td>
-    <td class="col_product_delete">
-      <a href="" (click)="deleteProduct($event, product.id)">
-        <img src="../assets/images/delete.png" alt="logo" width="20px" height="20px">
-      </a>
-    </td>
-    <td class="col_product_id">{{product.id}}</td>
-    <td class="col_product_name">{{product.name}}</td>
-    <td class="col_product_price">{{product.price}}</td>
-    <td class="col_product_stock">{{product.stock}}</td>
-    <td class="col_product_category">{{product.category}}</td>
-    <td class="col_product_image_loc">
-      <img src="http://localhost:8080/content/{{product.imageLocation}}" alt="" height="100px">
-    </td>
-    <td class="col_product_details details_text">{{product.details}}</td>
-  </tr>
-  <tr>
-    <td class="col_product_edit"></td>
-    <td class="col_product_delete"></td>
 
-    <td class="col_product_id">
 
-    </td>
-    <td class="col_product_name">
-      <img src="../assets/images/add.png" alt="logo" width="20px" height="20px">
-    </td>
-    <td class="col_product_price">
-
-    </td>
-    <td class="col_product_stock">
-
-    </td>
-    <td class="col_product_category">
-
-    </td>
-    <td class="col_product_image_loc">
-
-    </td>
-    <td class="col_product_details">
-
-    </td>
-  </tr>
-</table>
 
