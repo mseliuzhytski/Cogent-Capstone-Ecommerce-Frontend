@@ -26,7 +26,10 @@ import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list'
 import { MatIconModule } from '@angular/material/icon'
 import {MatDividerModule} from '@angular/material/divider';
-
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
+import { MatDialogModule } from '@angular/material/dialog';
+import { ProductDialogComponent } from './admin/product-crud/product-dialog/product-dialog.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +47,7 @@ import {MatDividerModule} from '@angular/material/divider';
     ProductCrudComponent,
     AccountCrudComponent,
     SalesReportComponent,
+    ProductDialogComponent,
     // ReactiveFormsModule,
     // FormsModule
   ],
@@ -57,7 +61,10 @@ import {MatDividerModule} from '@angular/material/divider';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
-    MatDividerModule
+    MatDividerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
   ],
   providers: [
     provideClientHydration(),

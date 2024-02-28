@@ -1,0 +1,81 @@
+
+<div *ngIf="data.type=='add_product_success'">
+<h2 mat-dialog-title>Completed</h2>
+<mat-dialog-content>
+  You have succesfully added a new product.
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close mat-dialog-close="add">Add Another</button>
+  <button mat-button mat-dialog-close mat-dialog-close="view">View Products</button>
+</mat-dialog-actions>
+</div>
+
+<div *ngIf="data.type=='add_product_failure'">
+  <h2 mat-dialog-title>Incomplete</h2>
+  <mat-dialog-content>
+    Not all fields have been entered correctly.
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
+  </mat-dialog-actions>
+  </div>
+
+  <div *ngIf="data.type=='edit_product_success'">
+    <h2 mat-dialog-title>Completed</h2>
+    <mat-dialog-content>
+      You have succesfully modified an existing product.
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button mat-dialog-close mat-dialog-close="view">View Products</button>
+    </mat-dialog-actions>
+    </div>
+
+    <div *ngIf="data.type=='delete_product_success'">
+      <h2 mat-dialog-title>Completed</h2>
+      <mat-dialog-content>
+        You have succesfully deleted the product.
+      </mat-dialog-content>
+      <mat-dialog-actions>
+        <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
+      </mat-dialog-actions>
+      </div>
+
+    <div *ngIf="data.type=='delete_product_failure'">
+        <h2 mat-dialog-title>Unsuccessful</h2>
+        <mat-dialog-content>
+          Could not delete the product.
+        </mat-dialog-content>
+        <mat-dialog-actions>
+          <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
+        </mat-dialog-actions>
+    </div>
+
+    <div *ngIf="data.type=='csv_upload_success'">
+      <h2 mat-dialog-title>Completed</h2>
+      <mat-dialog-content>
+        You have succesfully created products via csv bulk upload.
+      </mat-dialog-content>
+      <mat-dialog-actions>
+        <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
+      </mat-dialog-actions>
+      </div>
+
+    <div *ngIf="data.type=='delete_upload_failure'">
+        <h2 mat-dialog-title>Unsuccessful</h2>
+        <mat-dialog-content>
+          There was a problem creating products via csv bulk upload
+        </mat-dialog-content>
+        <mat-dialog-actions>
+          <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
+        </mat-dialog-actions>
+    </div>
+
+   <div *ngIf="data.type=='delete_upload_missing'">
+      <h2 mat-dialog-title>Missing Field</h2>
+      <mat-dialog-content>
+        You need to upload a file
+      </mat-dialog-content>
+      <mat-dialog-actions>
+        <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
+      </mat-dialog-actions>
+  </div>

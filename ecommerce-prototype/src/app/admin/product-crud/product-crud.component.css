@@ -1,3 +1,8 @@
+/** View Product Table */
+.product_table_div {
+  padding: 10px;
+}
+
 .product_table {
   margin-top: 20px;
   font-size: 14px;
@@ -49,11 +54,11 @@
 }
 
 .col_product_category {
-  width: 150px;
+  width: 120px;
 }
 
 .col_product_details {
-  width: 350px;
+  width: 250px;
 }
 
 .details_text {
@@ -64,8 +69,23 @@
   color: red;
 }
 
+/** Add/Edit Product Form */
+#add_product_div {
+  margin-top: 0px;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
 .add_product_attr {
-  width: 200px;
+  width: 120px;
+}
+
+.add_product_input {
+  width: 300px;
+}
+
+.add_product_error {
+  width: 300px;
 }
 
 
@@ -76,24 +96,30 @@ mat-sidenav, mat-sidenav-content {
 .container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: stretch;
+  flex-grow: 1;
 }
 
 .side_nav {
   background-color: #FCD15E;
-  width: 210px;
+  width: 240px;
   float: left;
   padding: 10px;
 }
 
 .side_nav mat-list {
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 .main_content {
   display: block;
   float: right;
+}
+
+.main_content h2 {
+  text-align: center;
+  color: #2F4B6A;
 }
 
 .mat-list-item{
@@ -107,3 +133,9 @@ mat-list-item a {
 mat-list-item a:hover {
   text-decoration: underline;
 }
+
+.main_content {
+  background-color: rgb(230, 230, 230);
+  padding-top: 0px;
+}
+

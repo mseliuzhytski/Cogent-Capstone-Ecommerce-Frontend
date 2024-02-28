@@ -2,51 +2,50 @@
 
 <div class="container">
 
-
   <div class="side_nav">
     <mat-list>
       <mat-list-item>
-          <button mat-icon-button matListItemMeta value="On">
+          <button mat-icon-button matListItemMeta (click)="viewProductOption($event)">
             <mat-icon fontIcon="pageview"></mat-icon>
          </button>
-       <a matListItemTitle href="#">View Products</a>
+       <a matListItemTitle href="javascript:void(0)" (click)="viewProductOption($event)">View Products</a>
       </mat-list-item>
 
       <mat-list-item>
-        <button mat-icon-button matListItemMeta>
+        <button mat-icon-button matListItemMeta (click)="addProductOption($event)">
           <mat-icon fontIcon="add_box"></mat-icon>
        </button>
-       <a matListItemTitle href="#">Add Product</a>
+       <a matListItemTitle href="javascript:void(0)" (click)="addProductOption($event)">Add Product</a>
       </mat-list-item>
 
-      <mat-list-item selected>
-        <button mat-icon-button matListItemMeta>
+      <!-- <mat-list-item selected>
+        <button mat-icon-button matListItemMeta (click)="editProductOption($event)">
           <mat-icon fontIcon="mode_edit"></mat-icon>
        </button>
-       <a matListItemTitle href="#">Edit Product</a>
-      </mat-list-item>
+       <a matListItemTitle href="javascript:void(0)" (click)="editProductOption($event)">Edit Product</a>
+      </mat-list-item> -->
 
       <mat-list-item selected>
-        <button mat-icon-button matListItemMeta>
+        <button mat-icon-button matListItemMeta (click)="uploadCsvOption($event)">
           <mat-icon fontIcon="file_upload"></mat-icon>
        </button>
-       <a matListItemTitle href="#">CSV Upload</a>
+       <a matListItemTitle href="javascript:void(0)" (click)="uploadCsvOption($event)">CSV Upload</a>
       </mat-list-item>
 
       <mat-divider></mat-divider>
 
       <mat-list-item selected>
-        <button mat-icon-button matListItemMeta>
-          <mat-icon fontIcon="file_upload"></mat-icon>
+        <button mat-icon-button matListItemMeta (click)="viewCategoriesOption($event)">
+          <mat-icon fontIcon="pageview"></mat-icon>
        </button>
-       <a matListItemTitle href="#">CSV Upload</a>
+       <a matListItemTitle href="javascript:void(0)" (click)="viewCategoriesOption($event)">View Categories</a>
       </mat-list-item>
 
       <mat-list-item selected>
-        <button mat-icon-button matListItemMeta>
-          <mat-icon fontIcon="file_upload"></mat-icon>
+        <button mat-icon-button matListItemMeta (click)="addCategoriesOption($event)">
+          <mat-icon fontIcon="add_box"></mat-icon>
        </button>
-       <a matListItemTitle href="#">CSV Upload</a>
+       <a matListItemTitle href="javascript:void(0)" (click)="addCategoriesOption($event)">Add Categories</a>
       </mat-list-item>
 
     </mat-list>
@@ -54,41 +53,50 @@
 
   <div class="main_content">
 
-      <!-- <div class="add_information">
-        <ul>
-          <li><a href="" (click)="addProductOption($event)">Add Individual Product</a> </li>
-          <li><a href="" (click)="addCsvOption($event)">Add Products via CSV</a></li>
-        </ul>
-      </div> -->
-
       <div *ngIf="showAddProductForm" id="add_product_div">
-        <form (ngSubmit)="addProduct($event)" [formGroup]="addForm">
+        <h2>
+          <span *ngIf="showIsEdit">Edit Product</span>
+          <span *ngIf="!showIsEdit">Add Product</span>
+        </h2>
+        <form [formGroup]="addForm">
 
         <table>
           <tr>
-            <td>Name</td>
-            <td class="add_product_attr"><input type="text" formControlName="name"></td>
+            <td class="add_product_attr">Name</td>
             <td class="add_product_input">
-              <span *ngIf="!addForm.get('name').valid && addForm.get('name').touched" class="error_message">
-                Please enter a product name.
-              </span>
+              <mat-form-field appearance="fill">
+                <input matInput type="text" formControlName="name">
+              </mat-form-field>
             </td>
             <td class="add_product_error">
-
-            </td>
-          </tr>
-          <tr>
-            <td>Price</td>
-            <td><input type="text" formControlName="price"></td>
-            <td>
-              <span *ngIf="!addForm.get('price').valid && addForm.get('price').touched" class="error_message">
-                Please enter a valid price.
+              <span *ngIf="!addForm.get('name').valid && addForm.get('name').touched" class="error_message">
+                Product name is required.
               </span>
             </td>
           </tr>
           <tr>
-            <td>Stock</td>
-            <td><input type="text" formControlName="stock"></td>
+            <td class="add_product_attr">Price</td>
+            <td>
+              <mat-form-field appearance="fill">
+                <input matInput type="text" formControlName="price" width="50px">
+                <!-- <mat-hint align="end">Must be double</mat-hint> -->
+              </mat-form-field>
+            </td>
+            <td>
+              <span *ngIf="!addForm.get('price').valid && addForm.get('price').touched" class="error_message">
+                Price must be a double
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td class="add_product_attr">Stock</td>
+            <td>
+              <mat-form-field appearance="fill">
+                <input matInput type="text" formControlName="stock" width="50px">
+                <!-- <mat-hint align="end">Must be integer</mat-hint> -->
+              </mat-form-field>
+              <mat-error *ngIf="!addForm.get('stock').valid && addForm.get('stock').touched"></mat-error>
+            </td>
             <td>
               <span *ngIf="!addForm.get('stock').valid && addForm.get('stock').touched" class="error_message">
                 Please enter a valid stock amount (an integer).
@@ -96,14 +104,29 @@
             </td>
           </tr>
           <tr>
-            <td>Image Upload</td>
+            <td class="add_product_attr">Image Upload</td>
             <td>
               <!-- <input type="text" formControlName="imageLocation"> -->
               <!-- <br> -->
-              <input type="file" class="file-upload" (change)="uploadImage($event)"
-                  formControlName="imageLocation">
+                  <!-- <button matInput type="button" mat-stroked-button (click)="fileInput.click()">Upload Image</button>
+                  <input hidden (change)="uploadImage($event)" #fileInput type="file" id="file"> -->
+
+                  <mat-form-field>
+                    <button mat-icon-button matPrefix (click)="f_input.click()">
+                      <mat-icon>attach_file</mat-icon>
+                    </button>
+                    <input type="text" matInput readonly formControlName="imageLocation" />
+                    <input
+                      type="file"
+                      hidden
+                      #f_input
+                      (change)="handleFileInputChange(f_input.files[0])"
+                    />
+                    <mat-error *ngIf="!addForm.get('imageLocation').valid && addForm.get('imageLocation').touched
+                    && hasSelectedFile">Please upload an image file</mat-error>
+                  </mat-form-field>
             </td>
-            <td>
+            <td class="add_product_attr">
               <span *ngIf="!addForm.get('imageLocation').valid && addForm.get('imageLocation').touched
               && hasSelectedFile" class="error_message">
                 Please enter a valid image location.
@@ -111,9 +134,16 @@
             </td>
           </tr>
           <tr>
-            <td>Details</td>
-            <td><textarea name="product_details" id="product_details" cols="30" rows="10"
-               formControlName="details"></textarea></td>
+            <td class="add_product_attr">Details</td>
+            <td>
+              <mat-form-field appearance="fill">
+                <textarea matInput name="product_details" id="product_details" cols="30" rows="6"
+               formControlName="details"></textarea>
+                <!-- <input matInput type="text" formControlName="stock" width="50px"> -->
+              </mat-form-field>
+
+
+            </td>
             <td>
               <span *ngIf="!addForm.get('details').valid && addForm.get('details').touched" class="error_message">
                 Please enter some details.
@@ -122,7 +152,18 @@
           </tr>
           <tr>
             <td></td>
-            <td><button #addProductButton type="submit">Add</button></td>
+            <td>
+              <span *ngIf="!showIsEdit">
+                <button matInput mat-stroked-button #addProductButton type="button"
+                  (click)="addProduct($event)">Add</button>
+              </span>
+
+              <span *ngIf="showIsEdit">
+                <button matInput mat-stroked-button #editProductButton type="button"
+                  (click)="editProduct($event)">Edit</button>
+              </span>
+
+            </td>
           </tr>
         </table>
 
@@ -130,29 +171,32 @@
       </div>
 
 
-    <div class="product_table_div">
+    <div *ngIf="showViewProducts" class="product_table_div" id="product_table_div">
 
     <table class="product_table">
-      <tr class="product_table_header">
-        <td class="col_product_add"></td>
-        <td class="col_product_edit"></td>
-        <td class="col_product_delete"></td>
-        <td class="col_product_id">Id</td>
-        <td class="col_product_name">Name</td>
-        <td class="col_product_price">Price</td>
-        <td class="col_product_stock">Stock</td>
-        <td class="col_product_category">Category</td>
-        <td class="col_product_image_loc">Image</td>
-        <td class="col_product_details">Details</td>
-      </tr>
+      <thead>
+        <tr class="product_table_header">
+          <!-- <td class="col_product_add"></td> -->
+          <td class="col_product_edit"></td>
+          <td class="col_product_delete"></td>
+          <td class="col_product_id">Id</td>
+          <td class="col_product_name">Name</td>
+          <td class="col_product_price">Price</td>
+          <td class="col_product_stock">Stock</td>
+          <td class="col_product_category">Category</td>
+          <td class="col_product_image_loc">Image</td>
+          <td class="col_product_details">Details</td>
+        </tr>
+    </thead>
+      <tbody>
       <tr *ngFor="let product of products">
-        <td class="col_product_add">
+        <!-- <td class="col_product_add">
           <button mat-icon-button (click)="addProductOption($event)">
             <mat-icon fontIcon="add_box"></mat-icon>
          </button>
-        </td>
+        </td> -->
         <td class="col_product_edit">
-          <button mat-icon-button (click)="editProduct($event, product.id)">
+          <button mat-icon-button (click)="editProductOption($event, product.id)">
             <mat-icon fontIcon="mode_edit"></mat-icon>
           </button>
         </td>
@@ -171,9 +215,54 @@
         </td>
         <td class="col_product_details details_text">{{product.details}}</td>
       </tr>
+    </tbody>
     </table>
     </div>
+
+
+  <div *ngIf="showCsvUpload" id="csv_div">
+    <h2>
+      Upload CSV
+    </h2>
+
+    <form [formGroup]="csvUploadForm">
+    <table>
+      <tr>
+        <td class="add_product_attr"></td>
+        <td class="add_product_input">
+          <mat-form-field>
+            <button mat-icon-button matPrefix (click)="csv_input.click()">
+              <mat-icon>attach_file</mat-icon>
+            </button>
+            <input type="text" matInput readonly formControlName="upload" />
+            <input
+              type="file"
+              hidden
+              #csv_input
+              (change)="handleCsvFileInputChange(csv_input.files[0])"
+            />
+          </mat-form-field>
+        </td>
+        <td class="add_product_error">
+          <mat-error *ngIf="!csvUploadForm.get('upload').valid && csvUploadForm.get('upload').touched">
+            Please upload a csv file</mat-error>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+            <button matInput mat-stroked-button #uploadCsvButton type="button"
+              (click)="uploadCsv($event)">Upload</button>
+        </td>
+      </tr>
+    </table>
+    </form>
+
+
   </div>
+
+  </div>
+
 </div>
 
 
