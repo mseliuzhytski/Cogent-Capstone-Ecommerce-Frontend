@@ -18,6 +18,7 @@ import { SignupComponent } from './signup/signup.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductpageComponent } from './productpage/productpage.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ProductpageComponent } from './productpage/productpage.component';
     SearchbarComponent,
     LoginComponent,
     SignupComponent,
-    ProductpageComponent
+    ProductpageComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
