@@ -1,1 +1,45 @@
-<p>wishlist works!</p>
+<div class="h_txt_top">
+    <p class="h_txt_l1">Here's your wishlist</p>
+    <p class="h_txt_l2">Make sure to <strong>Log in</strong> to keep your list saved!</p>
+</div>
+
+<p class="h_txt_l3" id="scrolltxt">Wishlist Products</p>
+<p class="h_txt_l4">
+    - Click on any item to view it. 
+    <strong>Or</strong>
+    click Add button to move items to Shopping Chart.
+</p>
+<div class="foot_container">
+<div class="all_catg_list">
+    <div class="catg">
+        <div class="catg_name">
+        </div>
+        <hr>
+        <div class="catg_item_list">
+
+            <div *ngFor="let item of l_wish">
+                <div class="catg_item">
+                    <div class="catg_item_box">
+                        <div class="catg_item_img_box">
+                            <img>
+                        </div>
+                        <div class="catg_item_txt_box">
+                            <div class="catg_item_name">
+                                <span>{{item.name}}</span>
+                            </div>
+                            <hr>
+                            <div class="catg_item_price">
+                                <span>$ {{item.price}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button>ADD</button>
+                </div>
+                
+            </div>
+
+        </div>
+        <hr>
+    </div><hr>
+</div> 
+</div>

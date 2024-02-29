@@ -13,12 +13,14 @@ import { AdminComponent } from './admin/admin.component';
 import { AccountCrudComponent } from './admin/account-crud/account-crud.component';
 import { ProductCrudComponent } from './admin/product-crud/product-crud.component';
 import { SalesReportComponent } from './admin/sales-report/sales-report.component';
+import { ProductpageComponent } from './productpage/productpage.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [{path:'userProfile', component:UserprofileComponent},
 {path:'about', component:AboutComponent},
 {path:'login', component:LoginComponent},
 {path:'contact', component:ContactComponent},
-{path:'home', component:HomepageComponent},
+{path:'home', component:HomeComponent},
 {path:'wishlist', component:WishlistComponent},
 {path:'cart', component:CartComponent},
 {path:'shopAll', component:ShopComponent},
