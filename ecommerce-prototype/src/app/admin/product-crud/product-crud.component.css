@@ -20,15 +20,10 @@
 
 
 /** View Product Table */
-.product_table_div {
-  padding: 10px;
-}
-
 .product_table {
   margin-top: 20px;
   font-size: 14px;
   border-collapse:collapse;
-  background-color: rgb(230, 230, 230);
 }
 
 .product_table_header {
@@ -121,49 +116,9 @@ mat-sidenav, mat-sidenav-content {
   padding: 10px;
 }
 
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: stretch;
-  flex-grow: 1;
-}
-
-.side_nav {
-  background-color: #FCD15E;
-  width: 240px;
-  float: left;
-  padding: 10px;
-}
-
-.side_nav mat-list {
-  margin-top: 40px;
-}
-
-.main_content {
-  display: block;
-  float: right;
-}
-
-.main_content h2 {
-  text-align: center;
-  color: #2F4B6A;
-}
-
 .mat-list-item{
   max-height: 25px;
 }
 
-mat-list-item a {
-  text-decoration: none;
-}
 
-mat-list-item a:hover {
-  text-decoration: underline;
-}
-
-.main_content {
-  background-color: rgb(230, 230, 230);
-  padding-top: 0px;
-}
 

@@ -31,7 +31,12 @@ import { MatInputModule } from '@angular/material/input'
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { ProductDialogComponent } from './admin/product-crud/product-dialog/product-dialog.component'
+import { ProductDialogComponent } from './admin/product-crud/product-dialog/product-dialog.component';
+import { AccountDialogComponent } from './admin/account-crud/account-dialog/account-dialog.component';
+import { AccountTableComponent } from './admin/account-crud/account-table/account-table.component';
+import { AccountFormComponent } from './admin/account-crud/account-form/account-form.component';
+import { DiscountTableComponent } from './admin/account-crud/discount-table/discount-table.component';
+import { DiscountFormComponent } from './admin/account-crud/discount-form/discount-form.component'
 
 
 @NgModule({
@@ -52,6 +57,11 @@ import { ProductDialogComponent } from './admin/product-crud/product-dialog/prod
     AccountCrudComponent,
     SalesReportComponent,
     ProductDialogComponent,
+    AccountDialogComponent,
+    AccountTableComponent,
+    AccountFormComponent,
+    DiscountTableComponent,
+    DiscountFormComponent,
     // ReactiveFormsModule,
     // FormsModule
   ],
