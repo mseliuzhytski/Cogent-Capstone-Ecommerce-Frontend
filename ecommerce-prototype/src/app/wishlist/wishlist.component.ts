@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class WishlistComponent {
 
+  l_wish=[{name:"Cake",price:"4.99",cat:"Bakery"},{name:"Bread",price:"2.55",cat:"Bakery"},{name:"Donut",price:"3.99",cat:"Bakery"}]
+
 }
