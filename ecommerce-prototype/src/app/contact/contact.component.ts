@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
 })
 export class ContactComponent {
 
+  buttonExpandA=true
+  expandA():void{
+    if(this.buttonExpandA){
+      document.getElementById("fmA").className = "fm_body_h"
+      document.getElementById("buttonExpandA").innerText = "EXPAND"
+      this.buttonExpandA = false
+    } else{
+      document.getElementById("fmA").className = "fm_body"
+      document.getElementById("buttonExpandA").innerText = "HIDE"
+      this.buttonExpandA = true
+    }
+  }
+
 }

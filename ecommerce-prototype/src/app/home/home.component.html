@@ -1,0 +1,118 @@
+<div class="h_txt_top">
+    <p class="h_txt_l1">Welocome to our site</p>
+    <p class="h_txt_l2">Make sure to check out <strong>Shop</strong> to view all of our products!</p>
+</div>
+
+
+
+<div class="home_body">
+
+    <div class="body_featured">
+        <div class="body_featured_l">
+            <div class="body_featured_l_txt">    
+                <span>Check out our</span><br>
+                <span>Featured products!</span>
+            </div> 
+            <div class="body_featured_l_button">
+                <button (click)="scrollToFeatures()">Scroll there</button>
+            </div>   
+        </div>
+        <div class="body_featured_r">
+            <div class="body_featured_r_txt">
+                <span>We have these Categories of items:</span>
+            </div>
+            <ul class="body_featured_r_list">
+                <div *ngFor="let cat_list of l_cat">
+                <li>{{cat_list}}</li> 
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <div class="body_shop">
+        <div class="body_shop_t">
+            <span>Our Shop</span>
+        </div>
+        <div class="body_shop_p">
+            <p>
+                In our shop you will find everything you're looing for.<br>
+            </p>
+            
+            <p>
+                We provide intuitive Searching and Sorting tools to help you find what you need.<br>
+                This will be where you should spend most of the time on our web site.<br>
+            </p>
+            
+            <p>
+                Log in or Create an account to save your favorite items and to maintain your shopping card saved if you leave.<br>
+            </p>
+        </div>
+    </div>
+    <div class="body_about">
+        <div class="body_about_t">
+            <span>Who we are?</span>
+        </div>
+        <div class="body_about_p">
+            <p>
+                We do our best to provide you with the best services!
+            </p>
+            <p>
+                Navigate to <strong>About</strong> page to learn about our:
+            </p>
+            <ol>
+                <li>products</li>
+                <li>discounts</li>
+                <li>origin</li>
+            </ol>
+        </div>
+    </div>
+    <div class="body_contact">
+        <span>Use <strong>Contact</strong> page to reach out to us whenever you want to share something with us.</span><br>
+        <span>Our team works on it's best to respond as soon as possible.</span>
+    </div>
+</div>
+
+
+<p class="h_txt_l3" id="scrolltxt">Featured Products</p>
+<p class="h_txt_l4">
+    - Click on any item to view it. 
+    <strong>Or</strong>
+    click Category name to view all items from that category.
+</p>
+<div class="foot_container">
+<div class="all_catg_list">
+    
+<div *ngFor="let category of l_itm">
+<div *ngIf="category.length >= 1">
+    <div class="catg">
+        <div class="catg_name">
+            <strong>{{category[0].cat}}</strong>
+        </div>
+        <hr>
+        <div class="catg_item_list">
+
+            <div *ngFor="let item of category">
+                <div class="catg_item_box">
+                    <div class="catg_item_img_box">
+                        <img>
+                    </div>
+                    <div class="catg_item_txt_box">
+                        <div class="catg_item_name">
+                            <span>{{item.name}}</span>
+                        </div>
+                        <hr>
+                        <div class="catg_item_price">
+                            <span>$ {{item.price}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <hr>
+    </div><hr>
+</div> 
+</div>
+
+</div>
+</div>

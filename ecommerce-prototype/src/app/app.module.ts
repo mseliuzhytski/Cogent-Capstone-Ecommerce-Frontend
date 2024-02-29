@@ -20,6 +20,10 @@ import { ProductCrudComponent } from './admin/product-crud/product-crud.componen
 import { AccountCrudComponent } from './admin/account-crud/account-crud.component';
 import { SalesReportComponent } from './admin/sales-report/sales-report.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductpageComponent } from './productpage/productpage.component';
+import { HomeComponent } from './home/home.component';
 
 import { MatButtonModule } from '@angular/material/button'
 import { MatSidenavModule } from '@angular/material/sidenav'
@@ -64,6 +68,8 @@ import { DiscountFormComponent } from './admin/account-crud/discount-form/discou
     DiscountFormComponent,
     // ReactiveFormsModule,
     // FormsModule
+    ProductpageComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
