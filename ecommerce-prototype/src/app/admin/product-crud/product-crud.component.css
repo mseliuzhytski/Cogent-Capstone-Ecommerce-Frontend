@@ -1,3 +1,24 @@
+.filter-field {
+  margin-left: 20px;
+}
+
+.product_table_options_div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-grow: 1;
+}
+
+.filter_div {
+  width: 300px;
+}
+
+.paginator_div {
+  width: 600px;
+}
+
+
 /** View Product Table */
 .product_table_div {
   padding: 10px;
@@ -26,11 +47,13 @@
 }
 
 .col_product_add {
-  width: 25px;
+  width: 5px;
+  padding: 0px;
 }
 
 .col_product_edit {
-  width: 25px;
+  width: 5px;
+  padding: 0px;
 }
 
 .col_product_delete {
@@ -38,7 +61,7 @@
 }
 
 .col_product_name {
-  width: 200px;
+  width: 170px;
 }
 
 .col_product_price {
@@ -51,6 +74,11 @@
 
 .col_product_image_loc {
   width: 100px;
+}
+
+.product_image {
+  max-width: 100px;
+  max-height: 100px;
 }
 
 .col_product_category {

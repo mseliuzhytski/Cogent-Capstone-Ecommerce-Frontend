@@ -29,7 +29,11 @@ import {MatDividerModule} from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { ProductDialogComponent } from './admin/product-crud/product-dialog/product-dialog.component'
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +69,8 @@ import { ProductDialogComponent } from './admin/product-crud/product-dialog/prod
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [
     provideClientHydration(),

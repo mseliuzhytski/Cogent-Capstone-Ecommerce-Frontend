@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { ProductCrudService } from '../../product-crud.service';
 import { Observer, Subscriber } from 'rxjs';
 import { OnInit } from '@angular/core';
@@ -6,6 +6,8 @@ import { ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog'
 import { ProductDialogComponent } from './product-dialog/product-dialog.component';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-product-crud',
@@ -13,16 +15,26 @@ import { ProductDialogComponent } from './product-dialog/product-dialog.componen
   styleUrl: './product-crud.component.css',
   providers: [ProductCrudService]
 })
-export class ProductCrudComponent implements OnInit {
+export class ProductCrudComponent implements OnInit, AfterViewInit {
 
   constructor(private productService : ProductCrudService, public dialog : MatDialog) {
 
+  }
+  ngAfterViewInit(): void {
+    if (this.productsDataSource != null) {
+      this.productsDataSource.paginator = this.paginator;
+    }
   }
 
   // Observer for viewing products
   productObservable : any;
   productSubscriber : Subscriber<Object>;
   products = [];
+  productsDataSource : any;
+  displayedProductColumns = ['edit', 'delete', 'id', 'name', 'price', 'stock', 'category', 'image', 'details'];
+
+  @ViewChild(MatPaginator)
+  paginator : MatPaginator;
 
   // Flags for determining whether to show certain panels
   showAddProductForm = false;
@@ -80,8 +92,15 @@ export class ProductCrudComponent implements OnInit {
     this.productObservable = this.productService.getProducts();
     this.productSubscriber = this.productObservable.subscribe(value => {
       this.products = value;
-      console.log(typeof value);
+      this.productsDataSource = new MatTableDataSource(this.products);
+      console.log(this.products.length);
+      console.log(this.productsDataSource);
+      this.productsDataSource.paginator = this.paginator;
     });
+  }
+
+  public applyFilter(filterValue : string) : void {
+    this.productsDataSource.filter = filterValue.trim().toLowerCase();
   }
 
   public uploadImage(event : any) {
@@ -251,11 +270,10 @@ export class ProductCrudComponent implements OnInit {
     if (this.csvUploadForm.valid && this.csvFile != null) {
       this.productService.uploadCsv(this.csvFile).subscribe(
         (data) => {
-          console.log("data");
-          console.log(data);
           this.dialogRef = this.dialog.open(ProductDialogComponent, {data: {type: 'csv_upload_success'}});
           this.dialogRef.afterClosed().subscribe(result => {
             console.log("closed");
+            this.setProducts();
             this.viewProductOption(null);
           });
         },
