@@ -11,6 +11,8 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ProductpageComponent } from './productpage/productpage.component';
 import { HomeComponent } from './home/home.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 const routes: Routes = [{path:'userProfile', component:UserprofileComponent},
 {path:'about', component:AboutComponent},
@@ -22,6 +24,8 @@ const routes: Routes = [{path:'userProfile', component:UserprofileComponent},
 {path:'cart', component:CartComponent},
 {path:'shopAll', component:ShopComponent},
 {path:'signUp', component:SignupComponent},
+{path:'forgotPassword', component:ForgotpasswordComponent},
+{path:'resetPassword/:resetToken', component:ResetpasswordComponent},
 {path:'',redirectTo:'/home',pathMatch:'full'}
 ];
 

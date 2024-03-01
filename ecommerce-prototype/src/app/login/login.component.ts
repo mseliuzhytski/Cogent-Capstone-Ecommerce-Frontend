@@ -46,12 +46,16 @@ export class LoginComponent implements OnInit{
 
     setTimeout(()=>{
       this.router.navigate(['/userProfile']);
-    },2000)
+    },1000)
     
   }
 
   goToSignUp(){
     this.router.navigate(['/signUp']);
+  }
+
+  goToForgotPass(){
+    this.router.navigate(['/forgotPassword']);
   }
 
 }

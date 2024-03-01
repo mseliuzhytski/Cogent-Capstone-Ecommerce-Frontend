@@ -87,7 +87,7 @@ export class SignupComponent implements OnInit{
       }
 
       this.authservice.createUser(user).subscribe();
-      this.router.navigate(['/signUp']);
+      this.router.navigate(['/login']);
     }
 
     console.log(username,password,email)

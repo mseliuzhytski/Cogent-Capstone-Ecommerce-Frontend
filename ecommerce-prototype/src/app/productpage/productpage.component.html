@@ -7,8 +7,11 @@
       <p class="product-price">${{productToDisplay.price}}</p>
       <p class="product-stock">Stock: {{productToDisplay.stock}}</p>
       <div class="product-buttons">
-        <button class="add-to-cart">Add to Cart</button>
-        <button class="wish-list">Add to Wishlist</button>
+        <select [(ngModel)]="selectedQuantity">
+          <option *ngFor="let quantity of quantityArray" [value]="quantity">{{ quantity }}</option>
+        </select>
+        <button class="add-to-cart" (click)="addToCart()">Add to Cart</button>
+        <button class="wish-list" (click)="addToWishlist()">Add to Wishlist</button>
       </div>
       <p>{{productToDisplay.details}}</p>
     </div>
