@@ -24,7 +24,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductpageComponent } from './productpage/productpage.component';
 import { HomeComponent } from './home/home.component';
-
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+import {MatToolbar} from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list'
@@ -55,7 +61,9 @@ import { ProductDialogComponent } from './admin/product-crud/product-dialog/prod
     // ReactiveFormsModule,
     // FormsModule
     ProductpageComponent,
-    HomeComponent
+    HomeComponent,
+    ForgotpasswordComponent,
+    ResetpasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +79,14 @@ import { ProductDialogComponent } from './admin/product-crud/product-dialog/prod
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule,
+    NgxPaginationModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatCardModule,
+    MatToolbar
   ],
   providers: [
     provideClientHydration(),
