@@ -97,7 +97,6 @@ import {MatRadioModule} from '@angular/material/radio';
     MatRadioModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
-    NgxPaginationModule,
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
