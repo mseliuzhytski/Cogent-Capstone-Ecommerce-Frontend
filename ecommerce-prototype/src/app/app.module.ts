@@ -31,15 +31,13 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/mat
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatToolbar} from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list'
 import { MatIconModule } from '@angular/material/icon'
 import {MatDividerModule} from '@angular/material/divider';
-import { MatFormFieldModule } from '@angular/material/form-field'
-import { MatInputModule } from '@angular/material/input'
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProductDialogComponent } from './admin/product-crud/product-dialog/product-dialog.component'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +57,7 @@ import { ProductDialogComponent } from './admin/product-crud/product-dialog/prod
     SalesReportComponent,
     ProductDialogComponent,
     // ReactiveFormsModule,
-    // FormsModule
+    // FormsModule,
     ProductpageComponent,
     HomeComponent,
     ForgotpasswordComponent,
@@ -87,6 +85,9 @@ import { ProductDialogComponent } from './admin/product-crud/product-dialog/prod
     MatInputModule,
     MatCardModule,
     MatToolbar
+  ],
+  exports: [
+    ReactiveFormsModule
   ],
   providers: [
     provideClientHydration(),
