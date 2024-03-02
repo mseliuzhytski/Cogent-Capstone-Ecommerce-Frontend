@@ -1,4 +1,3 @@
-<router-outlet>
 
   <!-- <div class="cart-container">
     <a href="#"><img src="../assets/images/car-icon.png" alt="Cart" width="60px" height="60px"></a>
@@ -39,7 +38,7 @@
         </li>
         <li><a routerLink="/about">About</a></li>
         <li><a routerLink="/contact">Contact</a></li>
-        <li class="dropdown"><a routerLink="/admin">Admin</a>
+        <li *ngIf = "isAdminAccount" class="dropdown"><a routerLink="/admin">Admin</a>
           <ul class="dropdown-menu">
             <li><a href="/admin/product">Modify Products</a></li>
             <li><a href="/admin/account">Modify Accounts</a></li>
@@ -55,5 +54,10 @@
       </ul>
     </nav>
   </header>
+
+  Is Logged In: {{ isLoggedIn }} <br>
+  Is Admin: {{ isAdminAccount }} <br>
+
+<router-outlet (loginEvent)="updateLoggedInStatus()">
 
 </router-outlet>

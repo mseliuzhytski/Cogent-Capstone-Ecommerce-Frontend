@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthServiceService } from '../auth-service.service';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit{
 
 
-  signUpForm:FormGroup
+  signUpForm:FormGroup;
 
   ngOnInit(): void {
     this.signUpForm=new FormGroup(
@@ -37,9 +37,14 @@ export class LoginComponent implements OnInit{
       // Store or use the token here
       console.log('Extracted token:', token);
       this.authservice.saveToken(token);
+      this.authservice.updateLoginInfo();
     },
     (error) => {
       console.error('Login error:', error);
+      this.authservice.updateLoginInfo();
+    },
+    () => {
+
     });
     console.log(response)
     console.log(this.array)

@@ -11,10 +11,10 @@ export class UserprofileComponent implements OnInit{
 
 
   constructor(private authService: AuthServiceService, private router: Router) {
-    
+
   }
   ngOnInit(): void {
-    
+
     this.authService.isLoggedIn()
     .subscribe(isLoggedIn => {
       console.log(isLoggedIn);
@@ -28,7 +28,7 @@ export class UserprofileComponent implements OnInit{
   logout(){
     this.authService.removeToken();
     this.router.navigate(['/login']);
-
+    this.authService.updateLoginInfo();
   }
 
 }
