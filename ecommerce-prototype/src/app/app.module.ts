@@ -79,7 +79,7 @@ import { ProductDialogComponent } from './admin/product-crud/product-dialog/prod
     MatDialogModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
-    NgxPaginationModule,
+    // NgxPaginationModule,
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
