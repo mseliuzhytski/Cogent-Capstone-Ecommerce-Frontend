@@ -20,7 +20,6 @@ import { ProductCrudComponent } from './admin/product-crud/product-crud.componen
 import { AccountCrudComponent } from './admin/account-crud/account-crud.component';
 import { SalesReportComponent } from './admin/sales-report/sales-report.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductpageComponent } from './productpage/productpage.component';
 import { HomeComponent } from './home/home.component';
@@ -41,7 +40,8 @@ import { AccountTableComponent } from './admin/account-crud/account-table/accoun
 import { AccountFormComponent } from './admin/account-crud/account-form/account-form.component';
 import { DiscountTableComponent } from './admin/account-crud/discount-table/discount-table.component';
 import { DiscountFormComponent } from './admin/account-crud/discount-form/discount-form.component'
-
+import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -86,7 +86,9 @@ import { DiscountFormComponent } from './admin/account-crud/discount-form/discou
     MatInputModule,
     MatDialogModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule,
+    MatRadioModule
   ],
   providers: [
     provideClientHydration(),

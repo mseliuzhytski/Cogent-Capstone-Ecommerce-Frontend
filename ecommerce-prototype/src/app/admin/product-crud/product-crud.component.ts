@@ -99,6 +99,13 @@ export class ProductCrudComponent implements OnInit, AfterViewInit {
     });
   }
 
+  public logStockInput(event : Event) {
+    console.log(event);
+    console.log(this.addForm.get('stock').valid);
+    console.log(this.addForm.get('stock').errors);
+    console.log("----");
+  }
+
   public applyFilter(filterValue : string) : void {
     this.productsDataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -190,9 +197,9 @@ export class ProductCrudComponent implements OnInit, AfterViewInit {
     this.addForm = new FormGroup({
       name: new FormControl(null, Validators.required),
       price: new FormControl(null, [Validators.required,
-        Validators.pattern(/^[0-9]+\.[0-9]{2}/g)]),
+        Validators.pattern(/^[0-9]+\.[0-9]{2}$/g)]),
       stock: new FormControl(null, [Validators.required,
-        Validators.pattern(/^[0-9]+/g)]),
+        Validators.pattern(/^[0-9]+$/g)]),
       imageLocation: this.fileUploadFormControl,
       details: new FormControl(null, [Validators.required])
     });
@@ -235,6 +242,8 @@ export class ProductCrudComponent implements OnInit, AfterViewInit {
         this.editProductInner();
       }
     } else {
+      console.log("errors");
+      console.log(this.addForm.errors);
       this.dialogRef = this.dialog.open(ProductDialogComponent, {data: {type: 'add_product_failure'}});
       this.dialogRef.afterClosed().subscribe(result => {
           console.log("dialog result " + result);

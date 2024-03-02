@@ -36,7 +36,7 @@
   </nav>
 
   <main>
-    <app-account-table *ngIf="showAccountTable"></app-account-table>
+    <app-account-table *ngIf="showAccountTable" (editEvent)="editAccountOption($event)"></app-account-table>
     <app-account-form *ngIf="showAccountForm"></app-account-form>
     <app-discount-table *ngIf="showDiscountTable"></app-discount-table>
     <app-discount-form *ngIf="showDiscountForm"></app-discount-form>

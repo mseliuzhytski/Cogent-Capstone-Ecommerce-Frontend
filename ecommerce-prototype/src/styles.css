@@ -41,3 +41,46 @@ mat-list-item a {
 mat-list-item a:hover {
   text-decoration: underline;
 }
+
+.filter-field {
+  margin-left: 20px;
+}
+
+/* Paginator and Filter Field */
+.product_table_options_div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-grow: 1;
+}
+
+.filter_div {
+  width: 300px;
+}
+
+.paginator_div {
+  width: 600px;
+}
+
+.form_container {
+  margin-top: 0px;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.add_item_attr {
+  width: 120px;
+}
+
+.add_item_input {
+  width: 300px;
+}
+
+.add_item_error {
+  width: 300px;
+}
+
+.error_message {
+  color: red;
+}

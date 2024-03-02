@@ -1,1 +1,102 @@
-<p>account-form works!</p>
+  <div class="form_container">
+
+  <h2>
+    <span *ngIf="showIsEdit">Edit Account</span>
+    <span *ngIf="!showIsEdit">Add Account</span>
+  </h2>
+  <form [formGroup]="addForm">
+
+  <table>
+    <tr>
+      <td class="add_item_attr">Username</td>
+      <td class="add_item_input">
+        <mat-form-field appearance="fill">
+          <input matInput type="text" formControlName="username">
+        </mat-form-field>
+      </td>
+      <td class="add_item_error">
+        <span *ngIf="!addForm.get('username').valid && addForm.get('username').touched" class="error_message">
+          Username is required.
+        </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="add_item_attr">Email</td>
+      <td class="add_item_input">
+        <mat-form-field appearance="fill">
+          <input matInput type="text" formControlName="email">
+        </mat-form-field>
+      </td>
+      <td class="add_item_error">
+        <span *ngIf="!addForm.get('email').valid && addForm.get('email').touched" class="error_message">
+          Email is required.
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td class="add_item_attr">Discount</td>
+      <td class="add_item_input">
+        <mat-form-field>
+          <mat-label>Discount</mat-label>
+          <mat-select formControlName="discount">
+            <mat-option value="volvo">Volvo</mat-option>
+            <mat-option value="saab">Saab</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td class="add_item_error">
+        <!-- <span *ngIf="!addForm.get('email').valid && addForm.get('email').touched" class="error_message">
+          Discount is required.
+        </span> -->
+      </td>
+    </tr>
+    <tr>
+      <td class="add_item_attr">Is User?</td>
+      <td class="add_item_input">
+        <mat-radio-group formControlName="user" aria-label="Select">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="2">No</mat-radio-button>
+        </mat-radio-group>
+      </td>
+      <td class="add_item_error">
+        <!-- <span *ngIf="!addForm.get('email').valid && addForm.get('email').touched" class="error_message">
+          Discount is required.
+        </span> -->
+      </td>
+    </tr>
+    <tr>
+      <td class="add_item_attr">Is Admin?</td>
+      <td class="add_item_input">
+        <mat-radio-group formControlName="admin" aria-label="Select">
+          <mat-radio-button value="true">Yes</mat-radio-button>
+          <mat-radio-button value="false">No</mat-radio-button>
+        </mat-radio-group>
+      </td>
+      <td class="add_item_error">
+        <!-- <span *ngIf="!addForm.get('email').valid && addForm.get('email').touched" class="error_message">
+          Discount is required.
+        </span> -->
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <span *ngIf="!showIsEdit">
+          <button matInput mat-stroked-button #addItemButton type="button"
+            (click)="addItem($event)">Add</button>
+        </span>
+
+        <span *ngIf="showIsEdit">
+          <button matInput mat-stroked-button #editItemButton type="button"
+            (click)="edititem($event)">Edit</button>
+        </span>
+
+      </td>
+    </tr>
+  </table>
+
+  </form>
+
+</div>
+

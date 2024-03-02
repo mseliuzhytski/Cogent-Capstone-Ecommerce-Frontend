@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AccountCrudService } from '../../../account-crud.service';
 import { MatDialog } from '@angular/material/dialog'
-import { ProductDialogComponent } from './product-dialog/product-dialog.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { ViewChild, ElementRef } from '@angular/core';
@@ -16,9 +15,22 @@ export class AccountTableComponent {
 
   dataSource : any;
   accounts = [];
+  accountColumns = ["edit", "delete", "id", "username", "email", "discount", "user", "admin"];
 
   @ViewChild(MatPaginator)
   paginator : MatPaginator;
+
+  @Output()
+  editEvent = new EventEmitter<Number>
+
+  editAccount(id : number) {
+    this.editEvent.emit(id);
+    console.log("emit event");
+  }
+
+  deleteAccount(id : number) {
+    console.log("delete");
+  }
 
   constructor(private service : AccountCrudService) {
   }

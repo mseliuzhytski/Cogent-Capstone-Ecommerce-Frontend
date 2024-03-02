@@ -1,11 +1,17 @@
-import { Component } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { AccountTableComponent } from './account-table/account-table.component';
+import { AccountFormComponent } from './account-form/account-form.component';
+import { DiscountTableComponent } from './discount-table/discount-table.component';
+import { DiscountFormComponent } from './discount-form/discount-form.component';
+import { Observable, timer } from 'rxjs';
+import { AccountCrudService } from '../../account-crud.service';
 
 @Component({
   selector: 'app-account-crud',
   templateUrl: './account-crud.component.html',
   styleUrl: './account-crud.component.css'
 })
-export class AccountCrudComponent {
+export class AccountCrudComponent implements AfterViewInit {
 
   // Flags for indicating whether we should show the given panel
   showAccountTable : boolean = false;
@@ -14,6 +20,23 @@ export class AccountCrudComponent {
   showDiscountTable : boolean = false;
   showDiscountForm : boolean = false;
   showIsDiscountFormEdit : boolean = false;
+
+  @ViewChild(AccountTableComponent)
+  accountTableComponent : AccountTableComponent;
+  @ViewChild(AccountFormComponent)
+  accountFormComponent : AccountFormComponent;
+  @ViewChild(DiscountTableComponent)
+  discountTableComponent : DiscountTableComponent;
+  @ViewChild(DiscountFormComponent)
+  discountFormComponent : DiscountFormComponent;
+
+  constructor(private service : AccountCrudService) {
+  }
+
+  ngAfterViewInit(): void {
+    this.viewAccountOption(null);
+  }
+
 
   clearView() {
     this.showAccountTable = false;
@@ -31,6 +54,13 @@ export class AccountCrudComponent {
     }
     this.clearView();
     this.showAccountTable = true;
+
+    const source = timer(1000);
+    const subscribe = source.subscribe(val => {
+      console.log(val);
+      this.accountTableComponent.setAccounts();
+    });
+
   }
 
   public addAccountOption(event : Event) {
@@ -39,6 +69,17 @@ export class AccountCrudComponent {
     }
     this.clearView();
     this.showAccountForm = true;
+    this.accountFormComponent.showIsEdit = false;
+  }
+
+  public editAccountOption(id) {
+    this.clearView();
+    this.showAccountForm = true;
+    this.showIsAccountFormEdit = true;
+    this.service.getAccount(id).subscribe(account => {
+      console.log(account);
+      this.accountFormComponent.showIsEdit = true;
+    })
   }
 
   public viewDiscountOption(event : Event) {
