@@ -17,10 +17,18 @@ export class UserprofileComponent implements OnInit{
     
     this.authService.isLoggedIn()
     .subscribe(isLoggedIn => {
+      console.log(isLoggedIn);
       if(!isLoggedIn){
         this.router.navigate(['/login']);
       }
     });
+  }
+
+
+  logout(){
+    this.authService.removeToken();
+    this.router.navigate(['/login']);
+
   }
 
 }

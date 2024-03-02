@@ -12,8 +12,8 @@ export class AuthServiceService {
   
   private authUrl = "http://localhost:8080/auth";
   private checkTokenUrl = "http://localhost:8080/checkToken";
-  
   private signUpUrl = "http://localhost:8080/signUp";
+  private getUserUrl = "http://localhost:8080/getUsername";
 
 
 
@@ -32,8 +32,6 @@ export class AuthServiceService {
     
   }
 
-  
-
   saveToken(token:string){
     localStorage.setItem('Bearer Token',token)
   }
@@ -46,6 +44,8 @@ export class AuthServiceService {
     localStorage.removeItem('Bearer Token');
   }
 
+
+
   isTokenExpired(token){
 //`Bearer ${token}`
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
@@ -57,7 +57,6 @@ export class AuthServiceService {
       })
     );
   }
-
 
   isLoggedIn():Observable<boolean> {
 
@@ -72,7 +71,7 @@ export class AuthServiceService {
     }
 
     return this.isTokenExpired(token).pipe(
-      map(expired => !expired),
+      map(expired => expired),
       catchError(error => {
         console.error('Error checking token:', error);
         return of(false); // Treat errors as invalid
@@ -90,4 +89,12 @@ export class AuthServiceService {
       return true;
     }
   }
+
+  getLoggedinUsername(){
+    const token = this.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<string>(this.getUserUrl,{headers, responseType: 'text' as any})
+  }
+
+
 }

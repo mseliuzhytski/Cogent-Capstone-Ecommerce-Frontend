@@ -15,6 +15,8 @@ import { ProductCrudComponent } from './admin/product-crud/product-crud.componen
 import { SalesReportComponent } from './admin/sales-report/sales-report.component';
 import { ProductpageComponent } from './productpage/productpage.component';
 import { HomeComponent } from './home/home.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 const routes: Routes = [{path:'userProfile', component:UserprofileComponent},
 {path:'about', component:AboutComponent},
@@ -29,6 +31,8 @@ const routes: Routes = [{path:'userProfile', component:UserprofileComponent},
 {path:'admin/product', component:ProductCrudComponent},
 {path:'admin/account', component:AccountCrudComponent},
 {path:'admin/sales', component:SalesReportComponent},
+{path:'forgotPassword', component:ForgotpasswordComponent},
+{path:'resetPassword/:resetToken', component:ResetpasswordComponent},
 {path:'',redirectTo:'/home',pathMatch:'full'}
 ];
 
