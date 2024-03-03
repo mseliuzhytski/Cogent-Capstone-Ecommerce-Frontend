@@ -1,35 +1,36 @@
-<div class="display_items">
+<div class="display_items" *ngIf="display">
 
     
 
     <div class="display_list">
-        <div *ngFor="let item of items_l">
+        <div *ngFor="let item of testarray">
             <div class="list_item">
                 <div class="item_content">
                     <div class="content_img">
-                        <img>
+                        <img src="{{item.product.imageLocation}}" width="150px" height="120px">
                     </div>
                     <div class="content_txt">
                         <div class="txt_name">
-                            <span>{{item.name}}</span>
+                            <span>{{item.product.name}}</span>
                         </div>
                         <hr>
                         <div class="txt_field">
-                            <span>*****</span>
+                            <span>Quantity: {{item.quantity}}</span>
                         </div>
                         <hr>
                         <div class="txt_price">
-                            <span>$ {{item.price}}</span>
+                            <span>$ {{item.product.price * item.quantity | number:'1.2-2'}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="item_quantity">
                     <div class="quantity_display">
-                        <span>{{item.count}}</span>
+                        <select [(ngModel)]="item.changeQuantity" (change)="updateCart(item)">
+                            <option *ngFor="let number of quantityOptions(item.product.stock)" [value]="number">{{ number }}</option>
+                        </select>
                     </div>
                     <div class="quantity_options">
-                        <button>/\</button><br>
-                        <button>\/</button>
+                        <button (click)="removeItem(item)">X</button>
                     </div>
                 </div>
             </div>
@@ -37,23 +38,23 @@
         </div>
     </div>
     
-    <div class="display_summary">
+    <div class="display_summary" *ngIf="display">
         <div class="summary_t">
             <span>Totals:</span>
         </div>
         <div class="summary_p">
-            <span>items: 10</span><br><br>
-            <span>price: $</span><br>
+            <span>items: {{totalItems}}</span><br><br>
+            <span>price: $ {{totalPrice | number:'1.2-2'}}</span><br>
         </div>
     </div>
 
 </div>
 
-<div class="bottom">
+<div class="bottom" *ngIf="display">
     <hr>
     <br>
     <br>
-    Enetr discount: <input type="text"/><br>
+    Enter discount: <input type="text"/><br>
     <br>
-    <button>Submit Order</button>
+    <button (click)="submitOrder(testarray)">Submit Order</button>
 </div>

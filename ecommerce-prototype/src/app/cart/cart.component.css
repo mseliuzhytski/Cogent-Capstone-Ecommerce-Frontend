@@ -24,7 +24,6 @@
     margin-bottom: 10px;
     padding: 5px;
     border: solid black 1px;
-    background-color: red;
 }
 .content_txt{
     width: 100px;
@@ -46,14 +45,14 @@
     margin: 5px;
     padding-top: 7px;
     padding-bottom: 7px;
-    width:30px;
-    border: black solid 1px;
+    width:60px;
+    /* border: black solid 1px;
     background-color: rgb(201, 234, 253);
-    border-radius: 10px;
+    border-radius: 10px; */
     text-align: center;
 }
 .quantity_options button{
-
+    background-color: red;
     margin: 2px;
 }
 .display_summary{
@@ -86,3 +85,13 @@
     text-align: center;
     color: rgb(36, 36, 36);
 }
+
+select {
+    background-color: rgb(201, 234, 253);
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    /* background-color: #fff; */
+    color: #333;
+  }

@@ -1,32 +1,32 @@
-<p>userprofile works!</p>
 <!-- top of the page  -->
-<button (click)="logout()">Logout</button>
-<div>
+<div *ngIf="display">
+    <button (click)="logout()">Logout</button>
 
+    <h1>Welcome, {{username}}!</h1>
     <!-- Left Side -->
     <div>
         <h2>Total Spent</h2>
-        <h3>GET TOTAL SPENT FROM SPRING SERVICE</h3>
-        <p>Service should be getting all sales from only current user's id and in front end can just add it all up and display it here</p>
+        <p>${{totalSpent | number:'1.2-2'}}</p>
     </div>
-
+    <hr>
     <div>
-        <h2>Previous Orders</h2>
-        <p>Service should be getting all sales from current user's id. So use one request and it will be sufficent for both total spent and getting
-            all the orders. 
-        </p>
+        <h2>Order History</h2>
         <table>
             <thead>
                 <tr>
                     <th>Product</th>
                     <th>Quantity</th>
                     <th>Total Price</th>
+                    <th>Purchase Date</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- ngFor to iterate through user's associated sales item -->
-                <tr>
-                    
+                <tr *ngFor="let item of ordersArray">
+                    <td><a [routerLink]="['/productPage', item.productId]">{{item.productName}}</a></td>
+                    <td>{{item.quantity}}</td>
+                    <td>$ {{item.totalPrice | number:'1.2-2'}}</td>
+                    <td>{{item.time}}</td>
                 </tr>
             </tbody>
 

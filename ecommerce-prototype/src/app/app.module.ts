@@ -102,6 +102,7 @@ import { DiscountTableDialogComponent } from './admin/account-crud/discount-form
     MatRadioModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
+    // NgxPaginationModule,
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
