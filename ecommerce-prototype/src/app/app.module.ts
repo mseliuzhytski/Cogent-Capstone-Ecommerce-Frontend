@@ -37,6 +37,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { ProductDialogComponent } from './admin/product-crud/product-dialog/product-dialog.component';
 import { AccountDialogComponent } from './admin/account-crud/account-dialog/account-dialog.component';
 import { AccountTableComponent } from './admin/account-crud/account-table/account-table.component';
@@ -45,6 +46,8 @@ import { DiscountTableComponent } from './admin/account-crud/discount-table/disc
 import { DiscountFormComponent } from './admin/account-crud/discount-form/discount-form.component'
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
+import { AccountTableDialogComponent } from './admin/account-crud/account-table/account-table-dialog/account-table-dialog.component';
+import { DiscountTableDialogComponent } from './admin/account-crud/discount-form/discount-table-dialog/discount-table-dialog.component';
 
 
 @NgModule({
@@ -75,7 +78,9 @@ import {MatRadioModule} from '@angular/material/radio';
     ProductpageComponent,
     HomeComponent,
     ForgotpasswordComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    AccountTableDialogComponent,
+    DiscountTableDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -101,7 +106,9 @@ import {MatRadioModule} from '@angular/material/radio';
     MatButtonModule,
     MatInputModule,
     MatCardModule,
-    MatToolbar
+    MatToolbar,
+    MatCardModule,
+    MatAutocompleteModule,
   ],
   providers: [
     provideClientHydration(),

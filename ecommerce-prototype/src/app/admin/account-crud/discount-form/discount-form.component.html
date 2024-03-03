@@ -1,1 +1,57 @@
-<p>discount-form works!</p>
+<div class="form_container">
+
+  <h2>
+    <span *ngIf="showIsEdit">Edit Discount</span>
+    <span *ngIf="!showIsEdit">Add Discount</span>
+  </h2>
+  <form [formGroup]="addForm">
+
+  <table>
+    <tr>
+      <td class="add_item_attr">Discount Code</td>
+      <td class="add_item_input">
+        <mat-form-field appearance="fill">
+          <input matInput type="text" formControlName="discountCode">
+        </mat-form-field>
+      </td>
+      <td class="add_item_error">
+        <span *ngIf="!addForm.get('discountCode').valid && addForm.get('discountCode').touched" class="error_message">
+          Discount Code is required
+        </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="add_item_attr">Discount Percent</td>
+      <td class="add_item_input">
+        <mat-form-field appearance="fill">
+          <input matInput type="text" formControlName="discountPercent">
+        </mat-form-field>
+      </td>
+      <td class="add_item_error">
+        <span *ngIf="!addForm.get('discountPercent').valid && addForm.get('discountPercent').touched" class="error_message">
+          An integer between 0 and 100 is required.
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <span *ngIf="!showIsEdit">
+          <button matInput mat-stroked-button #addItemButton type="button"
+            (click)="addItem($event)">Add</button>
+        </span>
+
+        <span *ngIf="showIsEdit">
+          <button matInput mat-stroked-button #editItemButton type="button"
+            (click)="editItem($event)">Edit</button>
+        </span>
+
+      </td>
+    </tr>
+  </table>
+
+  </form>
+
+</div>
+

@@ -24,6 +24,14 @@ export class AccountCrudService {
     return this.http.get(this.accountUrl + id);
   }
 
+  getAccountByUsername(username : string) : Observable<any> {
+    return this.http.get(this.url + "accountByName/" + username);
+  }
+
+  getAccountByEmail(email : string) : Observable<any> {
+    return this.http.get(this.url + "accountByEmail/" + email);
+  }
+
   addAccount(account : any) :Observable<Object> {
     const path = this.accountUrl;
     const params = new HttpParams(account);
@@ -57,8 +65,6 @@ export class AccountCrudService {
 
   addDiscount(account : any) :Observable<Object> {
     const path = this.discountUrl;
-    const params = new HttpParams(account);
-    const productJson = JSON.stringify(account);
     const headers = { 'content-type': 'application/json'}
     return this.http.post(path, account, {'headers' : headers});
   }
@@ -77,5 +83,8 @@ export class AccountCrudService {
     return this.http.delete(path, {observe: 'response'});
   }
 
+  getDiscountByCode(code : string) : Observable<any> {
+    return this.http.get(this.discountUrl + "getByCode/" + code);
+  }
 
 }

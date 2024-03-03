@@ -48,6 +48,14 @@ export class AccountCrudComponent implements AfterViewInit {
   }
 
   // Methods for showing the different views
+  public handleAccountChildEmitter(e : string) {
+    if (e == 'view') {
+      this.viewAccountOption(null);
+    } else if (e == 'add') {
+      this.addAccountOption(null);
+    }
+  }
+
   public viewAccountOption(event : Event) {
     if (event != null) {
       event.preventDefault();
@@ -69,7 +77,11 @@ export class AccountCrudComponent implements AfterViewInit {
     }
     this.clearView();
     this.showAccountForm = true;
-    this.accountFormComponent.showIsEdit = false;
+    if (this.accountFormComponent != null) {
+      this.accountFormComponent.showIsEdit = false;
+      this.accountFormComponent.initializeForm();
+      this.accountFormComponent.clearView();
+    }
   }
 
   public editAccountOption(id) {
@@ -82,12 +94,26 @@ export class AccountCrudComponent implements AfterViewInit {
     })
   }
 
+  public handleDiscountChildEmitter(e : string) {
+    if (e == 'view') {
+      console.log("view");
+      this.viewDiscountOption(null);
+    } else if (e == 'add') {
+      console.log("add");
+      this.addDiscountOption(null);
+    }
+  }
+
   public viewDiscountOption(event : Event) {
     if (event != null) {
       event.preventDefault();
     }
     this.clearView();
     this.showDiscountTable = true;
+    const source = timer(1000);
+    const subscribe = source.subscribe(val => {
+      this.discountTableComponent.setDiscounts();
+    });
   }
 
   public addDiscountOption(event : Event) {
@@ -96,6 +122,9 @@ export class AccountCrudComponent implements AfterViewInit {
     }
     this.clearView();
     this.showDiscountForm = true;
+    if (this.discountFormComponent != null) {
+      this.discountFormComponent.clearView();
+    }
   }
 
 }

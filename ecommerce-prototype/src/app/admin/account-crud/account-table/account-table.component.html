@@ -12,23 +12,23 @@
 
 <table mat-table [dataSource]="dataSource" class="account_table">
 
-  <ng-container matColumnDef="edit">
+  <!-- <ng-container matColumnDef="edit">
     <th mat-header-cell *matHeaderCellDef class="col_edit"> </th>
     <td mat-cell *matCellDef="let element" class="col_edit">
       <button mat-icon-button (click)="editAccount(element.id)">
         <mat-icon fontIcon="mode_edit"></mat-icon>
       </button>
     </td>
-  </ng-container>
+  </ng-container> -->
 
-  <ng-container matColumnDef="delete">
+  <!-- <ng-container matColumnDef="delete">
     <th mat-header-cell *matHeaderCellDef class="col_delete"> </th>
     <td mat-cell *matCellDef="let element" class="col_delete">
       <button mat-icon-button (click)="deleteAccount(element.id)">
         <mat-icon fontIcon="delete"></mat-icon>
       </button>
     </td>
-  </ng-container>
+  </ng-container> -->
 
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef class="col_id"> Id </th>
@@ -47,10 +47,10 @@
 
   <ng-container matColumnDef="discount">
     <th mat-header-cell *matHeaderCellDef class="col_discount"> Discount </th>
-    <td mat-cell *matCellDef="let element" class="col_discount"> {{element.discount}} </td>
+    <td mat-cell *matCellDef="let element" class="col_discount"> {{getDiscountCode(element) }} </td>
   </ng-container>
 
-  <ng-container matColumnDef="user">
+  <!-- <ng-container matColumnDef="user">
     <th mat-header-cell *matHeaderCellDef class="col_user"> User? </th>
     <td mat-cell *matCellDef="let element" class="col_user"> {{element.user}} </td>
   </ng-container>
@@ -58,7 +58,7 @@
   <ng-container matColumnDef="admin">
     <th mat-header-cell *matHeaderCellDef class="col_admin"> Admin? </th>
     <td mat-cell *matCellDef="let element" class="col_admin"> {{element.admin}} </td>
-  </ng-container>
+  </ng-container> -->
 
   <tr mat-header-row *matHeaderRowDef="accountColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: accountColumns;"></tr>

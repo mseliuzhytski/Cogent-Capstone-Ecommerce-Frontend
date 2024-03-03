@@ -15,7 +15,7 @@ export class AccountTableComponent {
 
   dataSource : any;
   accounts = [];
-  accountColumns = ["edit", "delete", "id", "username", "email", "discount", "user", "admin"];
+  accountColumns = ["id", "username", "email", "discount"];
 
   @ViewChild(MatPaginator)
   paginator : MatPaginator;
@@ -28,10 +28,6 @@ export class AccountTableComponent {
     console.log("emit event");
   }
 
-  deleteAccount(id : number) {
-    console.log("delete");
-  }
-
   constructor(private service : AccountCrudService) {
   }
 
@@ -41,10 +37,24 @@ export class AccountTableComponent {
 
   public setAccounts() {
     this.service.getAccounts().subscribe( value => {
-      this.accounts = value;
+      this.accounts = [];
+      for (let i = 0; i < value.length; i++) {
+        let acc = value[i];
+        if (acc['admin'] == false) {
+          this.accounts.push(acc);
+        }
+      }
       this.dataSource = new MatTableDataSource(this.accounts);
       this.dataSource.paginator = this.paginator;
     });
+  }
+
+  public getDiscountCode(account) {
+    if (account['discount'] != null) {
+      return account['discount']['discountCode'] + " (" + account['discount']['discountPercent'] + "%)";
+    } else {
+      return "";
+    }
   }
 
 }

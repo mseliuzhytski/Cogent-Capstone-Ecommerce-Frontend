@@ -1,0 +1,71 @@
+
+<div *ngIf="data.type=='add_discount_success'">
+  <h2 mat-dialog-title>Success</h2>
+  <mat-dialog-content>
+    You have succesfully added a new discount.
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close mat-dialog-close="add">Add Another</button>
+    <button mat-button mat-dialog-close mat-dialog-close="view">View Discounts</button>
+  </mat-dialog-actions>
+  </div>
+
+  <div *ngIf="data.type=='add_discount_duplicate'">
+    <h2 mat-dialog-title>Unsuccessful</h2>
+    <mat-dialog-content>
+      The discount code already exists.
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
+    </mat-dialog-actions>
+    </div>
+
+    <div *ngIf="data.type=='add_discount_failure'">
+      <h2 mat-dialog-title>Unsuccessful</h2>
+      <mat-dialog-content>
+        There were issues with your form submission.
+      </mat-dialog-content>
+      <mat-dialog-actions>
+        <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
+      </mat-dialog-actions>
+    </div>
+
+    <div *ngIf="data.type=='edit_discount_success'">
+      <h2 mat-dialog-title>Successful</h2>
+      <mat-dialog-content>
+        You have succesfully modified an existing discount.
+      </mat-dialog-content>
+      <mat-dialog-actions>
+        <button mat-button mat-dialog-close mat-dialog-close="view">View Discounts</button>
+      </mat-dialog-actions>
+      </div>
+
+      <div *ngIf="data.type=='edit_discount_failure'">
+        <h2 mat-dialog-title>Unsuccessful</h2>
+        <mat-dialog-content>
+          There were issues with your form submission.
+        </mat-dialog-content>
+        <mat-dialog-actions>
+          <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
+        </mat-dialog-actions>
+      </div>
+
+      <div *ngIf="data.type=='delete_discount_success'">
+          <h2 mat-dialog-title>Successful</h2>
+          <mat-dialog-content>
+            Successfully deleted the discount
+          </mat-dialog-content>
+          <mat-dialog-actions>
+            <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
+          </mat-dialog-actions>
+      </div>
+
+    <div *ngIf="data.type=='delete_discount_failure'">
+        <h2 mat-dialog-title>Unsuccessful</h2>
+        <mat-dialog-content>
+          The discount is being used, and cannot be deleted
+        </mat-dialog-content>
+        <mat-dialog-actions>
+          <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
+        </mat-dialog-actions>
+    </div>

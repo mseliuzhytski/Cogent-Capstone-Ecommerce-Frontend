@@ -1,1 +1,61 @@
-<p>account-dialog works!</p>
+<div *ngIf="data.type=='add_account_success'">
+  <h2 mat-dialog-title>Success</h2>
+  <mat-dialog-content>
+    You have succesfully added a new account.
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close mat-dialog-close="add">Add Another</button>
+    <button mat-button mat-dialog-close mat-dialog-close="view">View Accounts</button>
+  </mat-dialog-actions>
+</div>
+
+<div *ngIf="data.type=='add_account_error'">
+  <h2 mat-dialog-title>Unsuccessful</h2>
+  <mat-dialog-content>
+    Check the validation errors with your form.
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
+  </mat-dialog-actions>
+</div>
+
+<div *ngIf="data.type=='add_account_username_duplicate'">
+  <h2 mat-dialog-title>Unsuccessful</h2>
+  <mat-dialog-content>
+    The username already exists.
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
+  </mat-dialog-actions>
+</div>
+
+<div *ngIf="data.type=='add_account_discount_error'">
+  <h2 mat-dialog-title>Unsuccessful</h2>
+  <mat-dialog-content>
+    The discount code does not exist.
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
+  </mat-dialog-actions>
+</div>
+
+<div *ngIf="data.type=='add_account_email_duplicate'">
+  <h2 mat-dialog-title>Unsuccessful</h2>
+  <mat-dialog-content>
+    The email already exists.
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
+  </mat-dialog-actions>
+</div>
+
+
+<div *ngIf="data.type=='add_account_unknown_error'">
+  <h2 mat-dialog-title>Error</h2>
+  <mat-dialog-content>
+    There was an unknown error with adding an account.
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
+  </mat-dialog-actions>
+</div>

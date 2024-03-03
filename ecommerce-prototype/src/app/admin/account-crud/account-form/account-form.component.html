@@ -22,6 +22,35 @@
     </tr>
 
     <tr>
+      <td class="add_item_attr">Password</td>
+      <td class="add_item_input">
+        <mat-form-field appearance="fill">
+          <input matInput type="password" formControlName="password">
+        </mat-form-field>
+      </td>
+      <td class="add_item_error">
+        <span *ngIf="!addForm.get('password').valid && addForm.get('password').touched" class="error_message">
+          Password must be 1 uppercase, 1 lowercase, 1 number, 1 special, and at least 8 characters
+        </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="add_item_attr">Confirm Password</td>
+      <td class="add_item_input">
+        <mat-form-field appearance="fill">
+          <input matInput type="password" formControlName="confirmPassword">
+        </mat-form-field>
+      </td>
+      <td class="add_item_error">
+        <span *ngIf="addForm.errors?.['passwordMatch'] && addForm.touched
+            && addForm.get('confirmPassword').touched" class="error_message">
+          Passwords must match
+        </span>
+      </td>
+    </tr>
+
+    <tr>
       <td class="add_item_attr">Email</td>
       <td class="add_item_input">
         <mat-form-field appearance="fill">
@@ -35,43 +64,18 @@
       </td>
     </tr>
     <tr>
-      <td class="add_item_attr">Discount</td>
+      <td class="add_item_attr">Discount Code</td>
       <td class="add_item_input">
         <mat-form-field>
-          <mat-label>Discount</mat-label>
-          <mat-select formControlName="discount">
-            <mat-option value="volvo">Volvo</mat-option>
-            <mat-option value="saab">Saab</mat-option>
-          </mat-select>
+          <mat-label>Discount Code</mat-label>
+            <input type="text" matInput formControlName="discount" [matAutocomplete]="auto">
         </mat-form-field>
-      </td>
-      <td class="add_item_error">
-        <!-- <span *ngIf="!addForm.get('email').valid && addForm.get('email').touched" class="error_message">
-          Discount is required.
-        </span> -->
-      </td>
-    </tr>
-    <tr>
-      <td class="add_item_attr">Is User?</td>
-      <td class="add_item_input">
-        <mat-radio-group formControlName="user" aria-label="Select">
-          <mat-radio-button value="1">Yes</mat-radio-button>
-          <mat-radio-button value="2">No</mat-radio-button>
-        </mat-radio-group>
-      </td>
-      <td class="add_item_error">
-        <!-- <span *ngIf="!addForm.get('email').valid && addForm.get('email').touched" class="error_message">
-          Discount is required.
-        </span> -->
-      </td>
-    </tr>
-    <tr>
-      <td class="add_item_attr">Is Admin?</td>
-      <td class="add_item_input">
-        <mat-radio-group formControlName="admin" aria-label="Select">
-          <mat-radio-button value="true">Yes</mat-radio-button>
-          <mat-radio-button value="false">No</mat-radio-button>
-        </mat-radio-group>
+        <mat-autocomplete #auto="matAutocomplete" hidden>
+          <mat-option *ngFor="let discount of availableDiscounts" [value]="discount.discountCode">
+            {{discount.discountCode}}
+          </mat-option>
+        </mat-autocomplete>
+
       </td>
       <td class="add_item_error">
         <!-- <span *ngIf="!addForm.get('email').valid && addForm.get('email').touched" class="error_message">
@@ -89,7 +93,7 @@
 
         <span *ngIf="showIsEdit">
           <button matInput mat-stroked-button #editItemButton type="button"
-            (click)="edititem($event)">Edit</button>
+            (click)="editItem($event)">Edit</button>
         </span>
 
       </td>

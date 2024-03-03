@@ -81,7 +81,7 @@ export class SignupComponent implements OnInit{
 
     if(this.validConfirm && this.validPass){
 
-
+      console.log("sign up user");
       const user ={
         "username":username,
         "password":password,
