@@ -1,0 +1,106 @@
+  <div class="form_container">
+
+  <h2>
+    <span *ngIf="showIsEdit">Edit Account</span>
+    <span *ngIf="!showIsEdit">Add Account</span>
+  </h2>
+  <form [formGroup]="addForm">
+
+  <table>
+    <tr>
+      <td class="add_item_attr">Username</td>
+      <td class="add_item_input">
+        <mat-form-field appearance="fill">
+          <input matInput type="text" formControlName="username">
+        </mat-form-field>
+      </td>
+      <td class="add_item_error">
+        <span *ngIf="!addForm.get('username').valid && addForm.get('username').touched" class="error_message">
+          Username is required.
+        </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="add_item_attr">Password</td>
+      <td class="add_item_input">
+        <mat-form-field appearance="fill">
+          <input matInput type="password" formControlName="password">
+        </mat-form-field>
+      </td>
+      <td class="add_item_error">
+        <span *ngIf="!addForm.get('password').valid && addForm.get('password').touched" class="error_message">
+          Password must be 1 uppercase, 1 lowercase, 1 number, 1 special, and at least 8 characters
+        </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="add_item_attr">Confirm Password</td>
+      <td class="add_item_input">
+        <mat-form-field appearance="fill">
+          <input matInput type="password" formControlName="confirmPassword">
+        </mat-form-field>
+      </td>
+      <td class="add_item_error">
+        <span *ngIf="addForm.errors?.['passwordMatch'] && addForm.touched
+            && addForm.get('confirmPassword').touched" class="error_message">
+          Passwords must match
+        </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="add_item_attr">Email</td>
+      <td class="add_item_input">
+        <mat-form-field appearance="fill">
+          <input matInput type="text" formControlName="email">
+        </mat-form-field>
+      </td>
+      <td class="add_item_error">
+        <span *ngIf="!addForm.get('email').valid && addForm.get('email').touched" class="error_message">
+          Email is required.
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td class="add_item_attr">Discount Code</td>
+      <td class="add_item_input">
+        <mat-form-field>
+          <mat-label>Discount Code</mat-label>
+            <input type="text" matInput formControlName="discount" [matAutocomplete]="auto">
+        </mat-form-field>
+        <mat-autocomplete #auto="matAutocomplete" hidden>
+          <mat-option *ngFor="let discount of availableDiscounts" [value]="discount.discountCode">
+            {{discount.discountCode}}
+          </mat-option>
+        </mat-autocomplete>
+
+      </td>
+      <td class="add_item_error">
+        <!-- <span *ngIf="!addForm.get('email').valid && addForm.get('email').touched" class="error_message">
+          Discount is required.
+        </span> -->
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <span *ngIf="!showIsEdit">
+          <button matInput mat-stroked-button #addItemButton type="button"
+            (click)="addItem($event)">Add</button>
+        </span>
+
+        <span *ngIf="showIsEdit">
+          <button matInput mat-stroked-button #editItemButton type="button"
+            (click)="editItem($event)">Edit</button>
+        </span>
+
+      </td>
+    </tr>
+  </table>
+
+  </form>
+
+</div>
+

@@ -1,1 +1,86 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-grow: 1;
+}
+
+.container nav {
+  padding: 10px;
+  background-color: #A0B4AE;
+  width: 220px;
+}
+
+.container nav mat-list {
+  margin-top: 40px;
+}
+
+.container main {
+  display: block;
+  float: right;
+  background-color: white;
+  padding: 10px;
+}
+
+.container main h2 {
+  text-align: center;
+  color: #2F4B6A;
+}
+
+
+mat-list-item a {
+  text-decoration: none;
+}
+
+mat-list-item a:hover {
+  text-decoration: underline;
+}
+
+.filter-field {
+  margin-left: 20px;
+}
+
+/* Paginator and Filter Field */
+.product_table_options_div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-grow: 1;
+}
+
+.filter_div {
+  width: 300px;
+}
+
+.paginator_div {
+  width: 600px;
+}
+
+.form_container {
+  margin-top: 0px;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.add_item_attr {
+  width: 120px;
+}
+
+.add_item_input {
+  width: 300px;
+}
+
+.add_item_error {
+  width: 300px;
+}
+
+.error_message {
+  color: red;
+}

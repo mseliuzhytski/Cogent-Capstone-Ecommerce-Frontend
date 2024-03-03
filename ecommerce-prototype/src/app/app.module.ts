@@ -15,7 +15,11 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { AdminComponent } from './admin/admin.component';
+import { ProductCrudComponent } from './admin/product-crud/product-crud.component';
+import { AccountCrudComponent } from './admin/account-crud/account-crud.component';
+import { SalesReportComponent } from './admin/sales-report/sales-report.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductpageComponent } from './productpage/productpage.component';
 import { HomeComponent } from './home/home.component';
@@ -26,6 +30,25 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/mat
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatToolbar} from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav'
+import { MatListModule } from '@angular/material/list'
+import { MatIconModule } from '@angular/material/icon'
+import {MatDividerModule} from '@angular/material/divider';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { ProductDialogComponent } from './admin/product-crud/product-dialog/product-dialog.component';
+import { AccountDialogComponent } from './admin/account-crud/account-dialog/account-dialog.component';
+import { AccountTableComponent } from './admin/account-crud/account-table/account-table.component';
+import { AccountFormComponent } from './admin/account-crud/account-form/account-form.component';
+import { DiscountTableComponent } from './admin/account-crud/discount-table/discount-table.component';
+import { DiscountFormComponent } from './admin/account-crud/discount-form/discount-form.component'
+import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
+import { AccountTableDialogComponent } from './admin/account-crud/account-table/account-table-dialog/account-table-dialog.component';
+import { DiscountTableDialogComponent } from './admin/account-crud/discount-form/discount-table-dialog/discount-table-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -40,10 +63,24 @@ import {MatToolbar} from '@angular/material/toolbar';
     SearchbarComponent,
     LoginComponent,
     SignupComponent,
+    AdminComponent,
+    ProductCrudComponent,
+    AccountCrudComponent,
+    SalesReportComponent,
+    ProductDialogComponent,
+    AccountDialogComponent,
+    AccountTableComponent,
+    AccountFormComponent,
+    DiscountTableComponent,
+    DiscountFormComponent,
+    // ReactiveFormsModule,
+    // FormsModule,
     ProductpageComponent,
     HomeComponent,
     ForgotpasswordComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    AccountTableDialogComponent,
+    DiscountTableDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -51,17 +88,32 @@ import {MatToolbar} from '@angular/material/toolbar';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatDividerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    MatRadioModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
-    NgxPaginationModule,
+    // NgxPaginationModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatInputModule, 
+    MatInputModule,
     MatCardModule,
-    MatToolbar
+    MatToolbar,
+    MatCardModule,
+    MatAutocompleteModule,
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

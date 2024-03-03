@@ -1,0 +1,28 @@
+.discount_table {
+  table-layout: fixed;
+}
+
+.mat-column-edit, .mat-column-delete {
+  flex: none;
+  max-width: 20px;
+  min-width: 20px;
+  padding: 0px;
+}
+
+.mat-column-id {
+  flex: none;
+  max-width: 25px;
+  min-width: 25px;
+}
+
+.mat-column-code {
+  flex: none;
+  max-width: 60px;
+  min-width: 60px;
+}
+
+.mat-column-percent {
+  flex: none;
+  max-width: 60px;
+  min-width: 60px;
+}
