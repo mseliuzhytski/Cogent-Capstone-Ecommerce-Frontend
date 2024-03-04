@@ -22,4 +22,10 @@ export class SalesReportService {
     return this.http.get(this.salesReportUrl + "aggregateByUser");
   }
 
+  getSalesReportByUserTime(timeInterval) : Observable<any> {
+    const path = this.salesReportUrl + "aggregateByUserTimeFilter";
+    const headers = { 'content-type': 'application/json'}
+    return this.http.post(path, timeInterval, {'headers' : headers});
+  }
+
 }

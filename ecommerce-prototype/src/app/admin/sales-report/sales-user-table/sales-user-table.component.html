@@ -1,14 +1,28 @@
 <div class="product_table_options_div">
   <div class="filter_div">
-    <mat-form-field class="filter-field">
+
+    <!-- <mat-form-field class="filter-field">
       <input matInput placeholder="Filter" (keyup)="applyFilter($event.target.value)">
+    </mat-form-field> -->
+
+    <mat-form-field>
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+        <input matStartDate formControlName="start" placeholder="Start date">
+        <input matEndDate formControlName="end" placeholder="End date" (dateChange)="filterByDate($event)">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
     </mat-form-field>
+
+
   </div>
 
   <div class="paginator_div">
     <mat-paginator #paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
   </div>
 </div>
+
 
 <table mat-table [dataSource]="dataSource" class="sales_item_table">
 

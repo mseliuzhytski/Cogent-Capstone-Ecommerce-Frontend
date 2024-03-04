@@ -50,7 +50,7 @@ import { AccountTableDialogComponent } from './admin/account-crud/account-table/
 import { DiscountTableDialogComponent } from './admin/account-crud/discount-form/discount-table-dialog/discount-table-dialog.component';
 import { SalesItemTableComponent } from './admin/sales-report/sales-item-table/sales-item-table.component';
 import { SalesUserTableComponent } from './admin/sales-report/sales-user-table/sales-user-table.component';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -114,6 +114,7 @@ import { SalesUserTableComponent } from './admin/sales-report/sales-user-table/s
     MatToolbar,
     MatCardModule,
     MatAutocompleteModule,
+    MatDatepickerModule,
   ],
   providers: [
     provideClientHydration(),
