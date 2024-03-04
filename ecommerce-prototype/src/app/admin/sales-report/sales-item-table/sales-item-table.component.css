@@ -1,0 +1,34 @@
+.sales_item_table {
+  table-layout: fixed;
+}
+
+.mat-column-username {
+  flex: none;
+  max-width: 100px;
+  min-width: 100px;
+}
+
+.mat-column-product_name {
+  flex: none;
+  max-width: 120px;
+  min-width: 120px;
+}
+
+.mat-column-price {
+  flex: none;
+  max-width: 80px;
+  min-width: 80px;
+}
+
+.mat-column-quantity {
+  flex: none;
+  max-width: 100px;
+  min-width: 100px;
+}
+
+.mat-column-date_added {
+  flex: none;
+  max-width: 140px;
+  min-width: 140px;
+}
+
