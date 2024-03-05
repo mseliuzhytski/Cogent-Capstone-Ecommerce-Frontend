@@ -48,7 +48,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import { AccountTableDialogComponent } from './admin/account-crud/account-table/account-table-dialog/account-table-dialog.component';
 import { DiscountTableDialogComponent } from './admin/account-crud/discount-form/discount-table-dialog/discount-table-dialog.component';
-
+import { SalesItemTableComponent } from './admin/sales-report/sales-item-table/sales-item-table.component';
+import { SalesUserTableComponent } from './admin/sales-report/sales-user-table/sales-user-table.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,9 @@ import { DiscountTableDialogComponent } from './admin/account-crud/discount-form
     ForgotpasswordComponent,
     ResetpasswordComponent,
     AccountTableDialogComponent,
-    DiscountTableDialogComponent
+    DiscountTableDialogComponent,
+    SalesItemTableComponent,
+    SalesUserTableComponent
   ],
   imports: [
     BrowserModule,
@@ -110,6 +114,7 @@ import { DiscountTableDialogComponent } from './admin/account-crud/discount-form
     MatToolbar,
     MatCardModule,
     MatAutocompleteModule,
+    MatDatepickerModule,
   ],
   providers: [
     provideClientHydration(),

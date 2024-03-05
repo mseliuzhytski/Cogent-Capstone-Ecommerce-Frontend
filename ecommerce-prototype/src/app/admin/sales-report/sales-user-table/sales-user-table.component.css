@@ -1,0 +1,21 @@
+.sales_item_table {
+  table-layout: fixed;
+}
+
+.mat-column-username {
+  flex: none;
+  max-width: 100px;
+  min-width: 100px;
+}
+
+.mat-column-total_price {
+  flex: none;
+  max-width: 80px;
+  min-width: 80px;
+}
+
+.mat-column-purchases {
+  flex: none;
+  max-width: 80px;
+  min-width: 80px;
+}
