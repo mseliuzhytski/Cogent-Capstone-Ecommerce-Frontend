@@ -25,15 +25,18 @@
                         </div>
                         <div class="catg_item_txt_box">
                             <div class="catg_item_name">
-                                <span>{{item.name}}</span>
+                                <span>{{item.product.name}}</span>
                             </div>
                             <hr>
                             <div class="catg_item_price">
-                                <span>$ {{item.price}}</span>
+                                <span>$ {{item.product.price}}</span>
                             </div>
                         </div>
                     </div>
-                    <button>ADD</button>
+                    <div class="catg_item_buttons">
+                        <button (click)="addButton(item.product)">ADD</button>
+                        <button (click)="removeButton(item.product)">REMOVE</button>
+                    </div>
                 </div>
                 
             </div>
