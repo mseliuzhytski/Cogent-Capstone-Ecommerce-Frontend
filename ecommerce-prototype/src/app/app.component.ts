@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from './auth-service.service';
 import { Subject, takeUntil } from 'rxjs';
+import { CategoryService } from './category.service';
+import { Category } from './dto/category';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,9 +12,9 @@ import { Subject, takeUntil } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'ecommerce-prototype';
 
-  constructor(private authService : AuthServiceService) {
+  constructor(private authService : AuthServiceService,private categoryService:CategoryService,private router:Router) {}
 
-  }
+  categoriesForNav:Category[]=[]
 
   isAdminAccount = false;
   isLoggedIn = false;
@@ -25,6 +28,28 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.categoryService.getAllCategories().subscribe(
+      categoryResponse=>{
+        //console.log(categoryResponse)
+        let count = 0
+        for(const category of categoryResponse){
+          if(count<7){
+          const catToAdd = new Category(category.id,category.name);
+          //console.log(catToAdd)
+          this.categoriesForNav.push(catToAdd);
+          count++;
+          }else{
+            break;
+          }
+        }
+      },error=>{
+        console.error(error);
+      },()=>{
+        this.updateNav()
+      }
+    )
+
     this.authService.account.pipe(takeUntil(this.destroyer$)).subscribe(newAcc => {
       this.account = newAcc;
       if (newAcc != null) {
@@ -39,6 +64,8 @@ export class AppComponent implements OnInit {
   }
 
   updateLoggedInStatus() : void {
+
+
     console.log("update logged in status");
     this.authService.getLoggedInAccount().subscribe((account) =>
       (account) => {
@@ -58,6 +85,23 @@ export class AppComponent implements OnInit {
 
       });
   }
+
+
+  display = false
+
+  updateNav(){
+
+    this.display = true;
+    //console.log(this.categoriesForNav)
+
+  }
+
+  navigateToProducts(categoryName){
+
+    this.router.navigate(['/shopAll', categoryName]);
+
+  }
+
 
 
 

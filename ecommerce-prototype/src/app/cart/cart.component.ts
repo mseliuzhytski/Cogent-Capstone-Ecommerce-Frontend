@@ -4,6 +4,7 @@ import { CartService } from '../cart.service';
 import { error } from 'console';
 import { Router } from '@angular/router';
 import { response } from 'express';
+import { DiscountService } from '../discount.service';
 
 @Component({
   selector: 'app-cart',
@@ -12,12 +13,13 @@ import { response } from 'express';
 })
 export class CartComponent implements OnInit{
 
-  constructor(private authService:AuthServiceService,private cartService:CartService,private router: Router) { }
+  constructor(private authService:AuthServiceService,private cartService:CartService,private router: Router,private discountService:DiscountService) { }
 
   display = false;
   totalPrice:number = 0
   totalItems:number = 0
   testarray:any=[]
+  accountId:number
 
   ngOnInit() {
 
@@ -33,6 +35,7 @@ export class CartComponent implements OnInit{
           const saleItem = {"product":array.product,"quantity":array.quantity,"changeQuantity":array.quantity}
           console.log("SALE ITEM",saleItem)
           this.testarray.push(saleItem);
+          this.accountId = array.account.id
         }
 
       }, 
@@ -43,6 +46,7 @@ export class CartComponent implements OnInit{
         this.display=true;
         console.log(this.testarray)
         console.log(this.totalPrice)
+        console.log("ID",this.accountId)
       }
     )   
   }
@@ -91,13 +95,52 @@ export class CartComponent implements OnInit{
     )
   }
 
+  discountCode = ''
+  discountPercent:number
+  discountApplied = false;
+  finalDiscountCode = ''
+
+  checkDiscount(code){
+    console.log("discount:",code)
+    this.discountService.checkDiscount(this.accountId,code).subscribe(
+      response=>{
+        if(response!=false){
+          this.discountApplied=true;
+          this.discountPercent = response;
+        }
+      }
+      ,error=>console.error(error),
+      ()=>{
+        console.log(this.discountPercent)
+        this.showPriceChanges()
+        this.finalDiscountCode = code
+      }
+    )
+  }
+
+  discountPrice:number
+
+  showPriceChanges(){
+    console.log((this.discountPercent/100)*this.totalPrice)
+    const discount = (this.discountPercent/100)*this.totalPrice
+    this.discountPrice = this.totalPrice-discount;
+  }
+
   submitOrder(arrayOfProducts){
+
+    let price = 0;
+
+    if(this.discountApplied){
+      price = this.discountPrice
+    }else{
+      price = this.totalPrice
+    }
 
     //console.log(arrayOfProducts)
     let formattedList = []
     for(let x of arrayOfProducts){
       //console.log(x);
-      const salesItem = {"productId":x.product.id, "quantitySold": x.quantity, "totalPrice":x.product.price*x.quantity}
+      const salesItem = {"productId":x.product.id, "quantitySold": x.quantity, "totalPrice":price}
       //console.log(salesItem)
       formattedList.push(salesItem);
     }
@@ -111,6 +154,23 @@ export class CartComponent implements OnInit{
       }
     )
 
+    if(this.discountApplied){
+      this.discountService.useDiscount(this.accountId,this.finalDiscountCode).subscribe(
+        response=>console.log(response)
+      )
+    }
+
+  }
+
+  goToProductPage(id:number){
+
+    this.router.navigate(['/productPage',id])
+
+  }
+
+  // stops click from going to product page:
+  stopPropagation(event:Event){
+    event.stopPropagation();
   }
 
 }

@@ -1,0 +1,111 @@
+
+/** View Product Table */
+.product_table {
+    margin-top: 20px;
+    font-size: 14px;
+    border-collapse:collapse;
+  }
+  
+  .product_table_header {
+    font-weight: bold;
+    background-color: rgb(119, 119, 119);
+    color: white;
+    height: 30px;
+  }
+  
+  .product_table {
+    font-family: sans-serif;
+  }
+  
+  .col_product_id {
+    width: 25px;
+  }
+  
+  .col_product_add {
+    width: 5px;
+    padding: 0px;
+  }
+  
+  .col_product_edit {
+    width: 5px;
+    padding: 0px;
+  }
+  
+  .col_product_delete {
+    width: 25px;
+  }
+  
+  .col_product_name {
+    width: 170px;
+  }
+  
+  .col_product_price {
+    width: 60px;
+  }
+  
+  .col_product_stock {
+    width: 50px;
+  }
+  
+  .col_product_image_loc {
+    width: 100px;
+  }
+  
+  .product_image {
+    max-width: 100px;
+    max-height: 100px;
+  }
+  
+  .col_product_category {
+    width: 120px;
+  }
+  
+  .col_product_details {
+    width: 250px;
+  }
+  
+  .details_text {
+    font-size: 12px;
+  }
+  
+  .error_message {
+    color: red;
+  }
+  
+  /** Add/Edit Product Form */
+  #add_product_div {
+    margin-top: 0px;
+    margin-left: 10px;
+    font-size: 14px;
+  }
+  
+  .add_product_attr {
+    width: 120px;
+  }
+  
+  .add_product_input {
+    width: 300px;
+  }
+  
+  .add_product_error {
+    width: 300px;
+  }
+  
+  
+  mat-sidenav, mat-sidenav-content {
+    padding: 10px;
+  }
+  
+  .mat-list-item{
+    max-height: 25px;
+  }
+  
+  .table_section{
+    flex: auto;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 600px;
+  }
+  
+  

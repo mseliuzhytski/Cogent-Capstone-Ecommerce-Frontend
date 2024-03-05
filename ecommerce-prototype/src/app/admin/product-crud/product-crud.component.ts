@@ -8,6 +8,9 @@ import { MatDialog } from '@angular/material/dialog'
 import { ProductDialogComponent } from './product-dialog/product-dialog.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { CategoryService } from '../../category.service';
+import { AuthServiceService } from '../../auth-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-crud',
@@ -17,7 +20,8 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class ProductCrudComponent implements OnInit, AfterViewInit {
 
-  constructor(private productService : ProductCrudService, public dialog : MatDialog) {
+  constructor(private productService : ProductCrudService, public dialog : MatDialog , private categoryService:CategoryService
+    ,private authService:AuthServiceService, private router:Router) {
 
   }
   ngAfterViewInit(): void {
@@ -32,6 +36,8 @@ export class ProductCrudComponent implements OnInit, AfterViewInit {
   products = [];
   productsDataSource : any;
   displayedProductColumns = ['edit', 'delete', 'id', 'name', 'price', 'stock', 'category', 'image', 'details'];
+  categoryList = [];//all category storage
+  selectedCategories = [] // storing selected categories
 
   @ViewChild(MatPaginator)
   paginator : MatPaginator;
@@ -121,6 +127,7 @@ export class ProductCrudComponent implements OnInit, AfterViewInit {
     this.addForm.get('stock').setValue(null);
     this.addForm.get('imageLocation').setValue(null);
     this.addForm.get('details').setValue(null);
+    this.addForm.get('category').setValue(null);//category -> reset form
     this.uploadFile = null;
     this.hasSelectedFile = false;
     this.addForm.markAsPristine();
@@ -136,7 +143,9 @@ export class ProductCrudComponent implements OnInit, AfterViewInit {
     newProduct['imageLocation'] = this.addForm.get('imageLocation').value;
     newProduct['details'] = this.addForm.get('details').value;
     newProduct['dateAdded'] = Date.now();
+    newProduct['categoriesList'] = this.addForm.get('category').value;//category -> adding to a product object
     this.newProduct = newProduct;
+    console.log("Product:",newProduct)
   }
 
   public updateWithProduct(product : any) {
@@ -154,6 +163,15 @@ export class ProductCrudComponent implements OnInit, AfterViewInit {
 
     this.addForm.get('details').setValue(product['details']);
     this.addForm.get('details').updateValueAndValidity();
+
+    //not working for pre select
+    console.log("LIST:",product['categoriesList'])
+    this.addForm.get('category').setValue(product['categoriesList']); //setting category list to select form
+    console.log("FORM:",this.addForm.get('category'))
+    this.selectedCategories = product['categoriesList']
+    console.log("MODEL",this.selectedCategories)
+    console.log("CAT LIST",this.categoryList)
+    this.addForm.get('category').updateValueAndValidity();
     this.dateAdded = product['dateAdded'];
     this.productId = product['id'];
   }
@@ -193,6 +211,19 @@ export class ProductCrudComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+
+    this.authService.checkIfAdmin().subscribe(
+      response=>{
+        if(!response){
+          alert("NOT AUTHORIZED")
+          this.router.navigate(['/login']);
+        }
+      },error=>{
+        alert("NOT AUTHORIZED")
+        this.router.navigate(['/login']);
+      }
+    )
+
     this.setProducts();
     this.addForm = new FormGroup({
       name: new FormControl(null, Validators.required),
@@ -201,11 +232,21 @@ export class ProductCrudComponent implements OnInit, AfterViewInit {
       stock: new FormControl(null, [Validators.required,
         Validators.pattern(/^[0-9]+$/g)]),
       imageLocation: this.fileUploadFormControl,
-      details: new FormControl(null, [Validators.required])
+      details: new FormControl(null, [Validators.required]),
+      category: new FormControl(null) //category addition
     });
     this.csvUploadForm = new FormGroup({
       upload : this.csvUploadFormControl,
     });
+
+    this.categoryService.getAllCategories().subscribe(
+      response=>{
+        for(const category of response){
+          this.categoryList.push(category);
+        }
+      }
+    )
+
   }
 
   display() : void {
@@ -305,6 +346,7 @@ export class ProductCrudComponent implements OnInit, AfterViewInit {
     this.showCsvUpload = false;
     this.showViewCategories = false;
     this.showAddCategories = false;
+    this.selectedCategories = []
   }
 
   public viewProductOption(event : Event) {

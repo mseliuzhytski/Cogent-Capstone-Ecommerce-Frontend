@@ -17,20 +17,24 @@ import { ProductpageComponent } from './productpage/productpage.component';
 import { HomeComponent } from './home/home.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { CategoryCrudComponent } from './admin/category-crud/category-crud.component';
 
 const routes: Routes = [{path:'userProfile', component:UserprofileComponent},
 {path:'about', component:AboutComponent},
 {path:'login', component:LoginComponent},
+{path:'productPage/:productId', component:ProductpageComponent},
 {path:'contact', component:ContactComponent},
 {path:'home', component:HomeComponent},
 {path:'wishlist', component:WishlistComponent},
 {path:'cart', component:CartComponent},
 {path:'shopAll', component:ShopComponent},
+{path:'shopAll/:category', component:ShopComponent},
 {path:'signUp', component:SignupComponent},
 {path:'admin', component:AdminComponent},
 {path:'admin/product', component:ProductCrudComponent},
 {path:'admin/account', component:AccountCrudComponent},
 {path:'admin/sales', component:SalesReportComponent},
+{path:'admin/category', component:CategoryCrudComponent},
 {path:'forgotPassword', component:ForgotpasswordComponent},
 {path:'resetPassword/:resetToken', component:ResetpasswordComponent},
 {path:'',redirectTo:'/home',pathMatch:'full'}

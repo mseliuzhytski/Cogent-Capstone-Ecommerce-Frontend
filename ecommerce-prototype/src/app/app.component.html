@@ -6,7 +6,7 @@
   <header>
     <div class="topHeader">
       <div>
-        <a routerLink="/"><img src="../assets/images/generic-logo.webp" alt="logo" width="400px" height="170px"></a>
+        <a routerLink="/"><img src="../assets/images/logo2.png" alt="logo" width="467px" height="170px"></a>
       </div>
       <div>
         <a routerLink="/wishlist"><img src="../assets/images/liked.png" alt="user" width="55px" height="55px"></a>
@@ -29,11 +29,7 @@
           <a routerLink="/shopAll">Shop</a>
           <!-- Dynamically generated from existing categories in backend -->
           <ul class="dropdown-menu">
-            <li><a href="#">Women's Clothing</a></li>
-            <li><a href="#">Men's Clothing</a></li>
-            <li><a href="#">Electronics</a></li>
-            <li><a href="#">Food</a></li>
-            <li><a href="#">Services</a></li>
+            <li *ngFor="let x of categoriesForNav"><a (click)="navigateToProducts(x.name)">{{x.name}}</a></li>
           </ul>
         </li>
         <li><a routerLink="/about">About</a></li>
@@ -43,6 +39,7 @@
             <li><a href="/admin/product">Modify Products</a></li>
             <li><a href="/admin/account">Modify Accounts</a></li>
             <li><a href="/admin/sales">Sales Reports</a></li>
+            <li><a href="/admin/category">Cateogry Crud</a></li>
           </ul>
         </li>
         <li class="search-bar">

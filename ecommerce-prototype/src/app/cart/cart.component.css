@@ -6,55 +6,120 @@
     
 }
 .list_item{
-    
+    border: 1px solid #89aabf;
+    border-radius: 5px;
+    margin-bottom: 1rem;
     display: flex;
     align-items: center;
     justify-content:space-between;
     padding-left: 30px;
     padding-right: 30px;
 }
-.item_content{
-    display: flex;
-    align-items: center;
-}
-.content_img{
-    width: 150px;
-    height: 120px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 5px;
-    border: solid black 1px;
-}
-.content_txt{
-    width: 100px;
-    margin-left: 10px;
-}
-.txt_name,
-.txt_field,
-.txt_price{
-    
-    
-}
+.list_item:hover {
+    background-color: #a0afb8; 
+    cursor: pointer;
+  }
+.item_content {
+    display: flex; /* Arrange elements horizontally */
+    align-items: center; /* Vertically align content */
+    padding: 1rem; /* Add padding around content */
+    border-bottom: 1px solid #ddd; /* Add subtle bottom border */
+  }
+  
+  .content_img {
+    margin-right: 1rem; /* Add margin between image and text */
+  }
+  
+  .content_txt {
+    flex: 1; /* Allow text content to grow and fill remaining space */
+  }
+  
+  .txt_name {
+    font-size: 1.2rem; /* Adjust font size for product name */
+    margin-bottom: 0.5rem; /* Add some space below the name */
+  }
+  
+  .txt_field, .txt_price {
+    margin-bottom: 0.5rem; /* Add spacing between fields */
+  }
+  
+  .txt_price {
+    font-weight: bold; /* Make price slightly bold */
+  }
+
+  /*  */
+
 .item_quantity{
     display: flex;
     align-items: center;
     margin-left: 10px;
 }
-.quantity_display{
-    display: block;
-    margin: 5px;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    width:60px;
-    /* border: black solid 1px;
-    background-color: rgb(201, 234, 253);
-    border-radius: 10px; */
-    text-align: center;
+.quantity_display {
+    position: relative; /* Needed for arrow positioning */
+  }
+  
+  .quantity_display select {
+    appearance: none; /* Hide default browser styles */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 0.5rem 1rem; /* Adjust padding as needed */
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #fff; /* Background color */
+    outline: none; /* Remove default outline on focus */
+  }
+  
+  .quantity_display select:hover {
+    border-color: #999; /* Change border color on hover */
+  }
+  
+  .quantity_display select:focus {
+    border-color: #333; /* Change border color on focus */
+  }
+  
+  /* Arrow styling */
+  .quantity_display::after {
+    content: "\25BC"; /* Down arrow character */
+    font-size: 0.4rem; /* Adjust arrow size */
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Adjust arrow position */
+    transform: translateY(-50%); /* Center arrow vertically */
+    pointer-events: none; /* Ignore clicks on the arrow */
+  }
+.quantity_options{
+    margin-left: 10px;
+  display: inline-flex; /* Inline and centered */
+  align-items: center;
+  justify-content: center;
+  width: 25px; /* Set fixed width */
+  height: 25px; /* Set fixed height */
+  border-radius: 50%; /* Circle shape */
+  cursor: pointer; /* Indicate interactivity */
+  background-color: #ddd; /* Default background color */
+  transition: background-color 0.2s ease-in-out; /* Smooth transition */
 }
-.quantity_options button{
-    background-color: red;
-    margin: 2px;
-}
+.quantity_options:hover {
+    background-color: #8f8f8f; /* Background color on hover */
+  }
+  
+  .quantity_options:active {
+    background-color: #666; /* Background color on press */
+  }
+  
+  .quantity_options button {
+    background-color: transparent; /* Remove button background */
+    border: none; /* Remove button border */
+    padding: 0; /* Remove button padding */
+    cursor: inherit; /* Inherit cursor from parent */
+    font-size: 1.2rem; /* Adjust font size for "X" */
+    font-weight: bold; /* Bold font for "X" */
+    color: #b10000; /* Color for "X" */
+  }
+
+
+  /* summary */
+
 .display_summary{
     position: sticky;
     top: 10px;
@@ -63,7 +128,8 @@
     margin: 10px;
     margin-right: 5%;
     padding-bottom: 30px;
-    border: 2px black solid;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 .summary_t{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -72,10 +138,23 @@
     margin-top: 10px;
     color: black;
 }
+
 .summary_p{
     padding:10px;
+    font-size: 0.9rem;
 
 }
+.summary_p span {
+    font-weight: normal; /* Normal weight for most text */
+  }
+  
+  .summary_p span.discounted {
+    font-weight: bold; /* Bold for discounted price */
+  }
+
+  .display_summary:hover {
+    box-shadow: 0 1px 3px rgba(5, 1, 49, 0.753); /* Subtle shadow on hover */
+  }
 
 /*   Bottom   */
 
@@ -84,14 +163,33 @@
     margin-bottom: 200px;
     text-align: center;
     color: rgb(36, 36, 36);
+    padding: 3rem;
 }
 
-select {
-    background-color: rgb(201, 234, 253);
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #000000;
-    border-radius: 4px;
-    /* background-color: #fff; */
-    color: #333;
+
+
+.discounted{
+    text-decoration: line-through;
+}
+
+.bottom hr {
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
+
+.bottom button {
+    background-color: #1683c4; /* Set button background color */
+    color: #fff; /* Set button text color */
+    border: none; /* Remove border */
+    padding: 0.75rem 1.5rem; /* Adjust padding */
+    border-radius: 5px; /* Add rounded corners */
+    cursor: pointer; /* Indicate interactivity */
+    margin-right: 1rem; /* Add space between buttons (optional) */
+    transition: background-color 0.2s ease-in-out; /* Smooth transition on hover */
+  }
+  
+  .bottom button:hover {
+    background-color: #575555; /* Change background color on hover */
+  }
+

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthServiceService } from './auth-service.service';
 
 
 @Injectable({
@@ -14,30 +15,39 @@ export class AccountCrudService {
 
   private products = [];
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient,private authService:AuthServiceService) { }
 
   getAccounts() : Observable<any> {
-    return this.http.get(this.accountUrl + "list");
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(this.accountUrl + "list",{headers});
   }
 
   getAccount(id : number) : Observable<any> {
-    return this.http.get(this.accountUrl + id);
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(this.accountUrl + id,{headers});
   }
 
   getAccountByUsername(username : string) : Observable<any> {
-    return this.http.get(this.url + "accountByName/" + username);
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(this.url + "accountByName/" + username,{headers});
   }
 
   getAccountByEmail(email : string) : Observable<any> {
-    return this.http.get(this.url + "accountByEmail/" + email);
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(this.url + "accountByEmail/" + email,{headers});
   }
 
   addAccount(account : any) :Observable<Object> {
     const path = this.accountUrl;
     const params = new HttpParams(account);
     const productJson = JSON.stringify(account);
-    const headers = { 'content-type': 'application/json'}
-    return this.http.post(path, account, {'headers' : headers});
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(path, account, {headers});
   }
 
   editAccount(account : any, id : number) : Observable<Object> {
@@ -45,28 +55,36 @@ export class AccountCrudService {
     const path = this.accountUrl + id;
     const params = new HttpParams(account);
     const productJson = JSON.stringify(account);
-    const headers = { 'content-type': 'application/json'}
-    return this.http.put(path, account, {'headers' : headers});
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put(path, account, {headers});
   }
 
   deleteAccount(id : number) : Observable<Object> {
     const path = this.accountUrl + id;
-    return this.http.delete(path, {observe: 'response'});
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete(path, {observe: 'response',headers:headers});
   }
 
 
   getDiscounts() : Observable<any> {
-    return this.http.get(this.discountUrl + "list");
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(this.discountUrl + "list",{headers});
   }
 
   getDiscount(id : number) : Observable<any> {
-    return this.http.get(this.discountUrl + id);
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(this.discountUrl + id,{headers});
   }
 
   addDiscount(account : any) :Observable<Object> {
     const path = this.discountUrl;
-    const headers = { 'content-type': 'application/json'}
-    return this.http.post(path, account, {'headers' : headers});
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(path, account, {headers});
   }
 
   editDiscount(account : any, id : number) : Observable<Object> {
@@ -74,17 +92,22 @@ export class AccountCrudService {
     const path = this.discountUrl + id;
     const params = new HttpParams(account);
     const productJson = JSON.stringify(account);
-    const headers = { 'content-type': 'application/json'}
-    return this.http.put(path, account, {'headers' : headers});
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put(path, account,{headers});
   }
 
   deleteDiscount(id : number) : Observable<Object> {
     const path = this.discountUrl + id;
-    return this.http.delete(path, {observe: 'response'});
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete(path, {observe: 'response',headers:headers});
   }
 
   getDiscountByCode(code : string) : Observable<any> {
-    return this.http.get(this.discountUrl + "getByCode/" + code);
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(this.discountUrl + "getByCode/" + code,{headers});
   }
 
 }

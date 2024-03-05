@@ -80,12 +80,25 @@ export class ProductpageComponent implements OnInit{
   processCartRequest(){
     console.log("called")
     console.log(this.selectedQuantity);
+    let add = true;
     if(this.selectedQuantity==undefined){
       alert("Select Quantity")
+      add= false;
     }
-    this.cartService.addToCart(this.productId,this.selectedQuantity).subscribe(
-      response => console.log(response)
+
+    if(add){
+      this.cartService.addToCart(this.productId,this.selectedQuantity).subscribe(
+      response => console.log(response),
+      error=>{
+        if(error.status==400){
+          alert("Product is already in cart")
+        }else{
+          alert("Not Logged in!")
+          this.router.navigate(['/login']);
+        }
+      }
     );
+  }
   }
 
 
