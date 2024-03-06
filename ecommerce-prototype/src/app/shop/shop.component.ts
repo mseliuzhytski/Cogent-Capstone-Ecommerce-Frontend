@@ -115,7 +115,7 @@ export class ShopComponent implements OnInit{
   update(){
 
     this.show=true;
-    
+
   }
 
 
@@ -200,7 +200,7 @@ export class ShopComponent implements OnInit{
 
 
   //sorting
-  
+
   sorting(sortCondition,sortOrder){
 
     this.filteredProducts = this.filteredProducts.sort((a,b)=>{
@@ -216,6 +216,11 @@ export class ShopComponent implements OnInit{
       }
     })
     this.sliceData();
+  }
+
+  public getFormattedDate(timestamp : number) {
+    let date = new Date(timestamp);
+    return date.toLocaleString();
   }
 
 
