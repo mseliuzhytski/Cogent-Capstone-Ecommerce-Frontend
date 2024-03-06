@@ -6,6 +6,7 @@ import { Category } from '../dto/category';
 import { error } from 'console';
 import { AuthServiceService } from '../auth-service.service';
 import { CartService } from '../cart.service';
+import { WishlistService } from '../wishlist.service';
 
 @Component({
   selector: 'app-productpage',
@@ -18,7 +19,7 @@ export class ProductpageComponent implements OnInit{
   productToDisplay: Product
 
   constructor(private route:ActivatedRoute,private productService:ProductService, private authService:AuthServiceService,
-    private router: Router,private cartService:CartService){
+    private router: Router,private cartService:CartService, private wishService:WishlistService){
 
   }
 
@@ -75,6 +76,16 @@ export class ProductpageComponent implements OnInit{
 
   addToWishlist(){
     console.log("test")
+    this.wishService.addToWishlist(this.productId).subscribe(response => console.log(response),
+    error=>{
+      if(error.status==400){
+        alert("Product is already in wishlist")
+      }else{
+        alert("Not Logged in!")
+        this.router.navigate(['/login']);
+      }
+    }
+  );
   }
 
   processCartRequest(){
