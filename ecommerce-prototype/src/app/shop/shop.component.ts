@@ -6,6 +6,7 @@ import { error } from 'console';
 import { PageEvent, MatPaginatorModule} from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../category.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -30,8 +31,13 @@ export class ShopComponent implements OnInit{
   categoryFilterFromUrl = false;
   categoryFromRoute = ''
   allCategoryList = []
+  filterForm:FormGroup // just used to reset form when reset called
 
   ngOnInit(): void {
+
+    this.filterForm = new FormGroup({
+      categoryFilter: new FormControl(null),
+    });
 
     this.route.params.subscribe(params => {
       this.categoryFromRoute = params['category'];
@@ -186,6 +192,8 @@ export class ShopComponent implements OnInit{
   }
 
   reset(){
+    this.filterForm.get('categoryFilter').setValue(null);
+    this.filterForm.get('categoryFilter').markAsDirty();
     this.filteredProducts = this.productsList;
     this.sliceData();
   }
