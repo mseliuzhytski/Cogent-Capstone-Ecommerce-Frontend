@@ -17,6 +17,7 @@ export class AuthServiceService {
   private getUserUrl = environment.url + "getUsername";
   private getAccountUrl = environment.url + "getAccountFromToken";
   private checkAdminUrl = environment.url + "checkAdmin";
+  private sendContactEmail = environment.url + "contact/sendMessage";
 
 
   private account$ = new BehaviorSubject<any>(null);
@@ -131,4 +132,7 @@ export class AuthServiceService {
     return this.http.get<string>(this.checkAdminUrl,{headers})
   }
 
+  sendContactUsEmail(contactJson){
+    return this.http.post<string>(this.sendContactEmail,contactJson)
+  }
 }

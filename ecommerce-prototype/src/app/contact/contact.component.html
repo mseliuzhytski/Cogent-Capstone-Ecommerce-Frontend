@@ -9,7 +9,7 @@
                     <ul>
                         <li>provide feedback</li>
                         <li>report a bug</li>
-                        <li>ask menagement a question</li>
+                        <li>ask us questions!</li>
                     </ul>
                 </div>
             </div>
@@ -20,28 +20,59 @@
         <div class="fm_body_visible">
             <div id="fmA" class="fm_body">
     <!--    <form action="https://formspree.io/{{your_email_address}}" method="POST">    -->
-            <form>
-                <label for="name">Name:</label><br>
-                <input type="text" id="name" name="name" required>
-                <br>
-                <label for="email">Email:</label><br>
-                <input type="email" id="email" name="email" required>
-                <br>
-                <label for="message">Message:</label><br>
-                <textarea class="fm_form_msg" id="message" name="message" rows="4" required></textarea>
-                <br>
-                <div class="fm_body_button_center">
-                <button type="submit">Submit</button>
-                </div>
-            </form>
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <div class="form-field-container">
+              <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" required>
+                <mat-error *ngIf="contactForm.controls['name'].invalid">Name is required</mat-error>
+              </mat-form-field>
+            </div>
+            
+            <div class="form-field-container">
+              <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email" required>
+                <mat-error *ngIf="contactForm.controls['email'].invalid">Invalid email</mat-error>
+              </mat-form-field>
+            </div>
+            
+            <div class="form-field-container">
+              <mat-form-field appearance="fill">
+                <mat-label>Issue Type</mat-label>
+                <mat-select formControlName="issueType" required>
+                  <mat-option value="bugs">Bugs</mat-option>
+                  <mat-option value="feedback">Feedback</mat-option>
+                  <mat-option value="productIssues">Product Issues</mat-option>
+                  <mat-option value="accountIssues">Account Issues</mat-option>
+                  <mat-option value="cartIssues">Cart Issues</mat-option>
+                  <mat-option value="wishlistIssues">Wishlist Issues</mat-option>
+                  <mat-option value="other">Other Questions/Issues</mat-option>
+                </mat-select>
+                <mat-error *ngIf="contactForm.controls['issueType'].invalid">Issue Type is required</mat-error>
+              </mat-form-field>
+            </div>
+            
+            <div class="form-field-container">
+              <mat-form-field>
+                <mat-label>Message</mat-label>
+                <textarea matInput formControlName="message" rows="4" required></textarea>
+                <mat-error *ngIf="contactForm.controls['message'].invalid">Message is required</mat-error>
+              </mat-form-field>
+            </div>
+          
+            <div class="fm_body_button_center">
+              <button mat-raised-button color="primary" type="submit" [disabled]="contactForm.invalid">Submit</button>
+            </div>
+          </form>
             </div>
         </div>
     </div>
 </div>
-Purchase Issies<br>
+<!-- Purchase Issies<br>
 confirmation number<br>
 select options: items damaged, items did not arrive<br>
 <br>
 Account Support<br>
 Problems with user account<br>
-<br>
+<br> -->

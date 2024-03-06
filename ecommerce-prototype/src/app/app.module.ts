@@ -53,6 +53,7 @@ import { SalesUserTableComponent } from './admin/sales-report/sales-user-table/s
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { DialogComponent } from './dialog/dialog.component';
+import { CategoryCrudComponent } from './admin/category-crud/category-crud.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { DialogComponent } from './dialog/dialog.component';
     DiscountTableDialogComponent,
     SalesItemTableComponent,
     SalesUserTableComponent,
-    DialogComponent
+    DialogComponent,
+    CategoryCrudComponent
   ],
   imports: [
     BrowserModule,
