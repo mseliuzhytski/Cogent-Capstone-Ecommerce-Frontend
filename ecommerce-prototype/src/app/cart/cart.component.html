@@ -4,10 +4,10 @@
 
     <div class="display_list">
         <div *ngFor="let item of testarray">
-            <div class="list_item">
+            <div class="list_item" (click)="goToProductPage(item.product.id)">
                 <div class="item_content">
                     <div class="content_img">
-                        <img src="{{item.product.imageLocation}}" width="150px" height="120px">
+                        <img src="http://localhost:8080/content/{{item.product.imageLocation}}" width="150px" height="120px">
                     </div>
                     <div class="content_txt">
                         <div class="txt_name">
@@ -24,17 +24,17 @@
                     </div>
                 </div>
                 <div class="item_quantity">
-                    <div class="quantity_display">
+                    <div class="quantity_display" (click)="stopPropagation($event)">
                         <select [(ngModel)]="item.changeQuantity" (change)="updateCart(item)">
                             <option *ngFor="let number of quantityOptions(item.product.stock)" [value]="number">{{ number }}</option>
                         </select>
                     </div>
-                    <div class="quantity_options">
+                    <div class="quantity_options" (click)="stopPropagation($event)">
                         <button (click)="removeItem(item)">X</button>
                     </div>
                 </div>
             </div>
-            <hr>
+            
         </div>
     </div>
     
@@ -44,7 +44,9 @@
         </div>
         <div class="summary_p">
             <span>items: {{totalItems}}</span><br><br>
-            <span>price: $ {{totalPrice | number:'1.2-2'}}</span><br>
+            price:<span [ngClass]="{'discounted': discountApplied}"> $ {{totalPrice | number:'1.2-2'}}</span>
+            <span  *ngIf="discountApplied"> $ {{discountPrice | number:'1.2-2'}}</span><br><br><br>
+            <span  *ngIf="discountApplied">{{discountPercent}}% discount applied!</span>
         </div>
     </div>
 
@@ -54,7 +56,12 @@
     <hr>
     <br>
     <br>
-    Enter discount: <input type="text"/><br>
-    <br>
+    <!-- Enter discount: <input type="text" [(ngModel)]="discountCode"/><br><br> -->
+    <mat-form-field>
+        <mat-label>Enter Discount</mat-label>
+        <input matInput type="text" [(ngModel)]="discountCode">
+      </mat-form-field><br><br>
+    <button (click)="checkDiscount(discountCode)">Apply Discount</button>
+    <br><br>
     <button (click)="submitOrder(testarray)">Submit Order</button>
 </div>

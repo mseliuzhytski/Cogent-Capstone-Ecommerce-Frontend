@@ -15,6 +15,7 @@ export class AuthServiceService {
   private signUpUrl = "http://localhost:8080/signUp";
   private getUserUrl = "http://localhost:8080/getUsername";
   private getAccountUrl = "http://localhost:8080/getAccountFromToken";
+  private checkAdminUrl = "http://localhost:8080/checkAdmin";
 
 
   private account$ = new BehaviorSubject<any>(null);
@@ -121,6 +122,12 @@ export class AuthServiceService {
     const token = this.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<string>(this.getAccountUrl,{headers})
+  }
+
+  checkIfAdmin(){
+    const token = this.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<string>(this.checkAdminUrl,{headers})
   }
 
 }

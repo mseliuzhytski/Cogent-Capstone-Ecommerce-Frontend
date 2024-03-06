@@ -5,13 +5,16 @@ import { DiscountTableComponent } from './discount-table/discount-table.componen
 import { DiscountFormComponent } from './discount-form/discount-form.component';
 import { Observable, timer } from 'rxjs';
 import { AccountCrudService } from '../../account-crud.service';
+import { AuthServiceService } from '../../auth-service.service';
+import { error } from 'console';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account-crud',
   templateUrl: './account-crud.component.html',
   styleUrl: './account-crud.component.css'
 })
-export class AccountCrudComponent implements AfterViewInit {
+export class AccountCrudComponent implements AfterViewInit, OnInit{
 
   // Flags for indicating whether we should show the given panel
   showAccountTable : boolean = false;
@@ -30,7 +33,20 @@ export class AccountCrudComponent implements AfterViewInit {
   @ViewChild(DiscountFormComponent)
   discountFormComponent : DiscountFormComponent;
 
-  constructor(private service : AccountCrudService) {
+  constructor(private service : AccountCrudService,private authService:AuthServiceService,private router:Router) {
+  }
+  ngOnInit(): void {
+    this.authService.checkIfAdmin().subscribe(
+      response=>{
+        if(!response){
+          alert("NOT AUTHORIZED")
+          this.router.navigate(['/login']);
+        }
+      },error=>{
+        alert("NOT AUTHORIZED")
+        this.router.navigate(['/login']);
+      }
+    )
   }
 
   ngAfterViewInit(): void {

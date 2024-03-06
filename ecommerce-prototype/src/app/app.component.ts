@@ -4,6 +4,8 @@ import { Subject, takeUntil } from 'rxjs';
 import { environment } from '../environments/environment';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CategoryService } from './category.service';
+import { Category } from './dto/category';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,7 +20,8 @@ export class AppComponent implements OnInit {
   constructor(private authService : AuthServiceService,
     private matIconRegistry : MatIconRegistry,
     private domSanitizer: DomSanitizer,
-    private router: Router) {
+    private router: Router,
+    private categoryService:CategoryService) {
     this.matIconRegistry.addSvgIcon(
       'heart_icon',
       this.domSanitizer.bypassSecurityTrustResourceUrl("assets/images/heart.svg")
@@ -59,8 +62,9 @@ export class AppComponent implements OnInit {
       'admin_icon',
       this.domSanitizer.bypassSecurityTrustResourceUrl("assets/images/admin.svg")
     );
-
   }
+
+  categoriesForNav:Category[]=[]
 
   isAdminAccount = false;
   isLoggedIn = false;
@@ -74,6 +78,28 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.categoryService.getAllCategories().subscribe(
+      categoryResponse=>{
+        //console.log(categoryResponse)
+        let count = 0
+        for(const category of categoryResponse){
+          if(count<7){
+          const catToAdd = new Category(category.id,category.name);
+          //console.log(catToAdd)
+          this.categoriesForNav.push(catToAdd);
+          count++;
+          }else{
+            break;
+          }
+        }
+      },error=>{
+        console.error(error);
+      },()=>{
+        this.updateNav()
+      }
+    )
+
     this.authService.account.pipe(takeUntil(this.destroyer$)).subscribe(newAcc => {
       this.account = newAcc;
       if (newAcc != null) {
@@ -88,6 +114,8 @@ export class AppComponent implements OnInit {
   }
 
   updateLoggedInStatus() : void {
+
+
     console.log("update logged in status");
     this.authService.getLoggedInAccount().subscribe((account) =>
       (account) => {
@@ -115,6 +143,23 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/login']);
     this.authService.updateLoginInfo();
   }
+
+
+  display = false
+
+  updateNav(){
+
+    this.display = true;
+    //console.log(this.categoriesForNav)
+
+  }
+
+  navigateToProducts(categoryName){
+
+    this.router.navigate(['/shopAll', categoryName]);
+
+  }
+
 
 
 
