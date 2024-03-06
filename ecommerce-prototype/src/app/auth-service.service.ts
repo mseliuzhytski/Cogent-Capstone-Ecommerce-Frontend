@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { error } from 'console';
 import { BehaviorSubject, Observable, catchError, map, of } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,12 @@ import { BehaviorSubject, Observable, catchError, map, of } from 'rxjs';
 export class AuthServiceService {
 
 
-  private authUrl = "http://localhost:8080/auth";
-  private checkTokenUrl = "http://localhost:8080/checkToken";
-  private signUpUrl = "http://localhost:8080/signUp";
-  private getUserUrl = "http://localhost:8080/getUsername";
-  private getAccountUrl = "http://localhost:8080/getAccountFromToken";
-  private checkAdminUrl = "http://localhost:8080/checkAdmin";
+  private authUrl = environment.url + "auth";
+  private checkTokenUrl = environment.url + "checkToken";
+  private signUpUrl = environment.url + "signUp";
+  private getUserUrl = environment.url + "getUsername";
+  private getAccountUrl = environment.url + "getAccountFromToken";
+  private checkAdminUrl = environment.url + "checkAdmin";
 
 
   private account$ = new BehaviorSubject<any>(null);

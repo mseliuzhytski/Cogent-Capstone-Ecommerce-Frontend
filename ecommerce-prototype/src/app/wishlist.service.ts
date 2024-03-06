@@ -2,15 +2,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthServiceService } from './auth-service.service';
 import { Product } from './dto/product';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WishlistService {
 
-  private getWishlistUrl = "http://localhost:8080/wishlist/getlist"
-  private deleteWishlistItemUrl= "http://localhost:8080/wishlist/removeitem"
-  private postWishlistItemUrl="http://localhost:8080/wishlist/additem"
+  private baseUrl = environment.url;
+
+  private getWishlistUrl = this.baseUrl + "wishlist/getlist"
+  private deleteWishlistItemUrl= this.baseUrl + "wishlist/removeitem"
+  private postWishlistItemUrl= this.baseUrl + "wishlist/additem"
 
   constructor(private http:HttpClient,private authService:AuthServiceService) { }
 

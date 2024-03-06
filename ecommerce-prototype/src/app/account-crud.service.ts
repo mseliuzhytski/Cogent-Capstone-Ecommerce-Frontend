@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthServiceService } from './auth-service.service';
+import { environment } from '../environments/environment';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { AuthServiceService } from './auth-service.service';
 })
 export class AccountCrudService {
 
-  private url = "http://localhost:8080/";
+  private url = environment.url;
   private accountUrl = this.url + "account/";
   private discountUrl = this.url + "discount/";
 

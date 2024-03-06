@@ -1,16 +1,20 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthServiceService } from './auth-service.service';
+import { env } from 'process';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  private geAllCategoriesUrl = "http://localhost:8080/categories/getCategory";///
-  private deleteCategoryUrl = "http://localhost:8080/categories/deleteCategory/";//{id}
-  private addCategoryUrl = "http://localhost:8080/categories/addCategory";//json category body
-  private updateCategoryUrl = "http://localhost:8080/categories/updateCategory/";//{id}/{name}
+  private baseUrl = environment.url;
+
+  private geAllCategoriesUrl = this.baseUrl + "categories/getCategory";///
+  private deleteCategoryUrl = this.baseUrl + "categories/deleteCategory/";//{id}
+  private addCategoryUrl = this.baseUrl + "categories/addCategory";//json category body
+  private updateCategoryUrl = this.baseUrl + "categories/updateCategory/";//{id}/{name}
 
   constructor(private http:HttpClient,private authService:AuthServiceService) { }
 
