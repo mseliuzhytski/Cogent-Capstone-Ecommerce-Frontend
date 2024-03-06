@@ -85,6 +85,10 @@
     margin-bottom: 10px;
     text-align: center;
 }
+.catg_item_buttons{
+    display: flex;
+    justify-content:space-around;
+}
 .catg_item button{
     margin-top: 1px;
     padding-top: 3px;
