@@ -52,6 +52,7 @@ import { SalesItemTableComponent } from './admin/sales-report/sales-item-table/s
 import { SalesUserTableComponent } from './admin/sales-report/sales-user-table/sales-user-table.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     AccountTableDialogComponent,
     DiscountTableDialogComponent,
     SalesItemTableComponent,
-    SalesUserTableComponent
+    SalesUserTableComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,

@@ -13,17 +13,14 @@
   <div class="filter-and-sort">
   <div class="filters"> <!-- start -->
     <div class="filter-section-title">SORT</div>
-    <hr>
     <div class="sort-section">
     <div class="sort-options">
-    <hr>
-    <button (click)="sorting('price','asc')">sort by price ascending</button>
-    <button (click)="sorting('price','desc')">sort by price descending</button>
-    <button (click)="sorting('name','asc')" >sort by name ascending</button>
-    <button (click)="sorting('name','desc')" >sort by name descending</button>
-    <button (click)="sorting('date','asc')" >sort by date ascending</button>
-    <button (click)="sorting('date','desc')">sort by date descending</button>
-    <hr>
+    <button (click)="sorting('price','asc')">Price Ascending</button>
+    <button (click)="sorting('price','desc')">Price Descending</button>
+    <button (click)="sorting('name','asc')" >Name Ascending</button>
+    <button (click)="sorting('name','desc')" >Name Descending</button>
+    <button (click)="sorting('date','asc')" >Date Ascending</button>
+    <button (click)="sorting('date','desc')">Date Descending</button>
     </div>
   </div>
   </div>
@@ -32,29 +29,28 @@
 
   <form [formGroup]="filterForm">
     <div class="filter-section" *ngIf="displayFiltersBool"> <!-- start -->
-      <div class="filter-section-title">FILTER</div>
-    <hr>
+      <div class="filter-section-title">FILTER BY CATEGORY</div>
     <div class="filter-options">
       <div class="filter-category">
-        <label for="categoryFilter">Filter by Categories</label>
-      <br>
-    <div *ngFor="let category of categoriesList">
-      <label for="{{ category.id }}">{{ category.name }}</label>
+
+    <div *ngFor="let category of categoriesList" class="filter-item">
       <input type="radio" id="{{ category.id }}" name="categoryFilter" value="{{ category.name }}" (change)="filterByCat(category)"
       id="box-shadow" class="custom-radio" formControlName="categoryFilter">
+      <label for="{{ category.id }}">{{ category.name }}</label>
+
     </div>
     <button class="reset-button" (click)="reset()">Reset Filters</button>
     </div>
     </div>
   </div>
 </form>
-  
+
     <hr>
   </div>
-    
 
 
-  
+
+
 
 
 
@@ -62,17 +58,18 @@
   <!-- <button (click)="update()">show</button> -->
   <div class="product-list">
 
-    
+
     <div *ngIf="displayReady">
   <!-- list of products here -->
   <mat-grid-list cols="4" rowHeight="60px">
-    <mat-grid-title *ngFor="let x of currentPageData" (click)="onProductClick(x.id)">
-      <div class="product-container"> <img src="http://localhost:8080/content/{{x.imageLocation}}" alt="{{x.name}} image" width="195px" height="215px">
-        <div class="product-details"> <h3>{{x.name}}</h3>
+    <mat-grid-title *ngFor="let x of currentPageData">
+      <div class="product-container"> <img src="http://localhost:8080/content/{{x.imageLocation}}"
+             alt="{{x.name}} image" width="190px" (click)="onProductClick(x.id)">
+        <div class="product-details"><a href="javascript:void(0)" (click)="onProductClick(x.id)"><h3>{{x.name}}</h3></a>
           <p class="price"><strong> Price:</strong> ${{x.price}}</p>
           <p><strong> Stock:</strong> {{x.stock}}</p>
-          <p><strong> Description</strong> <br>{{x.details}}</p>
-          <p><strong> Date Added:</strong> {{x.dateAdded}}</p>
+          <p><span class="details">{{x.details}}</span></p>
+          <p><strong> Date Added:</strong> {{getFormattedDate(x.dateAdded)}}</p>
         </div>
       </div>
     </mat-grid-title>
@@ -84,7 +81,7 @@
         (page)="onPageChange($event)"
         mat-paginator-page-size>
     </mat-paginator>
-  
+
     </div>
   </div>
 </div>

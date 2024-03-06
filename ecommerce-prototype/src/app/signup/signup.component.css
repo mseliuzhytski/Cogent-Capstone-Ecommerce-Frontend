@@ -1,20 +1,28 @@
 .container {
   margin-top: 20px;
-  border: 2px ridge #1582C7;
+  border: 1px solid grey;
   border-radius: 0.5em;
   box-shadow: 2px 2px 5px grey;
   width: 400px;
   margin-left: auto;
   margin-right: auto;
+  background-color: rgb(250, 250, 250);
 }
 
 .container mat-form-field {
   width: 400px;
 }
 
+.container h2 {
+  color: #1582C7;
+  text-align: center;
+}
+
 .form-submit {
-  margin-left: 10px;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 10px;
+  width: 90px;
 }
 
 .form-submit a {

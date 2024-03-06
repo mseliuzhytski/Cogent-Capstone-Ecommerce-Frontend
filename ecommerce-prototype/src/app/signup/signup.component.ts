@@ -14,6 +14,8 @@ export class SignupComponent implements OnInit{
 
 
   signUpForm:FormGroup
+  errorMessage:string;
+
 
   ngOnInit(): void {
     this.signUpForm=new FormGroup(
@@ -72,11 +74,18 @@ export class SignupComponent implements OnInit{
     if(this.validatePassword(password)){
       this.validPass= false
       this.signUpForm.get('password').setErrors({"invalid":true})
+      this.errorMessage = "Password must be 8 characters, " +
+        "1 special character, 1 lowercase, 1 uppercase, and 1 number";
+    } else {
+      this.validPass = true;
     }
 
     if(this.matchPassword(password,confirm)){
       this.validConfirm = false;
       this.signUpForm.get('confirmpassword').setErrors({"invalid":true})
+      this.errorMessage = "Passwords must match";
+    } else {
+      this.validConfirm = true;
     }
 
     if(this.validConfirm && this.validPass){
@@ -87,9 +96,14 @@ export class SignupComponent implements OnInit{
         "password":password,
         "email":email
       }
-
-      this.authservice.createUser(user).subscribe();
-      this.router.navigate(['/login']);
+      this.authservice.createUser(user).subscribe(
+        (data) => {
+          this.router.navigate(['/login']);
+        },
+        (err) => {
+          this.errorMessage = "Could not create account. Could be the username or email already exists."
+        }
+      );
     }
 
     console.log(username,password,email)
