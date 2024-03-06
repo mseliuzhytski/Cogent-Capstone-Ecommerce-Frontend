@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ResetService } from '../reset.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-resetpassword',
@@ -10,12 +12,17 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ResetpasswordComponent implements OnInit{
 
-
-  constructor(private route:ActivatedRoute,private resetService:ResetService){}
-
   email:string
   token:string
   resetForm:FormGroup
+  validPass = true;
+  validConfirm = true;
+  changed:boolean;
+  errorMessage:string;
+  dialogRef:any;
+
+  constructor(private route:ActivatedRoute,private resetService:ResetService,
+    private dialog : MatDialog, private router: Router){}
 
   ngOnInit() {
     const combinedToken = this.route.snapshot.paramMap.get('resetToken')
@@ -39,7 +46,7 @@ export class ResetpasswordComponent implements OnInit{
     if (password.length < 8) {
       return true;
     }
-  
+
     const hasLowerCase = /[a-z]/.test(password);
     const hasUpperCase = /[A-Z]/.test(password);
     if (!hasLowerCase || !hasUpperCase) {
@@ -50,7 +57,7 @@ export class ResetpasswordComponent implements OnInit{
     if (!hasNumber) {
       return true;
     }
-  
+
     // Checksif password has one special character
     const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
     if (!hasSpecialChar) {
@@ -64,28 +71,43 @@ export class ResetpasswordComponent implements OnInit{
     }
   }
 
-  validPass = true;
-  validConfirm = true;
-  changed:boolean;
-
-  submitPassword(){
-
+  onSubmit() {
     const password = this.resetForm.get('password').value;
     const confirm = this.resetForm.get('confirmpassword').value;
     if(this.validatePassword(password)){
       this.validPass= false
       this.resetForm.get('password').setErrors({"invalid":true})
+      this.errorMessage = "Password requirements not met";
     }
 
     if(this.matchPassword(password,confirm)){
       this.validConfirm = false;
       this.resetForm.get('confirmpassword').setErrors({"invalid":true})
+      this.errorMessage = "Passwords must match";
     }
 
     if(this.validConfirm && this.validPass){
+      this.errorMessage = "";
+      console.log("valid");
       this.resetService.updatePassword(password,this.token,this.email).subscribe(
         response =>{
           this.changed = response;
+          if (this.changed) {
+            let d = {
+              'heading' : 'Successful',
+              'message' : 'Password was successfully reset'
+            };
+            this.dialogRef = this.dialog.open(DialogComponent,
+              {data: d});
+            this.dialogRef.afterClosed().subscribe(result => {
+              this.router.navigate(['/login']);
+            });
+          } else {
+            this.errorMessage = "There was an error resetting the password";
+          }
+        },
+        err => {
+          this.errorMessage = "There was an error resetting the password";
         }
       );
     }
