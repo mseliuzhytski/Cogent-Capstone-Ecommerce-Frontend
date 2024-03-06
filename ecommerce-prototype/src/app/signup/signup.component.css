@@ -1,0 +1,37 @@
+.container {
+  margin-top: 20px;
+  border: 2px ridge #1582C7;
+  border-radius: 0.5em;
+  box-shadow: 2px 2px 5px grey;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container mat-form-field {
+  width: 400px;
+}
+
+.form-submit {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.form-submit a {
+  color: #1582C7;
+}
+
+.form-submit a:hover {
+  color: #2298e2;
+}
+
+.form-submit a {
+  margin-left: 20px;
+}
+
+.errorBox {
+  height: 20px;
+  font-size: 12px;
+  text-align: center;
+  color: red;
+}

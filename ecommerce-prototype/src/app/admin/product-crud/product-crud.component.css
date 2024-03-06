@@ -17,8 +17,18 @@
   font-family: sans-serif;
 }
 
+.product_table th {
+  padding: 0 0 0 0;
+  text-align: center;
+}
+
+.product_table td {
+  padding: 0 0 0 0;
+}
+
 .col_product_id {
   width: 25px;
+  text-align: center;
 }
 
 .col_product_add {
@@ -36,15 +46,17 @@
 }
 
 .col_product_name {
-  width: 170px;
+  width: 140px;
 }
 
 .col_product_price {
-  width: 60px;
+  width: 40px;
+  text-align: center;
 }
 
 .col_product_stock {
-  width: 50px;
+  width: 40px;
+  text-align: center;
 }
 
 .col_product_image_loc {
@@ -58,10 +70,11 @@
 
 .col_product_category {
   width: 120px;
+  text-align: center;
 }
 
 .col_product_details {
-  width: 250px;
+  width: 150px;
 }
 
 .details_text {
@@ -93,7 +106,7 @@
 
 
 mat-sidenav, mat-sidenav-content {
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 .mat-list-item{

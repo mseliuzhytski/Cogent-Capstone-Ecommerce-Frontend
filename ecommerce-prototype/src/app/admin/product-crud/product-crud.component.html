@@ -2,54 +2,7 @@
 
 <div class="container">
 
-  <nav class="side_nav">
-    <mat-list>
-      <mat-list-item>
-          <button mat-icon-button matListItemMeta (click)="viewProductOption($event)">
-            <mat-icon fontIcon="pageview"></mat-icon>
-         </button>
-       <a matListItemTitle href="javascript:void(0)" (click)="viewProductOption($event)">View Products</a>
-      </mat-list-item>
 
-      <mat-list-item>
-        <button mat-icon-button matListItemMeta (click)="addProductOption($event)">
-          <mat-icon fontIcon="add_box"></mat-icon>
-       </button>
-       <a matListItemTitle href="javascript:void(0)" (click)="addProductOption($event)">Add Product</a>
-      </mat-list-item>
-
-      <!-- <mat-list-item selected>
-        <button mat-icon-button matListItemMeta (click)="editProductOption($event)">
-          <mat-icon fontIcon="mode_edit"></mat-icon>
-       </button>
-       <a matListItemTitle href="javascript:void(0)" (click)="editProductOption($event)">Edit Product</a>
-      </mat-list-item> -->
-
-      <mat-list-item selected>
-        <button mat-icon-button matListItemMeta (click)="uploadCsvOption($event)">
-          <mat-icon fontIcon="file_upload"></mat-icon>
-       </button>
-       <a matListItemTitle href="javascript:void(0)" (click)="uploadCsvOption($event)">CSV Upload</a>
-      </mat-list-item>
-
-      <mat-divider></mat-divider>
-
-      <mat-list-item selected>
-        <button mat-icon-button matListItemMeta (click)="viewCategoriesOption($event)">
-          <mat-icon fontIcon="pageview"></mat-icon>
-       </button>
-       <a matListItemTitle href="javascript:void(0)" (click)="viewCategoriesOption($event)">View Categories</a>
-      </mat-list-item>
-
-      <mat-list-item selected>
-        <button mat-icon-button matListItemMeta (click)="addCategoriesOption($event)">
-          <mat-icon fontIcon="add_box"></mat-icon>
-       </button>
-       <a matListItemTitle href="javascript:void(0)" (click)="addCategoriesOption($event)">Add Categories</a>
-      </mat-list-item>
-
-    </mat-list>
-  </nav>
 
   <main class="main_content">
 
@@ -293,6 +246,45 @@
   </div>
 
 </main>
+
+<nav class="admin-side-nav">
+  <mat-list>
+
+    <mat-list-item>
+      Product CRUD
+    </mat-list-item>
+
+    <mat-list-item (click)="viewProductOption($event)">
+      <a matListItemTitle href="javascript:void(0)" (click)="viewProductOption($event)">View Products</a>
+    </mat-list-item>
+
+    <mat-list-item (click)="addProductOption($event)">
+     <a matListItemTitle href="javascript:void(0)" >Add Product</a>
+    </mat-list-item>
+
+    <!-- <mat-list-item selected>
+      <button mat-icon-button matListItemMeta (click)="editProductOption($event)">
+        <mat-icon fontIcon="mode_edit"></mat-icon>
+     </button>
+     <a matListItemTitle href="javascript:void(0)" (click)="editProductOption($event)">Edit Product</a>
+    </mat-list-item> -->
+
+    <mat-list-item (click)="uploadCsvOption($event)">
+     <a matListItemTitle href="javascript:void(0)" >CSV Upload</a>
+    </mat-list-item>
+
+    <mat-divider></mat-divider>
+
+    <mat-list-item (click)="viewCategoriesOption($event)">
+     <a matListItemTitle href="javascript:void(0)" >View Categories</a>
+    </mat-list-item>
+
+    <mat-list-item (click)="addCategoriesOption($event)">
+     <a matListItemTitle href="javascript:void(0)" >Add Categories</a>
+    </mat-list-item>
+
+  </mat-list>
+</nav>
 
 </div>
 

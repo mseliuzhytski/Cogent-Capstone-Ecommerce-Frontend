@@ -3,29 +3,75 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+/** Admin Navigation. */
 .container {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  flex-wrap: nowrap;
+  justify-content: space-between;
   align-items: stretch;
-  flex-grow: 1;
 }
 
-.container nav {
-  padding: 10px;
-  background-color: #A0B4AE;
-  width: 220px;
+.admin-side-nav {
+  /* margin-left: auto; */
+  width: 150px;
 }
 
-.container nav mat-list {
-  margin-top: 40px;
+nav.admin-side-nav mat-list-item.mat-mdc-list-item:hover{
+  color: white;
+  background-color: #2298e2;
+  cursor: pointer;
+}
+
+nav.admin-side-nav mat-list-item.a:hover{
+  color: white;
+  background-color: #2298e2;
+  cursor: pointer;
+}
+
+
+.admin-side-nav mat-icon{
+  color:  white;
+}
+
+.admin-side-nav mat-list-item {
+  color: rgb(215,215,215);
+}
+
+.admin-side-nav mat-list-item a:visited {
+  color: rgb(215,215,215);
+}
+
+.admin-side-nav mat-list-item a:hover {
+  color: rgb(215,215,215);
+  text-decoration: none;
+}
+
+.admin-side-nav mat-list-item a {
+  color: rgb(215,215,215);
+}
+
+.admin-side-nav mat-list {
+  box-shadow: -2px 2px 5px rgb(150, 150, 150);
+  background-color: #197ebe;
+  margin-bottom: 10px;
+  height: 100%;
+}
+
+.admin-side-nav mat-icon {
+  color: #1582C7;
+}
+
+
+.admin-side-nav mat-list {
+  /* margin-top: 20px; */
 }
 
 .container main {
   display: block;
-  float: right;
-  background-color: white;
-  padding: 10px;
+  padding-top: 10px;
+  margin-left: 10px;
 }
 
 .container main h2 {
@@ -84,6 +130,5 @@ mat-list-item a:hover {
 .error_message {
   color: red;
 }
-
 
 

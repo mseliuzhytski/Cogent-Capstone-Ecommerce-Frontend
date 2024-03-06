@@ -1,26 +1,24 @@
 <div class="container">
 
-  <nav>
-    <mat-list>
-      <mat-list-item>
-          <button mat-icon-button matListItemMeta (click)="viewAllOption()">
-            <mat-icon fontIcon="pageview"></mat-icon>
-         </button>
-       <a matListItemTitle href="javascript:void(0)" (click)="viewAllOption()">View All</a>
-      </mat-list-item>
-
-      <mat-list-item>
-        <button mat-icon-button matListItemMeta (click)="viewByUserOption()">
-          <mat-icon fontIcon="pageview"></mat-icon>
-       </button>
-       <a matListItemTitle href="javascript:void(0)" (click)="viewByUserOption()">View By User</a>
-      </mat-list-item>
-    </mat-list>
-  </nav>
-
   <main>
     <app-sales-item-table *ngIf="showSalesItemTable"></app-sales-item-table>
     <app-sales-user-table *ngIf="showSalesUserTable"></app-sales-user-table>
   </main>
+
+  <nav class="admin-side-nav">
+    <mat-list>
+      <mat-list-item>
+        Sales Reports
+      </mat-list-item>
+
+      <mat-list-item>
+        <a matListItemTitle href="javascript:void(0)" (click)="viewAllOption()">View All</a>
+      </mat-list-item>
+
+      <mat-list-item>
+        <a matListItemTitle href="javascript:void(0)" (click)="viewByUserOption()">View By User</a>
+      </mat-list-item>
+    </mat-list>
+  </nav>
 
 </div>

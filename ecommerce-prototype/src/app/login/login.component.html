@@ -1,41 +1,46 @@
-<p>login works!</p>
 <div class="container">
      <form (ngSubmit)="onSubmit()" [formGroup]="signUpForm" class="form">
-    
-    <h2 class="form-title"> Login </h2>
-    
-    <div class="form-group">
-    <label for="username" >Username</label>
-    
-    <input type="text" name="username" formControlName="username" class="form-control"><br>
-    <span *ngIf="!signUpForm.get('username').valid && signUpForm.get('username').touched">Please Enter Valid Name</span>
-    <br>
-    </div>
-    
-    <div class="form-group">
-    <label for="password">Password</label>
-    
-    <input type="password" name="password" formControlName="password" class="form-control"><br>
-    <br>
-    </div>
 
-    
-    <button class="btn btn-primary" type="submit" [disabled]=!signUpForm.valid>Submit</button>
+        <div class="errorBox">
+          {{errorMessage}}
+        </div>
+
+        <mat-form-field class="form-field">
+          <mat-label>Username</mat-label>
+          <input type="email" matInput formControlName="username"
+                 placeholder="Ex. root">
+
+
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" name="password" formControlName="password" class="form-control">
+
+        </mat-form-field>
+
+      <div class="form-submit">
+        <button mat-raised-button color="primary" class="btn btn-primary" type="submit" [disabled]=!signUpForm.valid>Login</button>
+        <a href="javascript:void(0)" (click)="goToSignUp()">Sign Up</a>
+        <a href="javascript:void(0)" (click)="goToForgotPass()">Forgot Password?</a>
+      </div>
+
+
     </form>
-    
+
     </div>
 
-<!-- 
+<!--
 
-         <h2 class="form-title"> Login </h2> <br><br> 
+         <h2 class="form-title"> Login </h2> <br><br>
         <div class="container">
     <form (ngSubmit)="onSubmit()" [formGroup]="signUpForm" class="form-container">
         <mat-card>
-        
+
             <mat-card-header>
                 <mat-card-title>Login</mat-card-title>
             </mat-card-header>
-            
+
             <mat-form-field>
 
                 <mat-label>Username</mat-label>
@@ -53,5 +58,3 @@
     </form>
 </div> -->
 
-    <button class="btn btn-primary" (click)="goToSignUp()">Sign Up</button>
-    <button class="btn btn-primary" (click)="goToForgotPass()">Forgot Password?</button>
