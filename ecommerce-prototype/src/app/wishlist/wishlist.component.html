@@ -16,12 +16,15 @@
         </div>
         <hr>
         <div class="catg_item_list">
-
+            
+            <div *ngIf="l_wish.length < 1" class="catg_empty_list_txt">
+                <h3>You don't have anything in the wishlist</h3>
+            </div>
             <div *ngFor="let item of l_wish">
                 <div class="catg_item">
-                    <div class="catg_item_box">
+                    <div class="catg_item_box" (click)="routeItem(item.product.id)">
                         <div class="catg_item_img_box">
-                            <img>
+                            <img src="http://localhost:8080/content/{{item.product.imageLocation}}" alt="{{item.product.name}} image" width="195px" height="215px">
                         </div>
                         <div class="catg_item_txt_box">
                             <div class="catg_item_name">

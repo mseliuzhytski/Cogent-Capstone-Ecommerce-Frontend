@@ -71,13 +71,16 @@ export class HomeComponent {
   }
 
   routeItem(id:number):void{
-    this.router.navigate(['/productPage', id]);
+    this.router.navigate(['/productPage', id])
+  }
+  routeCatToShopPg(category:String){
+    this.router.navigate(['shopAll',category])
   }
 
   logmsg(msg?:string){
     console.log("logged" || msg)
   }
   scrollToFeatures(){
-    window.document.getElementById("scrolltxt").scrollIntoView()
+    window.document.getElementById("scrolltxt").scrollIntoView({ behavior: "smooth"})
   }
 }

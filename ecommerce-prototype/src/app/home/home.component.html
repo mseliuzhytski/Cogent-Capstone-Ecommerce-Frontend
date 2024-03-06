@@ -35,7 +35,7 @@
         </div>
         <div class="body_shop_p">
             <p>
-                In our shop you will find everything you're looing for.<br>
+                In our shop you will find everything you're looking for.<br>
             </p>
 
             <p>
@@ -85,7 +85,7 @@
 <div *ngFor="let category of ll_itm">
 <div *ngIf="category.length >= 1">
     <div class="catg">
-        <div class="catg_name">
+        <div class="catg_name" (click)="routeCatToShopPg(category[0].categoriesList[0].name)">
             <strong>{{category[0].categoriesList[0].name}}</strong>
         </div>
         <hr>
@@ -94,7 +94,7 @@
             <div *ngFor="let item of category">
                 <div class="catg_item_box" (click)="routeItem(item.id)">
                     <div class="catg_item_img_box">
-                        <img>
+                        <img src="http://localhost:8080/content/{{item.imageLocation}}" alt="{{item.name}} image" width="195px" height="215px">
                     </div>
                     <div class="catg_item_txt_box">
                         <div class="catg_item_name" >

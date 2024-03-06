@@ -50,4 +50,9 @@ export class WishlistComponent implements OnInit{
       })
   }
 
+  routeItem(id:number):void{
+    console.log("hi")
+    this.router.navigate(['/productPage', id])
+  }
+
 }
