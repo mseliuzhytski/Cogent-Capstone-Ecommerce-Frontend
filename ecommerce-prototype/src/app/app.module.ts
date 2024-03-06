@@ -51,6 +51,7 @@ import { DiscountTableDialogComponent } from './admin/account-crud/discount-form
 import { SalesItemTableComponent } from './admin/sales-report/sales-item-table/sales-item-table.component';
 import { SalesUserTableComponent } from './admin/sales-report/sales-user-table/sales-user-table.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -115,6 +116,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatCardModule,
     MatAutocompleteModule,
     MatDatepickerModule,
+    MatTooltipModule,
   ],
   providers: [
     provideClientHydration(),

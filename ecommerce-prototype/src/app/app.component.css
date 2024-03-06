@@ -1,54 +1,116 @@
+header.topnav {
+  background-color: rgb(240, 240, 240);
+}
+
+header nav {
+  padding: 0px;
+  margin: 0px;
+}
+
+header.header {
+  background-color: rgb(245, 245, 245);
+  box-shadow: 2px 2px 5px rgb(160, 160, 160);
+}
+
+.div_login_logout {
+  height: 30px;
+}
+
+.div_login_logout button {
+  float: right;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.rightUpperBar {
+  margin-top: 15px;
+  width: 250px;
+  color: rgb(100, 100, 100);
+}
+
+.rightUpperBar mat-list-item {
+  color: rgb(100, 100, 100);
+}
+
+.rightUpperBar mat-list-item a:visited {
+  color: rgb(100, 100, 100);
+}
+
+.header_environment_div {
+  height: 30px;
+}
+
+.rightUpperBar .header_environment_div {
+  padding-left: 15px;
+}
+
+.rightUpperBar .header_environment_div b {
+  color: #1582C7;
+  float: right;
+  padding-right: 30px;
+}
+
+
+.environment_div {
+  color: #106499;
+  margin-right: 10px;
+}
+
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /* justify-content: space-between; */
+  align-items: stretch;
+}
+
+.side-navigation {
+  width: 200px;
+  background-color: rgb(220, 220, 220);
+}
+
+nav.side-navigation mat-list-item:hover{
+  color: white;
+  background-color: #9ac5e0;
+  cursor: pointer;
+}
+
+nav.side-navigation mat-icon{
+  color:  #1582C7;
+}
+
+nav.side-navigation mat-list-item a:visited {
+  color: #1582C7;
+}
+
+nav.side-navigation mat-list-item a:hover {
+  color: #1582C7;
+  text-decoration: none;
+}
+
+nav.side-navigation mat-list {
+  box-shadow: 2px 2px 5px rgb(150, 150, 150);
+  background-color: rgb(220, 220, 220);
+  margin-bottom: 10px;
+  height: 100%;
+  width: 200px;
+}
+
+nav.side-navigation mat-icon {
+  color: #1582C7;
+}
+
+
+.component-container {
+  width: 100%;
+}
+
+
+
 body, ul {
     margin: 0;
     padding: 0;
-  }
-  nav {
-    margin-top: 5px;
-    background-color: #333;
-    text-align: center; 
-  }
-  
-  nav ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  
-  nav ul li {
-    display: inline-block;
-  }
-  
-  nav ul li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-
-  nav ul li a:hover {
-    background-color: #ff0000;
-  }
-  
-  /* Style for the dropdown menu */
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    background-color: #333;
-    border: 1px solid #ccc;
-    z-index: 1;
-  }
-  
-  .dropdown-menu li {
-    display: block;
-    white-space: nowrap;
-  }
-  
-  .dropdown:hover .dropdown-menu {
-    display: block;
-  }
-  .dropdown {
-    position: relative; /* Ensure dropdown menu is positioned relative to its parent */
   }
 
   /* Topmost Header - */
@@ -63,7 +125,7 @@ body, ul {
     display: flex;
     align-items: center; /* Vertically center the input field */
   }
-  
+
   .search-bar input[type="text"] {
     width: 300px;
     padding: 8px;
@@ -71,7 +133,7 @@ body, ul {
     border-radius: 5px;
     margin-right: 5px; /* Adjust margin as needed */
   }
-  
+
   .search-bar button {
     padding: 8px 12px;
     border: none;
@@ -80,7 +142,7 @@ body, ul {
     color: white;
     cursor: pointer;
   }
-  
+
   .search-bar button:hover {
     background-color: #333;
   }

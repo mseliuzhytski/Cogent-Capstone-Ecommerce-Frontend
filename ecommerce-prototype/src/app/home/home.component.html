@@ -1,5 +1,5 @@
 <div class="h_txt_top">
-    <p class="h_txt_l1">Welocome to our site</p>
+    <p class="h_txt_l1">Welcome to our site</p>
     <p class="h_txt_l2">Make sure to check out <strong>Shop</strong> to view all of our products!</p>
 </div>
 
@@ -9,13 +9,13 @@
 
     <div class="body_featured">
         <div class="body_featured_l">
-            <div class="body_featured_l_txt">    
+            <div class="body_featured_l_txt">
                 <span>Check out our</span><br>
                 <span>Featured products!</span>
-            </div> 
+            </div>
             <div class="body_featured_l_button">
                 <button (click)="scrollToFeatures()">Scroll there</button>
-            </div>   
+            </div>
         </div>
         <div class="body_featured_r">
             <div class="body_featured_r_txt">
@@ -23,7 +23,7 @@
             </div>
             <ul class="body_featured_r_list">
                 <div *ngFor="let cat_list of category_list">
-                <li>{{cat_list.name}}</li> 
+                <li>{{cat_list.name}}</li>
                 </div>
             </ul>
         </div>
@@ -37,12 +37,12 @@
             <p>
                 In our shop you will find everything you're looing for.<br>
             </p>
-            
+
             <p>
                 We provide intuitive Searching and Sorting tools to help you find what you need.<br>
                 This will be where you should spend most of the time on our web site.<br>
             </p>
-            
+
             <p>
                 Log in or Create an account to save your favorite items and to maintain your shopping card saved if you leave.<br>
             </p>
@@ -75,13 +75,13 @@
 
 <p class="h_txt_l3" id="scrolltxt">Featured Products</p>
 <p class="h_txt_l4">
-    - Click on any item to view it. 
+    - Click on any item to view it.
     <strong>Or</strong>
     click Category name to view all items from that category.
 </p>
 <div class="foot_container">
 <div class="all_catg_list">
-    
+
 <div *ngFor="let category of ll_itm">
 <div *ngIf="category.length >= 1">
     <div class="catg">
@@ -111,7 +111,7 @@
         </div>
         <hr>
     </div><hr>
-</div> 
+</div>
 </div>
 
 </div>

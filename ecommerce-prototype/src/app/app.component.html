@@ -3,58 +3,121 @@
     <a href="#"><img src="../assets/images/car-icon.png" alt="Cart" width="60px" height="60px"></a>
   </div> -->
 
-  <header>
+  <header class="header">
     <div class="topHeader">
       <div>
-        <a routerLink="/"><img src="../assets/images/logo2.png" alt="logo" width="467px" height="170px"></a>
+        <a routerLink="/"><img src="../assets/images/logo.jpg" alt="logo" width="300px" height="100px"></a>
       </div>
-      <div>
-        <a routerLink="/wishlist"><img src="../assets/images/liked.png" alt="user" width="55px" height="55px"></a>
-        <a routerLink="/userProfile"><img src="../assets/images/user-icon.jpg" alt="user" width="55px" height="55px"></a>
-        <a routerLink="/cart"><img src="../assets/images/car-icon.png" alt="Cart" width="60px" height="60px"></a>
+      <div class="rightUpperBar">
+
+        <!-- <div class="div_login_logout">
+
+          <button *ngIf="!isLoggedIn" mat-icon-button >
+            <mat-icon svgIcon="login_icon"></mat-icon>
+          </button>
+
+          <button *ngIf="isLoggedIn" mat-icon-button (click)="logout()"
+          matTooltip="Logout">
+            <mat-icon svgIcon="logout_icon"></mat-icon>
+          </button>
+        </div> -->
+
+      <div class="header_environment_div">
+        <div *ngIf="isLoggedIn">
+          User: <b>{{account.username}}</b>
+        </div>
+
       </div>
+
+      <div class="header_environment_div">
+        Env: <b>{{environmentTitle}}</b>
+      </div>
+      </div>
+
 
     </div>
-    <hr>
-    <nav>
-      <ul>
-        <li><a routerLink="/">Home</a></li>
-        <!-- categories -->
-        <!-- <li><a href="#">Women's Clothing</a></li>
-        <li><a href="#">Men's Clothing</a></li>
-        <li><a href="#">Electronics</a></li>
-        <li><a href="#">Food</a></li>
-        <li><a href="#">Services</a></li> -->
-        <li class="dropdown">
-          <a routerLink="/shopAll">Shop</a>
-          <!-- Dynamically generated from existing categories in backend -->
-          <ul class="dropdown-menu">
-            <li *ngFor="let x of categoriesForNav"><a (click)="navigateToProducts(x.name)">{{x.name}}</a></li>
-          </ul>
-        </li>
-        <li><a routerLink="/about">About</a></li>
-        <li><a routerLink="/contact">Contact</a></li>
-        <li *ngIf = "isAdminAccount" class="dropdown"><a routerLink="/admin">Admin</a>
-          <ul class="dropdown-menu">
-            <li><a href="/admin/product">Modify Products</a></li>
-            <li><a href="/admin/account">Modify Accounts</a></li>
-            <li><a href="/admin/sales">Sales Reports</a></li>
-            <li><a href="/admin/category">Cateogry Crud</a></li>
-          </ul>
-        </li>
-        <li class="search-bar">
-          <form action="#">
-            <input type="text" name="search" placeholder="Search...">
-            <button type="submit">Search</button>
-          </form>
-        </li>
-      </ul>
-    </nav>
+
   </header>
 
-  Is Logged In: {{ isLoggedIn }} <br>
-  Is Admin: {{ isAdminAccount }} <br>
+<div class="main-container">
+  <nav class="side-navigation">
+    <mat-list>
+      <mat-list-item *ngIf="!isLoggedIn" routerLink="/userProfile">
+        <button mat-icon-button matListItemMeta>
+          <mat-icon svgIcon="login_icon"></mat-icon>
+        </button>
+        <a routerLink="/userProfile">Login</a>
+      </mat-list-item>
 
-<router-outlet (loginEvent)="updateLoggedInStatus()">
+      <mat-list-item *ngIf="isLoggedIn" (click)="logout($event)">
+        <button mat-icon-button matListItemMeta>
+          <mat-icon svgIcon="logout_icon"></mat-icon>
+        </button>
+        <a matListItemTitle href="javascript:void(0);">Logout</a>
+      </mat-list-item>
 
-</router-outlet>
+      <mat-list-item *ngIf="isAdminAccount" routerLink="/admin">
+        <button mat-icon-button matListItemMeta>
+          <mat-icon svgIcon="admin_icon"></mat-icon>
+        </button>
+        <a routerLink="/admin">Admin</a>
+      </mat-list-item>
+
+      <mat-list-item *ngIf="isLoggedIn" routerLink="/userProfile">
+        <button mat-icon-button matListItemMeta>
+          <mat-icon svgIcon="user_profile_icon"></mat-icon>
+        </button>
+        <a routerLink="/userProfile">User Profile</a>
+      </mat-list-item>
+
+    <mat-divider></mat-divider>
+
+      <mat-list-item routerLink="/shopAll">
+        <button mat-icon-button matListItemMeta>
+          <mat-icon svgIcon="shop_icon"></mat-icon>
+        </button>
+        <a routerLink="/shopAll">Shop</a>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/wishlist">
+        <button mat-icon-button matListItemMeta>
+          <mat-icon svgIcon="heart_icon"></mat-icon>
+        </button>
+        <a routerLink="/wishlist">Wishlist</a>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/cart">
+        <button mat-icon-button matListItemMeta>
+          <mat-icon svgIcon="shopping_cart_icon"></mat-icon>
+        </button>
+        <a routerLink="/cart">Cart</a>
+      </mat-list-item>
+
+    <mat-divider></mat-divider>
+
+    <mat-list-item routerLink="/about">
+      <button mat-icon-button matListItemMeta>
+        <mat-icon svgIcon="about_icon"></mat-icon>
+      </button>
+      <a routerLink="/about">About</a>
+    </mat-list-item>
+
+    <mat-list-item routerLink="/contact">
+      <button mat-icon-button matListItemMeta>
+        <mat-icon svgIcon="contact_icon"></mat-icon>
+      </button>
+      <a routerLink="/contact">Contact</a>
+    </mat-list-item>
+
+    </mat-list>
+  </nav>
+
+ <main class="component-container">
+
+  <router-outlet (loginEvent)="updateLoggedInStatus()">
+
+  </router-outlet>
+
+ </main>
+
+</div>

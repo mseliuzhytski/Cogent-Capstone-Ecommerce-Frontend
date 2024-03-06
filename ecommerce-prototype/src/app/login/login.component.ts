@@ -12,12 +12,13 @@ export class LoginComponent implements OnInit{
 
 
   signUpForm:FormGroup;
+  errorMessage:string;
 
   ngOnInit(): void {
     this.signUpForm=new FormGroup(
       {
-        username:new FormControl(null,Validators.required),
-        password:new FormControl(null)
+        username:new FormControl(null,[Validators.required]),
+        password:new FormControl(null, [Validators.required])
       });
   }
 
@@ -38,21 +39,20 @@ export class LoginComponent implements OnInit{
       console.log('Extracted token:', token);
       this.authservice.saveToken(token);
       this.authservice.updateLoginInfo();
+      this.router.navigate(['/userProfile']);
     },
     (error) => {
+      this.errorMessage = "Could not login with credentials";
       console.error('Login error:', error);
       this.authservice.updateLoginInfo();
     },
     () => {
 
     });
-    console.log(response)
-    console.log(this.array)
-    this.router.navigate(['/userProfile']);
 
-    setTimeout(()=>{
-      this.router.navigate(['/userProfile']);
-    },1000)
+    // setTimeout(()=>{
+    //   this.router.navigate(['/userProfile']);
+    // },1000)
   }
 
   goToSignUp(){

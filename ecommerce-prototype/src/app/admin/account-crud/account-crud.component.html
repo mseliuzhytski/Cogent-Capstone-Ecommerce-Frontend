@@ -1,45 +1,37 @@
 <div class="container">
 
-  <nav>
-    <mat-list>
-      <mat-list-item>
-          <button mat-icon-button matListItemMeta (click)="viewAccountOption($event)">
-            <mat-icon fontIcon="pageview"></mat-icon>
-         </button>
-       <a matListItemTitle href="javascript:void(0)" (click)="viewAccountOption($event)">View Accounts</a>
-      </mat-list-item>
-
-      <mat-list-item>
-        <button mat-icon-button matListItemMeta (click)="addAccountOption($event)">
-          <mat-icon fontIcon="add_box"></mat-icon>
-       </button>
-       <a matListItemTitle href="javascript:void(0)" (click)="addAccountOption($event)">Add Account</a>
-      </mat-list-item>
-
-      <mat-divider></mat-divider>
-
-      <mat-list-item>
-        <button mat-icon-button matListItemMeta (click)="viewDiscountOption($event)">
-          <mat-icon fontIcon="pageview"></mat-icon>
-       </button>
-       <a matListItemTitle href="javascript:void(0)" (click)="viewDiscountOption($event)">View Discounts</a>
-      </mat-list-item>
-
-      <mat-list-item>
-        <button mat-icon-button matListItemMeta (click)="addDiscountOption($event)">
-          <mat-icon fontIcon="add_box"></mat-icon>
-       </button>
-       <a matListItemTitle href="javascript:void(0)" (click)="addDiscountOption($event)">Add Discounts</a>
-      </mat-list-item>
-
-    </mat-list>
-  </nav>
-
   <main>
     <app-account-table *ngIf="showAccountTable"></app-account-table>
     <app-account-form *ngIf="showAccountForm"  (eventEmitter)="handleAccountChildEmitter($event)"></app-account-form>
     <app-discount-table *ngIf="showDiscountTable"></app-discount-table>
     <app-discount-form *ngIf="showDiscountForm" (eventEmitter)="handleDiscountChildEmitter($event)"></app-discount-form>
   </main>
+
+  <nav class="admin-side-nav">
+    <mat-list>
+      <mat-list-item>
+        Account CRUD
+      </mat-list-item>
+
+      <mat-list-item>
+       <a matListItemTitle href="javascript:void(0)" (click)="viewAccountOption($event)">View Accounts</a>
+      </mat-list-item>
+
+      <mat-list-item>
+        <a matListItemTitle href="javascript:void(0)" (click)="addAccountOption($event)">Add Account</a>
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+
+      <mat-list-item>
+        <a matListItemTitle href="javascript:void(0)" (click)="viewDiscountOption($event)">View Discounts</a>
+      </mat-list-item>
+
+      <mat-list-item>
+        <a matListItemTitle href="javascript:void(0)" (click)="addDiscountOption($event)">Add Discounts</a>
+      </mat-list-item>
+
+    </mat-list>
+  </nav>
 
 </div>
