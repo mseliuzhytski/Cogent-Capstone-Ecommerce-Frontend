@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthServiceService } from './auth-service.service';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,14 @@ export class CartService {
 
   constructor(private http:HttpClient,private authService:AuthServiceService) { }
 
-  private getCartUrl = "http://localhost:8080/cart/getCart";
-  private addToCartUrl = "http://localhost:8080/cart/addToCart/";// http://localhost:8080/cart/addToCart/{pid}/{quantity}
-  private updateCartUrl = "http://localhost:8080/cart/updateCart/";//http://localhost:8080/cart/updateCart/{pid}/{quantity}
-  private deleteItemInCartUrl = "http://localhost:8080/cart/deleteItem/";
-  private createSaleUrl = "http://localhost:8080/sale/makeSale";
-  private getUserSales = "http://localhost:8080/sale/getSalesOfUser";
+  private baseUrl = environment.url;
+
+  private getCartUrl = this.baseUrl + "cart/getCart";
+  private addToCartUrl = this.baseUrl + "cart/addToCart/";// http://localhost:8080/cart/addToCart/{pid}/{quantity}
+  private updateCartUrl = this.baseUrl + "cart/updateCart/";//http://localhost:8080/cart/updateCart/{pid}/{quantity}
+  private deleteItemInCartUrl = this.baseUrl + "cart/deleteItem/";
+  private createSaleUrl = this.baseUrl + "sale/makeSale";
+  private getUserSales = this.baseUrl + "sale/getSalesOfUser";
 
 
   addToCart(productId:number,quantity:number){

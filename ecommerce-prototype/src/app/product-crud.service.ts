@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthServiceService } from './auth-service.service';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductCrudService {
 
-  private url = "http://localhost:8080/";
+  private url = environment.url;
 
   private products = [];
 
@@ -25,7 +26,7 @@ export class ProductCrudService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(this.url + "upload-image", formData,{headers});
   }
-  
+
 
   addProduct(product : any) :Observable<Object> {
     const path = this.url + "product";
