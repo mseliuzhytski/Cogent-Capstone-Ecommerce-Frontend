@@ -22,8 +22,8 @@
                 <span>We have these Categories of items:</span>
             </div>
             <ul class="body_featured_r_list">
-                <div *ngFor="let cat_list of l_cat">
-                <li>{{cat_list}}</li>
+                <div *ngFor="let cat_list of category_list">
+                <li>{{cat_list.name}}</li>
                 </div>
             </ul>
         </div>
@@ -82,26 +82,26 @@
 <div class="foot_container">
 <div class="all_catg_list">
 
-<div *ngFor="let category of l_itm">
+<div *ngFor="let category of ll_itm">
 <div *ngIf="category.length >= 1">
     <div class="catg">
         <div class="catg_name">
-            <strong>{{category[0].cat}}</strong>
+            <strong>{{category[0].categoriesList[0].name}}</strong>
         </div>
         <hr>
         <div class="catg_item_list">
 
             <div *ngFor="let item of category">
-                <div class="catg_item_box">
+                <div class="catg_item_box" (click)="routeItem(item.id)">
                     <div class="catg_item_img_box">
                         <img>
                     </div>
                     <div class="catg_item_txt_box">
-                        <div class="catg_item_name">
+                        <div class="catg_item_name" >
                             <span>{{item.name}}</span>
                         </div>
                         <hr>
-                        <div class="catg_item_price">
+                        <div class="catg_item_price" >
                             <span>$ {{item.price}}</span>
                         </div>
                     </div>
