@@ -28,7 +28,7 @@ export class WishlistComponent implements OnInit{
       }
     },error =>{
       console.error(error)
-      //this.router.navigate(['/login'])
+      this.router.navigate(['/login'])
     })
   }
 
@@ -36,23 +36,25 @@ export class WishlistComponent implements OnInit{
     //console.log(item)
       this.cart_res.addToCart(item.id,1).subscribe(
         response => console.log(response)
+        ,error=> alert(error)
+        ,()=>{
+          window.location.reload();
+        }
       );
       this.removeButton(item)
   }
 
   removeButton(item:Product){
-    this.wish_l_res.deleteWishlistItem(item).subscribe(
-      undefined
-      ,error=>console.error(error),
-      ()=>{
-        //window.location.reload();
-        this.router.navigate(['wishlist'])
-      })
-  }
+      //console.log("clicked")
+      this.wish_l_res.deleteWishlistItem(item.id).subscribe(
+        response=>{
+          console.log(response)
+        },error=>window.location.reload()
+        ,()=>{
+          
+        }
+      )
 
-  routeItem(id:number):void{
-    console.log("hi")
-    this.router.navigate(['/productPage', id])
   }
 
 }
