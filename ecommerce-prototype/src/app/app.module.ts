@@ -34,7 +34,7 @@ import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list'
 import { MatIconModule } from '@angular/material/icon'
 import {MatDividerModule} from '@angular/material/divider';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule, MatDialogTitle } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -54,7 +54,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { DialogComponent } from './dialog/dialog.component';
 import { CategoryCrudComponent } from './admin/category-crud/category-crud.component';
-
+import { MatDialog } from '@angular/material/dialog';
+import { MessageDialogComponent } from './contact/message-dialog/message-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,7 +90,9 @@ import { CategoryCrudComponent } from './admin/category-crud/category-crud.compo
     SalesItemTableComponent,
     SalesUserTableComponent,
     DialogComponent,
-    CategoryCrudComponent
+    CategoryCrudComponent,
+    MessageDialogComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -121,6 +124,12 @@ import { CategoryCrudComponent } from './admin/category-crud/category-crud.compo
     MatAutocompleteModule,
     MatDatepickerModule,
     MatTooltipModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogModule
+
   ],
   providers: [
     provideClientHydration(),
