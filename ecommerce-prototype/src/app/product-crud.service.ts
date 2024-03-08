@@ -65,7 +65,9 @@ export class ProductCrudService {
   uploadCsv(file : File) : Observable<Object> {
     const formData = new FormData();
     formData.append("file", file);
-    return this.http.post(this.url + "bulk-upload", formData);
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(this.url + "bulk-upload", formData, {headers});
   }
 
 }
