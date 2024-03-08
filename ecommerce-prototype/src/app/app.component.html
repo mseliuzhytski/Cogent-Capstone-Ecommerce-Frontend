@@ -41,7 +41,9 @@
 
 <div class="main-container">
   <nav class="side-navigation">
+
     <mat-list>
+
       <mat-list-item *ngIf="!isLoggedIn" routerLink="/userProfile">
         <button mat-icon-button matListItemMeta>
           <mat-icon svgIcon="login_icon"></mat-icon>
@@ -56,12 +58,9 @@
         <a matListItemTitle href="javascript:void(0);">Logout</a>
       </mat-list-item>
 
-      <mat-list-item *ngIf="isAdminAccount" routerLink="/admin">
-        <button mat-icon-button matListItemMeta>
-          <mat-icon svgIcon="admin_icon"></mat-icon>
-        </button>
-        <a routerLink="/admin">Admin</a>
-      </mat-list-item>
+      <!-- <button mat-icon-button [matMenuTriggerFor]="appMenu">
+        <mat-icon>more_vert</mat-icon>
+      </button> -->
 
       <mat-list-item *ngIf="isLoggedIn" routerLink="/userProfile">
         <button mat-icon-button matListItemMeta>
@@ -95,6 +94,30 @@
 
     <mat-divider></mat-divider>
 
+
+    <mat-list-item *ngIf="isAdminAccount" routerLink="/admin/product">
+      <button mat-icon-button matListItemMeta>
+        <mat-icon svgIcon="admin_icon"></mat-icon>
+      </button>
+      <a matListItemTitle href="javascript:void(0)">Edit Products</a>
+    </mat-list-item>
+
+    <mat-list-item *ngIf="isAdminAccount" routerLink="/admin/account">
+      <button mat-icon-button matListItemMeta>
+        <mat-icon svgIcon="admin_icon"></mat-icon>
+      </button>
+      <a matListItemTitle href="javascript:void(0)">Edit Accounts</a>
+    </mat-list-item>
+
+    <mat-list-item *ngIf="isAdminAccount" routerLink="/admin/sales">
+      <button mat-icon-button matListItemMeta>
+        <mat-icon svgIcon="admin_icon"></mat-icon>
+      </button>
+      <a matListItemTitle href="javascript:void(0)">Sales Report</a>
+    </mat-list-item>
+
+    <mat-divider></mat-divider>
+
     <mat-list-item routerLink="/about">
       <button mat-icon-button matListItemMeta>
         <mat-icon svgIcon="about_icon"></mat-icon>
@@ -110,9 +133,12 @@
     </mat-list-item>
 
     </mat-list>
+
   </nav>
 
  <main class="component-container">
+
+
 
   <router-outlet (loginEvent)="updateLoggedInStatus()">
 
