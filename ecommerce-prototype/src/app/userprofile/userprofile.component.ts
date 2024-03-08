@@ -66,4 +66,8 @@ export class UserprofileComponent implements OnInit{
 
   }
 
+  onProductClick(id){
+    this.router.navigate(['/productPage', id]);
+  }
+
 }

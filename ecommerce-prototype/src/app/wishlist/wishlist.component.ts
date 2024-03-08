@@ -17,9 +17,17 @@ export class WishlistComponent implements OnInit{
 
   l_wish:wishlistItem[]=[]
 
-  constructor(private wish_l_res:WishlistService,private cart_res:CartService,private router: Router){}
+  constructor(private wish_l_res:WishlistService,private cart_res:CartService,private router: Router,
+    private authService:AuthServiceService){}
+
+  username = ''
 
   ngOnInit(): void {
+    this.l_wish = []
+    this.authService.getLoggedinUsername().subscribe(
+      response=>this.username=response
+    )
+
     this.wish_l_res.getWishlist().subscribe(response => {
       //console.log(response)
       for(let i in response){
@@ -32,29 +40,44 @@ export class WishlistComponent implements OnInit{
     })
   }
 
-  addButton(item:Product){
+  addButton(item:Product,event){
+    this.stopPropagation(event)
     //console.log(item)
       this.cart_res.addToCart(item.id,1).subscribe(
         response => console.log(response)
         ,error=> alert(error)
-        ,()=>{
-          window.location.reload();
-        }
       );
-      this.removeButton(item)
+      this.removeButton(item,event)
   }
 
-  removeButton(item:Product){
+  removeButton(item:Product,event){
+    this.stopPropagation(event)
       //console.log("clicked")
       this.wish_l_res.deleteWishlistItem(item.id).subscribe(
         response=>{
           console.log(response)
-        },error=>window.location.reload()
+        },error=>{
+          setTimeout(()=>{
+            this.ngOnInit()
+          },1500)
+        }
         ,()=>{
-          
+          setTimeout(()=>{
+            this.ngOnInit()
+          },1500)
         }
       )
 
+  }
+
+  onProductClick(id){
+    
+    this.router.navigate(['/productPage', id]);
+
+  }
+
+  stopPropagation(event:Event){
+    event.stopPropagation();
   }
 
 }

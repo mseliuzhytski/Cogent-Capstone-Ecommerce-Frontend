@@ -1,13 +1,13 @@
 <!-- top of the page  -->
 <div *ngIf="display" class="main-div">
-    <button (click)="logout()" class="btn-logout">Logout</button>
+    <!-- <button (click)="logout()" class="btn-logout">Logout</button> -->
 
-    <h1>Welcome, {{username}}!</h1>
-    <!-- Left Side -->
-    <div class="inner-div">
+    <div class="header">
+    <h1 >Welcome, {{username}}!</h1>
+    </div>
+    <div class="other-div">
         <h2>Total Spent ${{totalSpent | number:'1.2-2'}}</h2>
         <br>
-        <!-- <p></p> -->
         <h2>Order History</h2>
     </div>
     <hr>
@@ -25,10 +25,10 @@
             </thead>
             <tbody>
                 <!-- ngFor to iterate through user's associated sales item -->
-                <tr *ngFor="let item of ordersArray">
-                    <td><img src="http://localhost:8080/content/{{item.img}}" alt="{{item.productName}} image"
+                <tr *ngFor="let item of ordersArray" (click)="onProductClick(item.productId)">
+                    <td><img src="http://18.116.53.160:8080/content/{{item.img}}" alt="{{item.productName}} image"
                         height="150px" width="150px"></td>
-                    <td><a [routerLink]="['/productPage', item.productId]">{{item.productName}}</a></td>
+                    <td>{{item.productName}}</td>
                     <td>{{item.quantity}}</td>
                     <td>$ {{item.productPrice | number:'1.2-2'}}</td>
                     <td>{{item.time}}</td>

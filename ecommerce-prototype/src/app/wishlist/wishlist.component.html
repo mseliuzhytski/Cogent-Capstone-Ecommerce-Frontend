@@ -1,15 +1,15 @@
 <div class="h_txt_top">
-    <p class="h_txt_l1">Here's your wishlist</p>
-    <p class="h_txt_l2">Make sure to <strong>Log in</strong> to keep your list saved!</p>
+    <p class="h_txt_l1">{{username}}'s Wishlist</p>
+    <!-- <p class="h_txt_l2">Make sure to <strong>Log in</strong> to keep your list saved!</p> -->
 </div>
 
+<div class="center-text">
 <p class="h_txt_l3" id="scrolltxt">Wishlist Products</p>
 <p class="h_txt_l4">
-    - Click on any item to view it. 
-    <strong>Or</strong>
-    click Add button to move items to Shopping Chart.
+    View your wishlist below!
 </p>
-<div class="foot_container">
+</div>
+<!-- <div class="foot_container">
 <div class="all_catg_list">
     <div class="catg">
         <div class="catg_name">
@@ -24,7 +24,7 @@
                 <div class="catg_item">
                     <div class="catg_item_box" (click)="routeItem(item.product.id)">
                         <div class="catg_item_img_box">
-                            <img src="http://localhost:8080/content/{{item.product.imageLocation}}" alt="{{item.product.name}} image" width="195px" height="215px">
+                            <img src="http://18.116.53.160:8080/content/{{item.product.imageLocation}}" alt="{{item.product.name}} image" width="195px" height="215px">
                         </div>
                         <div class="catg_item_txt_box">
                             <div class="catg_item_name">
@@ -48,4 +48,40 @@
         <hr>
     </div><hr>
 </div> 
+</div> -->
+
+<div class="wishlist">
+
+        <table>
+            <thead>
+                <tr *ngIf="l_wish.length > 0">
+                    <th></th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="l_wish.length < 1">
+                    <span><i>Your wishlist is empty!~ Add Something!</i></span>
+                </tr>
+                <tr *ngFor="let item of l_wish" (click)="onProductClick(item.product.id)">
+                    <td class="image">
+                        <img src="http://18.116.53.160:8080/content/{{item.product.imageLocation}}" alt="{{item.product.name}} image" width="100px" height="100px">
+                    </td>
+                    <td><span>{{item.product.name}}</span></td>
+                    <td><span>$ {{item.product.price}}</span></td>
+                    <td>
+                        <span *ngIf="item.product.stock > 0">In Stock</span>
+                        <span *ngIf="item.product.stock < 1">Out of Stock</span>
+                    </td>
+                    <td>
+                        <button *ngIf="item.product.stock > 0" (click)="addButton(item.product,$event)" class="buttonAdd">Add To Cart</button>
+                        <button (click)="removeButton(item.product,$event)" class="buttonRemove">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
 </div>

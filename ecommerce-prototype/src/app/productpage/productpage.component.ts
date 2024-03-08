@@ -76,7 +76,9 @@ export class ProductpageComponent implements OnInit{
 
   addToWishlist(){
     console.log("test")
-    this.wishService.addToWishlist(this.productId).subscribe(response => console.log(response),
+    this.wishService.addToWishlist(this.productId).subscribe(response =>{
+      alert("Product added to wish list!")
+      },
     error=>{
       if(error.status==400){
         alert("Product is already in wishlist")
@@ -99,7 +101,9 @@ export class ProductpageComponent implements OnInit{
 
     if(add){
       this.cartService.addToCart(this.productId,this.selectedQuantity).subscribe(
-      response => console.log(response),
+      response => {
+        alert("Product added to cart!")
+      },
       error=>{
         if(error.status==400){
           alert("Product is already in cart")
@@ -111,6 +115,10 @@ export class ProductpageComponent implements OnInit{
     );
   }
   }
+
+
+
+  //TODO: mat alert/dialog logic here: 
 
 
 }
