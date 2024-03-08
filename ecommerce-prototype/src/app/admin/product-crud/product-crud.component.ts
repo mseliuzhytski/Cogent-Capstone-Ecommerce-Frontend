@@ -20,13 +20,20 @@ import { Router } from '@angular/router';
 })
 export class ProductCrudComponent implements OnInit, AfterViewInit {
 
-  constructor(private productService : ProductCrudService, public dialog : MatDialog , private categoryService:CategoryService
-    ,private authService:AuthServiceService, private router:Router) {
+  constructor(private productService : ProductCrudService,
+    public dialog : MatDialog ,
+    private categoryService:CategoryService
+    ,private authService:AuthServiceService, private router:Router,
+    ) {
 
   }
+
   ngAfterViewInit(): void {
     if (this.productsDataSource != null) {
-      this.productsDataSource.paginator = this.paginator;
+      this.productsDataSource.paginator = this.productPaginator;
+    }
+    if (this.categoryDataSource != null) {
+      this.categoryDataSource.paginator = this.categoryPaginator;
     }
   }
 
@@ -39,8 +46,8 @@ export class ProductCrudComponent implements OnInit, AfterViewInit {
   categoryList = [];//all category storage
   selectedCategories = [] // storing selected categories
 
-  @ViewChild(MatPaginator)
-  paginator : MatPaginator;
+  @ViewChild("paginatorProduct")
+  productPaginator : MatPaginator;
 
   // Flags for determining whether to show certain panels
   showAddProductForm = false;
@@ -99,9 +106,7 @@ export class ProductCrudComponent implements OnInit, AfterViewInit {
     this.productSubscriber = this.productObservable.subscribe(value => {
       this.products = value;
       this.productsDataSource = new MatTableDataSource(this.products);
-      console.log(this.products.length);
-      console.log(this.productsDataSource);
-      this.productsDataSource.paginator = this.paginator;
+      this.productsDataSource.paginator = this.productPaginator;
     });
   }
 
@@ -247,6 +252,36 @@ export class ProductCrudComponent implements OnInit, AfterViewInit {
       }
     )
 
+    this.authService.checkIfAdmin().subscribe(
+      response=>{
+        if(!response){
+          alert("NOT AUTHORIZED")
+          this.router.navigate(['/login']);
+        }
+      },error=>{
+        alert("NOT AUTHORIZED")
+        this.router.navigate(['/login']);
+      }
+    )
+
+    //category form
+    this.categoryAddForm = new FormGroup({
+      name: new FormControl(null, Validators.required)
+    })
+
+    this.setCategories();
+  }
+
+  setCategories() {
+    //get all categories and fill table
+    this.categoryService.getAllCategories().subscribe(
+      categories=>{
+        this.allCatgeories = categories;
+        this.categoryDataSource = new MatTableDataSource(this.allCatgeories);
+        this.categoryDataSource.paginator = this.categoryPaginator;
+        this.showIsEdit = false
+      }
+    )
   }
 
   display() : void {
@@ -354,6 +389,7 @@ export class ProductCrudComponent implements OnInit, AfterViewInit {
       event.preventDefault();
     }
     this.clearView();
+    this.setProducts();
     this.showViewProducts = true;
   }
 
@@ -380,6 +416,8 @@ export class ProductCrudComponent implements OnInit, AfterViewInit {
     })
   }
 
+
+
   public uploadCsvOption(event : Event) {
     if (event != null) {
       event.preventDefault();
@@ -393,6 +431,7 @@ export class ProductCrudComponent implements OnInit, AfterViewInit {
       event.preventDefault();
     }
     this.clearView();
+    this.setCategories();
     this.showViewCategories = true;
   }
 
@@ -401,9 +440,110 @@ export class ProductCrudComponent implements OnInit, AfterViewInit {
       event.preventDefault();
     }
     this.clearView();
+    this.clearAddCategoryForm();
     this.showAddCategories = true;
+    this.showIsEditCategory = false;
   }
 
 
+  public editCategoryOption(event,name:string,id:number){
+    this.clearView()
+    this.showAddCategories = true;
+    this.changeToUpdateForm(name)
+    this.updateCategoryId = id;
+    this.showIsEditCategory = true;
+  }
+
+  categoryAddForm:FormGroup
+  categoryDataSource:any
+  allCatgeories//stores all categories from request
+  displayedCategoryColumns = ['edit', 'delete', 'id', 'name'];
+  showAddCategoryForm = true
+  showIsEditCategory = false;
+
+  @ViewChild("paginatorCategory")
+  categoryPaginator : MatPaginator;
+
+  // Filter
+  public applyFilterCategory(filterValue : string) : void {
+    this.categoryDataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  changeToUpdateForm(name:string){
+    console.log("works")
+    this.categoryAddForm.get('name').setValue(name);
+    this.categoryAddForm.get('name').updateValueAndValidity();
+    this.showIsEdit = true
+  }
+
+  //deletes category at id
+  deleteCategory(event,id:number){
+    event.preventDefault();
+    this.categoryService.deleteCategory(id).subscribe(
+      (data) => {
+        this.dialogRef = this.dialog.open(ProductDialogComponent, {data: {type: 'delete_product_success'}});
+        this.dialogRef.afterClosed().subscribe(result => {
+          this.setCategories();
+        });
+      },
+      (err) => {
+        this.dialogRef = this.dialog.open(ProductDialogComponent, {data: {type: 'delete_product_invalid'}});
+        this.dialogRef.afterClosed().subscribe(result => {
+          this.setCategories();
+        });
+
+      },
+      () => {
+
+      }
+    );
+  }
+
+  public clearAddCategoryForm() {
+    this.categoryAddForm.get('name').setValue(null);
+    this.categoryAddForm.markAsPristine();
+    this.categoryAddForm.markAsUntouched();
+    this.categoryAddForm.reset();
+  }
+
+
+  //adds category
+  addCategory(){
+    const categoryName = this.categoryAddForm.get('name').value;
+    const category = {'name':categoryName};
+    this.categoryService.addCategory(category).subscribe(
+      (response)=>{
+        this.dialogRef = this.dialog.open(ProductDialogComponent, {data : {type : 'add_category_success'}});
+          this.dialogRef.afterClosed().subscribe(result => {
+            if (result == 'add') {
+              this.addCategoriesOption(null);
+            } else if (result == 'view') {
+              this.viewCategoriesOption(null);
+            }
+        });
+      },
+      (err) => {
+        this.dialogRef = this.dialog.open(ProductDialogComponent, {data : {type : 'add_category_invalid'}});
+      }
+    )
+  }
+
+  updateCategoryId:number
+  editCategory(){
+    const categoryName = this.categoryAddForm.get('name').value;
+    this.categoryService.updateCategory(this.updateCategoryId,categoryName).subscribe(
+      (response)=>{
+        this.dialogRef = this.dialog.open(ProductDialogComponent, {data : {type : 'edit_category_success'}});
+          this.dialogRef.afterClosed().subscribe(result => {
+            if (result == 'view') {
+              this.viewCategoriesOption(null);
+            }
+        });
+      },
+      (err) => {
+        this.dialogRef = this.dialog.open(ProductDialogComponent, {data : {type : 'edit_category_invalid'}});
+      }
+    )
+  }
 
 }
