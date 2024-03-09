@@ -22,7 +22,7 @@
   h2{
     text-align: center;
   }
-  
+
   .inner-div table {
     width: 93%;
     text-align: center;
@@ -48,7 +48,7 @@
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 } */
-/* 
+/*
 .styled-table th,
 .styled-table td {
     text-align: center;
@@ -91,7 +91,7 @@ tbody tr:hover {
     height: 100px;
     width: 100%;
     padding: 15px;
-    
+
 }
 
 tr{
@@ -102,7 +102,7 @@ tr{
 }
 
 tr:hover{
-    background-color: #c0c0c0;
+    background-color: rgb(220, 220, 220);
 }
 
 .btn-logout {
@@ -114,7 +114,7 @@ tr:hover{
     transition: background-color 0.7s, color 0.4s;
     cursor: pointer;
   }
-  
+
   .btn-logout:hover {
     background-color: #1683c4;
     color: white;

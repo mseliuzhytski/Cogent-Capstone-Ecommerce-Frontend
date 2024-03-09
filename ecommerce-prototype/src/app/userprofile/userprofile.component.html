@@ -27,11 +27,11 @@
                 <!-- ngFor to iterate through user's associated sales item -->
                 <tr *ngFor="let item of ordersArray" (click)="onProductClick(item.productId)">
                     <td><img src="http://18.116.53.160:8080/content/{{item.img}}" alt="{{item.productName}} image"
-                        height="150px" width="150px"></td>
+                        width="150px"></td>
                     <td>{{item.productName}}</td>
                     <td>{{item.quantity}}</td>
                     <td>$ {{item.productPrice | number:'1.2-2'}}</td>
-                    <td>{{item.time}}</td>
+                    <td> {{getFormattedDate(item.time) }}</td>
                     <td>$ {{item.totalPrice | number:'1.2-2'}}</td>
                 </tr>
             </tbody>
