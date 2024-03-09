@@ -23,9 +23,9 @@ export class SalesReportService {
   }
 
   getSalesReportByUserTime(timeInterval) : Observable<any> {
-    const path = this.salesReportUrl + "aggregateByUserTimeFilter";
-    const headers = { 'content-type': 'application/json'}
-    return this.http.post(path, timeInterval, {'headers' : headers});
+    const path = this.salesReportUrl + "aggregateByUserTimeFilter/" + timeInterval.startTime + "/" +
+        timeInterval.endTime;
+    return this.http.get(path);
   }
 
 }
