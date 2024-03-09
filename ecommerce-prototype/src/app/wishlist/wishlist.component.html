@@ -71,7 +71,10 @@
                         <img src="http://18.116.53.160:8080/content/{{item.product.imageLocation}}" alt="{{item.product.name}} image" width="100px" height="100px">
                     </td>
                     <td><span>{{item.product.name}}</span></td>
-                    <td><span>$ {{item.product.price}}</span></td>
+                    <td>
+                        <span *ngIf="item.product.price==item.priceOnAdd">$ {{item.product.price}}</span>
+                        <span *ngIf="item.product.price!=item.priceOnAdd"><s>$ {{item.priceOnAdd}}</s> $ {{item.product.price}}</span>
+                    </td>
                     <td>
                         <span *ngIf="item.product.stock > 0">In Stock</span>
                         <span *ngIf="item.product.stock < 1">Out of Stock</span>
