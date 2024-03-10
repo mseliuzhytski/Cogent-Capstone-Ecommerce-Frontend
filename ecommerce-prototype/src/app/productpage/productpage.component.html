@@ -1,6 +1,6 @@
 <div class="product-details" *ngIf="display">
     <div class="product-image">
-      <img src="http://18.116.53.160:8080/content/{{productToDisplay.imageLocation}}" alt="{{productToDisplay.name}} image" width="250px" height="250px">
+      <img src="http://18.116.53.160:8080/content/{{productToDisplay.imageLocation}}" alt="{{productToDisplay.name}} image" width="250px">
     </div>
     <div class="product-info">
       <h2>{{productToDisplay.name}}</h2>
@@ -8,9 +8,12 @@
       <p class="product-stock">Stock: {{productToDisplay.stock}}</p>
       <p class="product-stock" *ngIf="productToDisplay.categoryNames.length > 0">Categories: <i *ngFor="let x of productToDisplay.categoryNames">{{x}} </i></p>
       <div class="product-buttons">
-        <select [(ngModel)]="selectedQuantity" *ngIf="productToDisplay.stock>0">
-          <option *ngFor="let quantity of quantityArray" [value]="quantity">{{ quantity }}</option>
-        </select>
+        <mat-form-field class="add_to_cart_select">
+          <mat-select [(ngModel)]="selectedQuantity" *ngIf="productToDisplay.stock>0">
+            <mat-option *ngFor="let quantity of quantityArray" [value]="quantity">{{ quantity }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <button *ngIf="productToDisplay.stock>0" class="add-to-cart" (click)="addToCart()">Add to Cart</button>
         <button *ngIf="productToDisplay.stock<1" id="disable" (click)="addToCart()">Not In Stock</button>
         <button class="wish-list" (click)="addToWishlist()">Add to Wishlist</button>
