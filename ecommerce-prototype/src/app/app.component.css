@@ -146,3 +146,31 @@ body, ul {
   .search-bar button:hover {
     background-color: #333;
   }
+
+
+  .admin_but:hover + .admin_options{
+    margin-top: 0;
+    display: block;
+  }
+  .admin_options:hover{
+    display: block;
+  }
+  .admin_options{
+    display: none;
+  }
+  .admin_options_i{
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .admin_options_i:hover{
+    background-color:#1583c75d;
+  }
+  .admin_options_i a{
+    color: #1582C7;
+    text-decoration: none;
+    
+  }
+  

@@ -56,12 +56,35 @@
         <a matListItemTitle href="javascript:void(0);">Logout</a>
       </mat-list-item>
 
-      <mat-list-item *ngIf="isAdminAccount" routerLink="/admin">
+      <mat-list-item *ngIf="isAdminAccount" class="admin_but">
         <button mat-icon-button matListItemMeta>
           <mat-icon svgIcon="admin_icon"></mat-icon>
         </button>
         <a routerLink="/admin">Admin</a>
       </mat-list-item>
+
+      <div class="admin_options">
+      <div routerLink="/admin/product" class="admin_options_i"> 
+        <a routerLink="/admin/product">Modify Products</a>
+        <button mat-icon-button matListItemMeta>
+          <mat-icon svgIcon="user_profile_icon"></mat-icon>
+        </button>
+      </div>
+
+      <div routerLink="/admin/account" class="admin_options_i">
+        <a routerLink="/admin/account">Modify Accounts</a>
+        <button mat-icon-button matListItemMeta>
+          <mat-icon svgIcon="user_profile_icon"></mat-icon>
+        </button>
+      </div>
+
+      <div routerLink="/admin/sales" class="admin_options_i">
+        <a routerLink="/admin/sales">Sales Report</a>
+        <button mat-icon-button matListItemMeta>
+          <mat-icon svgIcon="user_profile_icon"></mat-icon>
+        </button>
+      </div>
+      </div>
 
       <mat-list-item *ngIf="isLoggedIn" routerLink="/userProfile">
         <button mat-icon-button matListItemMeta>
