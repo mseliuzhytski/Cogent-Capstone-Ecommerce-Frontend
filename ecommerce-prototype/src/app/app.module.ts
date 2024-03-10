@@ -59,6 +59,7 @@ import { MessageDialogComponent } from './contact/message-dialog/message-dialog.
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTreeModule} from '@angular/material/tree';
 import { ProductalertComponent } from './productpage/productalert/productalert.component';
+import { CartDialogComponent } from './cart/cart-dialog/cart-dialog.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import { ProductalertComponent } from './productpage/productalert/productalert.c
     DialogComponent,
     CategoryCrudComponent,
     MessageDialogComponent,
-    ProductalertComponent
+    ProductalertComponent,
+    CartDialogComponent
 
   ],
   imports: [

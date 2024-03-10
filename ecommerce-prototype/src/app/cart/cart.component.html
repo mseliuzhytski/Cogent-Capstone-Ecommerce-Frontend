@@ -1,50 +1,53 @@
 <div class="display_items" *ngIf="display">
 
-    
+
 
     <div class="display_list">
         <div *ngFor="let item of testarray">
-            <div class="list_item" (click)="goToProductPage(item.product.id)">
+            <div class="list_item">
+              <div class="item_quantity">
+                <div class="quantity_options" (click)="stopPropagation($event)">
+                    <button mat-icon-button (click)="removeItem(item)">
+                      <mat-icon fontIcon="delete"></mat-icon>
+                    </button>
+
+                </div>
+              </div>
+                <div class="inner_list_item">
                 <div class="item_content">
                     <div class="content_img">
-                        <img src="http://localhost:8080/content/{{item.product.imageLocation}}" width="150px" height="120px">
+                        <img src="http://localhost:8080/content/{{item.product.imageLocation}}"
+                        width="120px" (click)="goToProductPage(item.product.id)">
                     </div>
                     <div class="content_txt">
                         <div class="txt_name">
-                            <span>{{item.product.name}}</span>
+                            <a href="javascript:void(0)" (click)="goToProductPage(item.product.id)">{{item.product.name}}</a>
                         </div>
-                        <hr>
                         <div class="txt_field">
-                            <span>Quantity: {{item.quantity}}</span>
+                            <span>Quantity: </span>
+                            <span class="quantity_display" (click)="stopPropagation($event)">
+                              <select [(ngModel)]="item.changeQuantity" (change)="updateCart(item)">
+                                  <option *ngFor="let number of quantityOptions(item.product.stock)" [value]="number">{{ number }}</option>
+                              </select>
+                            </span>
                         </div>
-                        <hr>
                         <div class="txt_price">
                             <span>$ {{item.product.price * item.quantity | number:'1.2-2'}}</span>
                         </div>
                     </div>
                 </div>
-                <div class="item_quantity">
-                    <div class="quantity_display" (click)="stopPropagation($event)">
-                        <select [(ngModel)]="item.changeQuantity" (change)="updateCart(item)">
-                            <option *ngFor="let number of quantityOptions(item.product.stock)" [value]="number">{{ number }}</option>
-                        </select>
-                    </div>
-                    <div class="quantity_options" (click)="stopPropagation($event)">
-                        <button (click)="removeItem(item)">X</button>
-                    </div>
-                </div>
             </div>
-            
+            </div>
         </div>
     </div>
-    
+
     <div class="display_summary" *ngIf="display">
         <div class="summary_t">
-            <span>Totals:</span>
+            <span>TOTAL</span>
         </div>
         <div class="summary_p">
-            <span>items: {{totalItems}}</span><br><br>
-            price:<span [ngClass]="{'discounted': discountApplied}"> $ {{totalPrice | number:'1.2-2'}}</span>
+            <span>Items: {{totalItems}}</span><br><br>
+            Price:<span [ngClass]="{'discounted': discountApplied}"> $ {{totalPrice | number:'1.2-2'}}</span>
             <span  *ngIf="discountApplied"> $ {{discountPrice | number:'1.2-2'}}</span><br><br><br>
             <span  *ngIf="discountApplied">{{discountPercent}}% discount applied!</span>
         </div>
@@ -54,7 +57,6 @@
 
 <div class="bottom" *ngIf="display">
     <hr>
-    <br>
     <br>
     <!-- Enter discount: <input type="text" [(ngModel)]="discountCode"/><br><br> -->
     <mat-form-field>
