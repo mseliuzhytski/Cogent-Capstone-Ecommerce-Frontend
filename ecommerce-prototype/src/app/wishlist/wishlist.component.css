@@ -186,7 +186,7 @@ tr {
     height: 100px;
     width: 100%;
     padding: 15px;
-    
+
 }
 
 tr{
@@ -197,7 +197,7 @@ tr{
 }
 
 tr:hover{
-    background-color: #c0c0c0;
+    background-color: rgb(220, 220, 220);
 }
 
 tbody tr{
