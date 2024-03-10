@@ -1,19 +1,20 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
     color: #333;
     margin: 0;
     padding: 0;
   }
   
   header {
-    background-color: #007bff;
+    background-color: #1683c4;
     color: #fff;
     padding: 20px 0;
     text-align: center;
   }
   
   .container {
+    display: flex;
+    flex-direction: column;
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -23,7 +24,6 @@ body {
     margin-bottom: 40px;
   }
   
-  h1,
   h2 {
     color: #007bff;
   }
