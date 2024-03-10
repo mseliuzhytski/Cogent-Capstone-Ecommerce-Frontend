@@ -5,6 +5,8 @@ import { error } from 'console';
 import { Router } from '@angular/router';
 import { response } from 'express';
 import { DiscountService } from '../discount.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CartDialogComponent } from './cart-dialog/cart-dialog.component';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +15,9 @@ import { DiscountService } from '../discount.service';
 })
 export class CartComponent implements OnInit{
 
-  constructor(private authService:AuthServiceService,private cartService:CartService,private router: Router,private discountService:DiscountService) { }
+  constructor(private authService:AuthServiceService,private cartService:CartService,
+    private router: Router,private discountService:DiscountService,
+    private dialog:MatDialog) { }
 
   display = false;
   totalPrice:number = 0
@@ -38,7 +42,7 @@ export class CartComponent implements OnInit{
           this.accountId = array.account.id
         }
 
-      }, 
+      },
       error =>{
         this.router.navigate(['/login']);
       }
@@ -48,7 +52,7 @@ export class CartComponent implements OnInit{
         console.log(this.totalPrice)
         console.log("ID",this.accountId)
       }
-    )   
+    )
   }
 
   quantityOptions(stock:number){
@@ -103,14 +107,20 @@ export class CartComponent implements OnInit{
   checkDiscount(code){
     console.log("discount:",code)
     this.discountService.checkDiscount(this.accountId,code).subscribe(
-      response=>{
+      (response) => {
         if(response!=false){
+          this.openDialog("Discount successfully applied");
           this.discountApplied=true;
           this.discountPercent = response;
+        } else {
+          this.openDialog("Could not apply discount");
         }
-      }
-      ,error=>console.error(error),
-      ()=>{
+      },
+      (error)=>{
+        this.openDialog("Could not apply discount");
+        console.log("error response");
+        console.error(error);
+      }, ()=>{
         console.log(this.discountPercent)
         this.showPriceChanges()
         this.finalDiscountCode = code
@@ -147,10 +157,15 @@ export class CartComponent implements OnInit{
     //console.log("JSON: ",formattedList)
 
     this.cartService.createSale(formattedList).subscribe(
-      undefined,
-      error=>console.error(error),
-      ()=>{
-        window.location.reload();
+      (msg) => {
+        let d = this.openDialog("Order submitted successfully");
+        d.afterClosed().subscribe(result => {
+          window.location.reload();
+        });
+      },(error) => {
+        console.error(error);
+        let d = this.openDialog("Problem making order");
+      }, ()=>{
       }
     )
 
@@ -171,6 +186,13 @@ export class CartComponent implements OnInit{
   // stops click from going to product page:
   stopPropagation(event:Event){
     event.stopPropagation();
+  }
+
+  openDialog(data:string) {
+    const dialogRef = this.dialog.open(CartDialogComponent, {
+      data: data
+    });
+    return dialogRef;
   }
 
 }

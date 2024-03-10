@@ -56,6 +56,11 @@ import { DialogComponent } from './dialog/dialog.component';
 import { CategoryCrudComponent } from './admin/category-crud/category-crud.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageDialogComponent } from './contact/message-dialog/message-dialog.component';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatTreeModule} from '@angular/material/tree';
+import { ProductalertComponent } from './productpage/productalert/productalert.component';
+import { CartDialogComponent } from './cart/cart-dialog/cart-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +97,9 @@ import { MessageDialogComponent } from './contact/message-dialog/message-dialog.
     DialogComponent,
     CategoryCrudComponent,
     MessageDialogComponent,
-    
+    ProductalertComponent,
+    CartDialogComponent
+
   ],
   imports: [
     BrowserModule,
@@ -128,8 +135,9 @@ import { MessageDialogComponent } from './contact/message-dialog/message-dialog.
     MatDialogContent,
     MatDialogActions,
     MatDialogClose,
-    MatDialogModule
-
+    MatDialogModule,
+    MatMenuModule,
+    MatTreeModule,
   ],
   providers: [
     provideClientHydration(),

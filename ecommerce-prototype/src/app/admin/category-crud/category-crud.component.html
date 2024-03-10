@@ -1,7 +1,7 @@
- 
- 
+
+
  <!-- Category View -->
-<div class="table_section"> 
+<div class="table_section">
  <div *ngIf="showViewCategories" class="product_table_div" id="product_table_div">
 
     <div class="product_table_options_div">
@@ -51,7 +51,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedCategoryColumns;"></tr>
 
     </table>
-  </div>
+ </div>
 </div>
 
 <!-- Adding Categories -->
@@ -66,7 +66,7 @@
       <span *ngIf="showAddCategoryForm && showIsEdit">Edit Category</span>
       <span *ngIf="showAddCategoryForm && !showIsEdit">Add Category</span>
     </h2>
-  
+
     <form *ngIf="showAddCategoryForm" [formGroup]="categoryAddForm">
       <div class="add_product_row">
         <div class="add_product_attr">Name</div>
@@ -82,7 +82,7 @@
           </span>
         </div>
       </div>
-  
+
       <div class="add_product_row">
         <div class="add_product_attr"></div>
         <div class="add_product_input">

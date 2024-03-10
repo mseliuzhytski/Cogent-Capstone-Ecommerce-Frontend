@@ -7,6 +7,9 @@ import { error } from 'console';
 import { AuthServiceService } from '../auth-service.service';
 import { CartService } from '../cart.service';
 import { WishlistService } from '../wishlist.service';
+import { ProductDialogComponent } from '../admin/product-crud/product-dialog/product-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductalertComponent } from './productalert/productalert.component';
 
 @Component({
   selector: 'app-productpage',
@@ -19,7 +22,7 @@ export class ProductpageComponent implements OnInit{
   productToDisplay: Product
 
   constructor(private route:ActivatedRoute,private productService:ProductService, private authService:AuthServiceService,
-    private router: Router,private cartService:CartService, private wishService:WishlistService){
+    private router: Router,private cartService:CartService, private wishService:WishlistService, private dialog:MatDialog){
 
   }
 
@@ -76,12 +79,14 @@ export class ProductpageComponent implements OnInit{
 
   addToWishlist(){
     console.log("test")
-    this.wishService.addToWishlist(this.productId).subscribe(response => console.log(response),
+    this.wishService.addToWishlist(this.productId).subscribe(response =>{
+      this.openDialog("Product added to wish list!")
+      },
     error=>{
       if(error.status==400){
-        alert("Product is already in wishlist")
+        this.openDialog("Product is already in wishlist")
       }else{
-        alert("Not Logged in!")
+        this.openDialog("Not Logged in!")
         this.router.navigate(['/login']);
       }
     }
@@ -89,27 +94,43 @@ export class ProductpageComponent implements OnInit{
   }
 
   processCartRequest(){
-    console.log("called")
-    console.log(this.selectedQuantity);
+    //console.log("called")
+    //console.log(this.selectedQuantity);
     let add = true;
     if(this.selectedQuantity==undefined){
-      alert("Select Quantity")
+      if(this.productToDisplay.stock<1){
+        this.openDialog("Not in stock!")
+      }else{
+        this.openDialog("Please Select Quantity")
+      }
       add= false;
     }
 
     if(add){
       this.cartService.addToCart(this.productId,this.selectedQuantity).subscribe(
-      response => console.log(response),
+      response => {
+        this.openDialog("Product added to cart!")
+      },
       error=>{
         if(error.status==400){
-          alert("Product is already in cart")
+          this.openDialog("Product is already in cart")
         }else{
-          alert("Not Logged in!")
+          this.openDialog("Not Logged in!")
           this.router.navigate(['/login']);
         }
       }
     );
   }
+  }
+
+
+
+  //TODO: mat alert/dialog logic here: 
+
+  openDialog(data:string) {
+    const dialogRef = this.dialog.open(ProductalertComponent, {
+      data: data,width: '250px',height: '200px'
+    });
   }
 
 

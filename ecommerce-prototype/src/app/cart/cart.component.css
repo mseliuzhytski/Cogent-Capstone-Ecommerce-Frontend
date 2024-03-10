@@ -3,46 +3,77 @@
     justify-content: space-around;
 }
 .display_list{
-    
+  margin-left: 20px;
+  margin-top: 20px;
+  width: 440px;
 }
 .list_item{
-    border: 1px solid #89aabf;
-    border-radius: 5px;
-    margin-bottom: 1rem;
+    border: 1px solid #ccc;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content:space-between;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    width: 440px;
 }
-.list_item:hover {
-    background-color: #a0afb8; 
-    cursor: pointer;
-  }
+
+.inner_list_item {
+  width: 400px;
+}
+
+
 .item_content {
     display: flex; /* Arrange elements horizontally */
-    align-items: center; /* Vertically align content */
-    padding: 1rem; /* Add padding around content */
-    border-bottom: 1px solid #ddd; /* Add subtle bottom border */
   }
-  
-  .content_img {
-    margin-right: 1rem; /* Add margin between image and text */
-  }
-  
+
+.item_content a {
+  color: #1683c4;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.item_content a:hover {
+  color: #31a3e8;
+  text-decoration: none;
+}
+
+.item_content img:hover {
+  cursor: pointer;
+}
+
+
+.content_txt {
+  width: 180px;
+}
+
+.content_txt hr {
+  color: rgb(200, 200, 200);
+}
+
+.context_txt div {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.content_img {
+  margin-right: 1rem; /* Add margin between image and text */
+}
+
   .content_txt {
     flex: 1; /* Allow text content to grow and fill remaining space */
   }
-  
+
   .txt_name {
     font-size: 1.2rem; /* Adjust font size for product name */
     margin-bottom: 0.5rem; /* Add some space below the name */
   }
-  
+
   .txt_field, .txt_price {
     margin-bottom: 0.5rem; /* Add spacing between fields */
   }
-  
+
   .txt_price {
     font-weight: bold; /* Make price slightly bold */
   }
@@ -52,12 +83,12 @@
 .item_quantity{
     display: flex;
     align-items: center;
-    margin-left: 10px;
+    margin-left: auto;
 }
 .quantity_display {
     position: relative; /* Needed for arrow positioning */
   }
-  
+
   .quantity_display select {
     appearance: none; /* Hide default browser styles */
     border: 1px solid #ddd;
@@ -68,15 +99,15 @@
     background-color: #fff; /* Background color */
     outline: none; /* Remove default outline on focus */
   }
-  
+
   .quantity_display select:hover {
     border-color: #999; /* Change border color on hover */
   }
-  
+
   .quantity_display select:focus {
     border-color: #333; /* Change border color on focus */
   }
-  
+
   /* Arrow styling */
   .quantity_display::after {
     content: "\25BC"; /* Down arrow character */
@@ -102,39 +133,31 @@
 .quantity_options:hover {
     background-color: #8f8f8f; /* Background color on hover */
   }
-  
+
   .quantity_options:active {
     background-color: #666; /* Background color on press */
   }
-  
-  .quantity_options button {
-    background-color: transparent; /* Remove button background */
-    border: none; /* Remove button border */
-    padding: 0; /* Remove button padding */
-    cursor: inherit; /* Inherit cursor from parent */
-    font-size: 1.2rem; /* Adjust font size for "X" */
-    font-weight: bold; /* Bold font for "X" */
-    color: #b10000; /* Color for "X" */
-  }
+
 
 
   /* summary */
 
 .display_summary{
     position: sticky;
-    top: 10px;
+    margin-top: 20px;
     height: min-content;
     width: 200px;
-    margin: 10px;
-    margin-right: 5%;
+    margin-right: 10px;
     padding-bottom: 30px;
-    border: 1px solid black;
-    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #e6e6e6;
+    margin-left: 20px;
 }
+
 .summary_t{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
     margin-top: 10px;
     color: black;
 }
@@ -147,23 +170,16 @@
 .summary_p span {
     font-weight: normal; /* Normal weight for most text */
   }
-  
+
   .summary_p span.discounted {
     font-weight: bold; /* Bold for discounted price */
-  }
-
-  .display_summary:hover {
-    box-shadow: 0 1px 3px rgba(5, 1, 49, 0.753); /* Subtle shadow on hover */
   }
 
 /*   Bottom   */
 
 .bottom{
-    margin-top: 50px;
-    margin-bottom: 200px;
     text-align: center;
     color: rgb(36, 36, 36);
-    padding: 3rem;
 }
 
 
@@ -188,8 +204,9 @@
     margin-right: 1rem; /* Add space between buttons (optional) */
     transition: background-color 0.2s ease-in-out; /* Smooth transition on hover */
   }
-  
+
   .bottom button:hover {
-    background-color: #575555; /* Change background color on hover */
+    background-color: #6cb7e4; /* Change background color on hover */
   }
+
 

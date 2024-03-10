@@ -79,3 +79,65 @@
         <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
       </mat-dialog-actions>
   </div>
+
+  <div *ngIf="data.type=='add_category_success'">
+    <h2 mat-dialog-title>Successful</h2>
+    <mat-dialog-content>
+      You successfully added a category
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button mat-dialog-close mat-dialog-close="add">Add Another</button>
+      <button mat-button mat-dialog-close mat-dialog-close="view">View Categories</button>
+    </mat-dialog-actions>
+</div>
+
+<div *ngIf="data.type=='add_category_invalid'">
+  <h2 mat-dialog-title>Unsuccessful</h2>
+  <mat-dialog-content>
+     There was a problem adding a category.
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
+  </mat-dialog-actions>
+</div>
+
+
+<div *ngIf="data.type=='edit_category_success'">
+  <h2 mat-dialog-title>Successful</h2>
+  <mat-dialog-content>
+    You successfully modified a category name.
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close mat-dialog-close="view">View Categories</button>
+  </mat-dialog-actions>
+</div>
+
+<div *ngIf="data.type=='edit_category_invalid'">
+<h2 mat-dialog-title>Unsuccessful</h2>
+<mat-dialog-content>
+   There was a problem editing a category.
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
+</mat-dialog-actions>
+</div>
+
+<div *ngIf="data.type=='delete_category_success'">
+  <h2 mat-dialog-title>Successful</h2>
+  <mat-dialog-content>
+    You successfully deleted a category.
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close mat-dialog-close="view">View Categories</button>
+  </mat-dialog-actions>
+</div>
+
+<div *ngIf="data.type=='delete_category_invalid'">
+<h2 mat-dialog-title>Unsuccessful</h2>
+<mat-dialog-content>
+   There was a problem deleting a category.
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close mat-dialog-close="ok">OK</button>
+</mat-dialog-actions>
+</div>

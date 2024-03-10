@@ -1,40 +1,40 @@
 .product-details {
-    display: flex; 
+    display: flex;
     flex-direction: row;
-    width: 800px;
-    height: 400px;
-    margin: 0 auto; 
+    width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
     border: 1px solid #ccc;
     padding: 20px;
-    border-radius: 5px;
   }
-  
+
   .product-image {
-    width: 40%; 
-    background-position: center; 
-    background-size: cover; 
+    width: 40%;
+    background-position: center;
+    background-size: cover;
   }
-  
+
   .product-info {
-    flex: 1; 
-    padding-left: 20px; 
+    flex: 1;
+    padding-left: 20px;
   }
-  
+
   .product-price {
     font-weight: bold;
     margin-bottom: 10px;
   }
-  
+
   .product-stock {
     color: #666;
     margin-bottom: 10px;
   }
-  
+
   .product-buttons {
     margin-bottom: 10px;
   }
-  
-  .product-buttons button {
+
+  /* .product-buttons button {
     background-color: #007bff;
     color: white;
     border: none;
@@ -42,16 +42,70 @@
     margin-right: 10px;
     border-radius: 5px;
     cursor: pointer;
+    transition: all 0.5s ease-in-out;
+  } */
+
+  .add_to_cart_select {
+    width: 100px;
+    /* border: 1px solid rgb(100, 100, 100); */
   }
-  
+
   .product-details p {
-    line-height: 1.5; 
+    line-height: 1.5;
   }
-  
+
   .add-to-cart {
-    background-color: #d00;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
   }
-  
+
+  .disabled-btn button{
+    background-color: #666;
+    transition: all 0.5s ease-in-out;
+  }
+
+  #disable{
+    background-color: #666;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+  }
+
+  #disable:hover{
+    background-color: #d1d1d1;
+  }
+
   .wish-list {
-    background-color: #f00;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+  }
+
+  select{
+    margin-right: 5px;
+  }
+
+  .add-to-cart:hover{
+    background-color: #8bb8e7;
+  }
+
+  .wish-list:hover{
+    background-color: #8bb8e7;
   }

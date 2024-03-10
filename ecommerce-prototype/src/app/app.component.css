@@ -66,7 +66,7 @@ header.header {
 }
 
 .side-navigation {
-  width: 200px;
+  width: 210px;
   background-color: rgb(220, 220, 220);
 }
 
@@ -78,6 +78,10 @@ nav.side-navigation mat-list-item:hover{
 
 nav.side-navigation mat-icon{
   color:  #1582C7;
+}
+
+nav.side-navigation mat-list-item a {
+  color: #1582C7;
 }
 
 nav.side-navigation mat-list-item a:visited {
@@ -94,11 +98,26 @@ nav.side-navigation mat-list {
   background-color: rgb(220, 220, 220);
   margin-bottom: 10px;
   height: 100%;
-  width: 200px;
+  width: 210px;
 }
 
 nav.side-navigation mat-icon {
   color: #1582C7;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgb(200, 200, 200);
+  min-width: 50px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  margin-left: 100px;
+  z-index: 2;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 

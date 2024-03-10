@@ -1,6 +1,6 @@
 .h_txt_top{
     font-family: Arial, sans-serif;
-    color: #333;
+    color: #1582C7;
     text-align: center;
 }
 .h_txt_l1{
@@ -18,6 +18,12 @@
     background-color: #e2e2e2;
 }
 
+.center-text{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
 /*   Wishlist   */
 
 .h_txt_l3{
@@ -26,10 +32,11 @@
     font-size: 30px;
     margin-top: 50px;
     color: black;
+    flex: 1;
 }
 .h_txt_l4{
-    margin-left: 6%;
-    margin-bottom: 0px;
+    text-align: center;
+    margin-bottom: 15px;
     font-size: 20px;
 }
 .foot_container{
@@ -156,4 +163,73 @@
     border-radius: 25px;
     color: #ffffff;
     background-color: #7e7e7e;
+}
+
+
+/* new styles */
+
+.wishlist{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+table{
+    width: 93%;
+    text-align: center;
+    border-collapse: collapse;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+tr {
+    height: 100px;
+    width: 100%;
+    padding: 15px;
+
+}
+
+tr{
+    border-bottom: solid;
+    border-width: thin;
+    border-color: #7e7e7e;
+    transition: background-color 0.5s ease;
+}
+
+tr:hover{
+    background-color: rgb(220, 220, 220);
+}
+
+tbody tr{
+    cursor: pointer;
+  }
+
+
+.buttonAdd{
+    padding: 0.6rem 1rem;
+    background-color: #1683c4;
+    border: 1px solid transparent;
+    border-radius: 5%;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.5s ease;
+}
+
+.buttonRemove{
+    margin-left: 10px;
+    padding: 0.6rem 1rem;
+    background-color: #c43f16;
+    border: 1px solid transparent;
+    border-radius: 5%;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.5s ease;
+}
+
+.buttonAdd:hover{
+    background-color: #6edd8a;
+}
+
+.buttonRemove:hover{
+    background-color: #000000;
 }

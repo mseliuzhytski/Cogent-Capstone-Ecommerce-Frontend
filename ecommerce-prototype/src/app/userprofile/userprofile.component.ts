@@ -15,10 +15,10 @@ export class UserprofileComponent implements OnInit{
   display = false;
 
   constructor(private authService: AuthServiceService, private router: Router, private cartService:CartService) {
-    
+
   }
   ngOnInit(): void {
-    
+
     this.authService.isLoggedIn()
     .subscribe(isLoggedIn => {
       console.log(isLoggedIn);
@@ -46,7 +46,7 @@ export class UserprofileComponent implements OnInit{
           var month = myDate.getMonth() + 1;
           var formattedDate = day + "/" + month;
           const order = {"productId":sale.product.id,"productName":sale.product.name,"quantity":sale.quantitySold,
-          "productPrice":sale.product.price,"totalPrice":sale.totalPrice,"time":formattedDate,"img":sale.product.imageLocation}
+          "productPrice":sale.product.price,"totalPrice":sale.totalPrice,"time":sale.timeRecorded,"img":sale.product.imageLocation}
           this.totalSpent+=sale.totalPrice
           this.ordersArray.push(order)
         }
@@ -64,6 +64,15 @@ export class UserprofileComponent implements OnInit{
     this.router.navigate(['/login']);
     this.authService.updateLoginInfo();
 
+  }
+
+  onProductClick(id){
+    this.router.navigate(['/productPage', id]);
+  }
+
+  public getFormattedDate(timestamp : number) {
+    let date = new Date(timestamp);
+    return date.toLocaleString();
   }
 
 }
